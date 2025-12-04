@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:51:28 by msokolov          #+#    #+#             */
-/*   Updated: 2024/11/26 18:48:36 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/04 12:50:26 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static char	*clean_storage(char *storage)
 {
@@ -18,14 +18,14 @@ static char	*clean_storage(char *storage)
 	char	*ptr;
 	int		len;
 
-	ptr = ft_strchr(storage, '\n');
+	ptr = ft_strchr1(storage, '\n');
 	if (!ptr)
 		return (free(storage), storage = NULL, new_storage = NULL);
 	else
 		len = (ptr - storage) + 1;
 	if (!storage[len])
 		return (free(storage), storage = NULL);
-	new_storage = ft_substr(storage, len, ft_strlen(storage) - len);
+	new_storage = ft_substr1(storage, len, ft_strlen1(storage) - len);
 	(free(storage), storage = NULL);
 	if (!new_storage)
 		return (NULL);
@@ -38,9 +38,9 @@ static char	*new_line(char *storage)
 	char	*ptr;
 	int		len;
 
-	ptr = ft_strchr(storage, '\n');
+	ptr = ft_strchr1(storage, '\n');
 	len = (ptr - storage) + 1;
-	line = ft_substr(storage, 0, len);
+	line = ft_substr1(storage, 0, len);
 	if (!line)
 		return (NULL);
 	return (line);
@@ -56,13 +56,13 @@ static char	*read_buffer(int fd, char *storage)
 	if (!buffer)
 		return (free(storage), storage = NULL, NULL);
 	buffer[0] = '\0';
-	while (rid > 0 && !ft_strchr(buffer, '\n'))
+	while (rid > 0 && !ft_strchr1(buffer, '\n'))
 	{
 		rid = read (fd, buffer, BUFFER_SIZE);
 		if (rid > 0)
 		{
 			buffer[rid] = '\0';
-			storage = ft_strjoin(storage, buffer);
+			storage = ft_strjoin1(storage, buffer);
 		}
 	}
 	free(buffer);
@@ -78,7 +78,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (NULL);
-	if ((storage && !ft_strchr(storage, '\n')) || !storage)
+	if ((storage && !ft_strchr1(storage, '\n')) || !storage)
 		storage = read_buffer (fd, storage);
 	if (!storage)
 		return (NULL);

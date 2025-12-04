@@ -3,11 +3,19 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 # include <stdlib.h>
-# include "libft.h"
+# include "libft/libft.h"
 
-char prefix_check(char *str);
+char	cordinates_check(char *filename);
+char 	prefix_check(char *filename);
 
+typedef	enum e_obj
+{
+	WALL = 1,
+	FLOOR = 0,
+	PLAYER = 'P'
+}	t_obj;
 typedef struct t_data
 {
 	char	**map;
@@ -21,7 +29,6 @@ typedef struct t_data
 	int		no_found;
 	int		so_found;
 	int		we_found;
-	struct t_player info;
 }	s_data;
 
 typedef struct t_player
@@ -31,3 +38,4 @@ typedef struct t_player
 	double	fov;
 }	s_player;
 #endif
+

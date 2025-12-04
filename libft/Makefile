@@ -5,7 +5,7 @@ ft_tolower ft_strchr ft_strrchr ft_strncmp ft_strlcpy ft_strlcat \
 ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr \
 ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi ft_putchar_fd \
 ft_putstr_fd ft_putendl_fd ft_putnbr_fd ft_striteri ft_lstnew ft_lstadd_back \
-ft_lstadd_back ft_lstclear ft_lstdelone ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
+ft_lstadd_back ft_lstclear ft_lstdelone ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize get_next_line get_next_line_utils
 
 SRCS		= $(addsuffix .c, ${SRC})
 
