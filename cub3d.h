@@ -7,8 +7,9 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 
-char	cordinates_check(char *filename);
+char	**cordinates_check(char *filename);
 char 	prefix_check(char *filename);
+char	dublicate_check(char **map);
 
 typedef	enum e_obj
 {

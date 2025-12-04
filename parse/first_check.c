@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/04 14:33:53 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:23:05 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char prefix_check(char *filename)
 	return (0);
 }
 
-char	cordinates_check(char *filename)
+char	**cordinates_check(char *filename)
 {
 	int		fd;
 	char	*line;
@@ -33,37 +33,45 @@ char	cordinates_check(char *filename)
 	full_file = ft_strdup("");
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return(printf("Sosal?\n"), -1);
+		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
 		if (line[0] == '1')
 		{
 			temp = ft_strjoin(full_file, line);
+			free(full_file);
 			full_file = temp;
 		}
+		free(line);
 	}
 	map = ft_split(full_file, '\n');
 	free(full_file);
 	close(fd);
-	return (**map);
+	return (map);
 }	
 
-// char	dublicate_check(char **map)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	flag;
+char	dublicate_check(char **map)
+{
+	int	x;
+	int	y;
+	int	flag;
 
-// 	x = 0;
-// 	flag = 0;
-// 	while (map[x])
-// 	{
-// 		y = 0;
-// 		while (map[x][y])
-// 		{
-// 			if(map[x][y] == 'N' || map[x][u])
-// 		}
-// 	}
-// }
+	x = 0;
+	flag = 0;
+	while (map[x])
+	{
+		y = 0;
+		while (map[x][y])
+		{
+			if(map[x][y] == 'N' || map[x][y] == 'W' || map[x][y] == 'S' || map[x][y] == 'E')
+				flag++;
+			y++;
+		}
+		x++;
+	}
+	if (flag > 1 || flag == 0)
+		return (printf("Wrong [CORDINATE] usage\n"), -1);
+	return(0);
+}
 
 
