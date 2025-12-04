@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/04 15:55:57 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:51:41 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ int main(int ac, char **av)
 		printf("lesgoo\n");
 	if (map_validation(map))
 		printf("yes\n");
-	
 }

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/04 16:33:53 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/04 23:24:53 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,40 +61,79 @@ char	dublicate_check(char **map)
 	while (map[x])
 	{
 		y = 0;
-		while (map[x][y])
+		while (map[y][x])
 		{
-			if(map[x][y] == 'N' || map[x][y] == 'W' || map[x][y] == 'S' || map[x][y] == 'E')
+			if(map[y][x] == 'N' || map[x][y] == 'W' || map[x][y] == 'S' || map[x][y] == 'E')
 			{
 				flag++;
-				map[x][y] = 'P';
+				map[y][x] = 'P';
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 	if (flag > 1 || flag == 0)
 		return (printf("Wrong [CORDINATE] usage\n"), -1);
 	return(0);
 }
 
-char map_validation(char **map)
-{
-	int	x;
-	int	y;
+// char map_validation(char **map)
+// {
+// 	int	x;
+// 	int	y;
 	
-	x = 0;
-	y = 0;
-	while (map[x])
-	{
-		y = 0;
-		while (map[x][y])
-		{
-			if (map[x][0] != '1' || )	
-			y++;		 
-		}
-		x++;
-	}
-	return(0);
-}
+// 	x = 0;
+// 	while (map[x])
+// 	{
+// 		y = 0;
+// 		while (map[x][y])
+// 		{
+// 			if ((map[x][y] == 'P' || map[x][y] == '0'))
+// 			{
+// 				// printf("here\n");
+// 				if (y > 0)
+// 					if (map[x][y - 1] == ' ')
+// 						return(printf("An error occured while reading a map\n"), -1);
+// 				if (x > 0)
+// 					if (map[x -1][y] == ' ')
+// 						return(printf("An error occured while reading a map\n"), -1);
+// 				if (y < ft_strlen(map[x]) - 1)
+// 					if (map[x][y + 1] == ' ')
+// 						return(printf("An error occured while reading a map\n"), -1);
+// 				if (map[x + 1])
+// 					if (map[x + 1][y] == ' ')
+// 						return(printf("An error occured while reading a map\n"), -1);
+// 			}
+// 			y++;
+// 		}
+// 		x++;
+// 	}
+// 	return(0);
+// }
 
+// char map_validation(char **map)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	x = 0;
+// 	y = 0;
+// 	while (map[y])
+// 	{
+// 		if (map[y][0] != '1')
+// 			return(printf("An error occured while reading a map\n"), -1);
+// 		if (map[x][ft_strlen(map[y] - 1)] != '1')
+// 			return(printf("An error occured while reading a map\n"), -1);
+// 		y++;
+// 	}
+// 	while (map[x])
+// 	{
+// 		if(map[0][x] != '1')
+// 			return(printf("An error occured while reading a map\n"), -1);
+// 		if (map[ft_strlen(map[x]) - 1][y] != '1')
+// 			return(printf("An error occured while reading a map\n"), -1);
+// 		x++;
+// 	}
+// 	return (0);
+// }
 
