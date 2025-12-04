@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/04 15:23:14 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:55:57 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int main(int ac, char **av)
 		return(1);
 	map = cordinates_check(av[1]);
 	if (!dublicate_check(map))
-		printf("%s", *map);
+		printf("lesgoo\n");
+	if (map_validation(map))
+		printf("yes\n");
 	
 }

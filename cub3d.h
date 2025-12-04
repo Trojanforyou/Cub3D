@@ -10,6 +10,7 @@
 char	**cordinates_check(char *filename);
 char 	prefix_check(char *filename);
 char	dublicate_check(char **map);
+char	 map_validation(char **map);
 
 typedef	enum e_obj
 {

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/04 15:23:05 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:33:53 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,36 @@ char	dublicate_check(char **map)
 		while (map[x][y])
 		{
 			if(map[x][y] == 'N' || map[x][y] == 'W' || map[x][y] == 'S' || map[x][y] == 'E')
+			{
 				flag++;
+				map[x][y] = 'P';
+			}
 			y++;
 		}
 		x++;
 	}
 	if (flag > 1 || flag == 0)
 		return (printf("Wrong [CORDINATE] usage\n"), -1);
+	return(0);
+}
+
+char map_validation(char **map)
+{
+	int	x;
+	int	y;
+	
+	x = 0;
+	y = 0;
+	while (map[x])
+	{
+		y = 0;
+		while (map[x][y])
+		{
+			if (map[x][0] != '1' || )	
+			y++;		 
+		}
+		x++;
+	}
 	return(0);
 }
 
