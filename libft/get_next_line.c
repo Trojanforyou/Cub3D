@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:51:28 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/04 12:50:26 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/05 21:28:38 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*clean_storage(char *storage)
 		len = (ptr - storage) + 1;
 	if (!storage[len])
 		return (free(storage), storage = NULL);
-	new_storage = ft_substr1(storage, len, ft_strlen1(storage) - len);
+	new_storage = ft_substr1(storage, len, ft_strlen(storage) - len);
 	(free(storage), storage = NULL);
 	if (!new_storage)
 		return (NULL);

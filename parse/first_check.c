@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/05 16:09:26 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/05 22:42:39 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	dublicate_check(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if(map[y][x] == 'N' || map[x][y] == 'W' || map[x][y] == 'S' || map[x][y] == 'E')
+			if(map[y][x] == 'N' || map[y][x] == 'W' || map[y][x] == 'S' || map[y][x] == 'E')
 			{
 				flag++;
 				map[y][x] = 'P';
@@ -79,8 +79,8 @@ char	dublicate_check(char **map)
 
 char map_validation(char **map)
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
 	while (map[x])
@@ -111,26 +111,31 @@ char map_validation(char **map)
 	return(0);
 }
 
-char map_validation(char **map)
+char wall_check(char **map)
 {
 	int	x;
 	int	y;
+	int	last;
 
-	x = 0;
+	x = 1;
+	y = 1;
+	last = get_map_height(map);
+	while (map[0][y++])
+		if((map[0][y] == 'P' || map[0][y] == '0') && map[0][y] != '1')
+			return(printf("An error occured while reading a map1\n"), -1);
 	y = 0;
-	while (map[x++])
-		if(map[0][x] == 'P' || map[0][y] == '0')
-			return(printf("An error occured while reading a map\n"), -1);
-	x = 0;
-	while (map[get_map_height(map) - 1][x])
-		if (map[get_map_height(map) - 1][x] != 0 && )
-			return(printf("An error occured while reading a map\n"), -1);
+	while (map[last - 1][y++])
+		if (map[last- 1][y] != '1')
+			return(printf("An error occured while reading a map2\n"), -1);
+	y = 0;
 	while (map[0][y++])
 		if (map[0][y] != '1')
-			return(printf("An error occured while reading a map\n"), -1);
-	while (map[y++])
-		if (map[y][ft_strlen(map[y]) - 1] != '1')
-			return(printf("An error occured while reading a map\n"), -1);
+			return(printf("An error occured while reading a map3\n"), -1);
+	x = 0;
+	while (map[x++][0])
+		if (map[x][ft_strlen(map[x]) - 1] != '1')
+			return(printf("An error occured while reading a map4\n"), -1);
+	printf("here\n");
 	return (0);
 }
 int	get_map_height(char **map)

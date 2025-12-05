@@ -11,7 +11,9 @@ char	**cordinates_check(char *filename);
 char 	prefix_check(char *filename);
 char	dublicate_check(char **map);
 char	 map_validation(char **map);
-char 	map_validation(char **map);
+// char 	map_validation(char **map);
+char 	wall_check(char **map);
+int		get_map_height(char **map);
 
 typedef	enum e_obj
 {
