@@ -10,17 +10,17 @@
 char	**cordinates_check(char *filename);
 char 	prefix_check(char *filename);
 char	dublicate_check(char **map);
-char	 map_validation(char **map);
-// char 	map_validation(char **map);
-char 	wall_check(char **map);
+char 	wall_height_check(char **map);
+char 	map_witdh_check(char **map);
 int		get_map_height(char **map);
+char	map_validation(char **map);
 
-typedef	enum e_obj
-{
-	WALL = 1,
-	FLOOR = 0,
-	PLAYER = 'P'
-}	t_obj;
+// typedef	enum e_obj
+// {
+// 	WALL = 1,
+// 	FLOOR = 0,
+// 	PLAYER = 'P'
+// }	t_obj;
 typedef struct t_data
 {
 	char	**map;

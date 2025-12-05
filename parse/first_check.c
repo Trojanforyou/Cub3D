@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/06 00:13:03 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/06 00:48:29 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,12 @@ char map_validation(char **map)
 	return(0);
 }
 
-char wall_check(char **map)
+char wall_height_check(char **map)
 {
-	int	x;
 	int	y;
 	int	last;
 
-	x = 1;
-	y = 0;
+	y = 1;
 	last = get_map_height(map);
 	while (map[0][y])
 	{
@@ -134,7 +132,16 @@ char wall_check(char **map)
 		y++;
 	}
 	y = 0;
-	while (x < last - 1)
+	return (0);
+}
+char map_witdh_check(char **map)
+{
+	int	x;
+	int	last;
+	
+	x = 0;
+	last = get_map_height(map);
+	while (x < last  - 1)
 	{
 		if (map[x][0] != '1' && map[x][0] != ' ')
 			return(printf("An error occured while reading a map3\n"), -1);
