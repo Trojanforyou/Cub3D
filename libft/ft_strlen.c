@@ -6,13 +6,13 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:55:26 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/04 22:47:26 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/05 22:57:17 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *c)
+size_t	ft_strlen(const char *c)
 {
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/05 22:42:39 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/05 23:55:18 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**cordinates_check(char *filename)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		if (line[0] == '1')
+		if (line[0] == '1' || line[0] == '0' || line[0] == 'P') 
 		{
 			temp = ft_strjoin(full_file, line);
 			free(full_file);
@@ -118,24 +118,36 @@ char wall_check(char **map)
 	int	last;
 
 	x = 1;
-	y = 1;
+	y = 0;
 	last = get_map_height(map);
-	while (map[0][y++])
-		if((map[0][y] == 'P' || map[0][y] == '0') && map[0][y] != '1')
+	while (map[0][y])
+	{
+		if(map[0][y] != '1')
 			return(printf("An error occured while reading a map1\n"), -1);
+		y++;
+	}
 	y = 0;
 	while (map[last - 1][y++])
-		if (map[last- 1][y] != '1')
+	{
+		if (map[last -1][y] != '1')
 			return(printf("An error occured while reading a map2\n"), -1);
+		y++;
+	}
 	y = 0;
-	while (map[0][y++])
-		if (map[0][y] != '1')
+	while (x < last - 1)
+	{
+		if (map[x][0] != '1')
 			return(printf("An error occured while reading a map3\n"), -1);
+		x++;
+	}
+	printf("Checking map[%d][0] = '%c'\n", x, map[x][0]);
 	x = 0;
-	while (map[x++][0])
+	while (map[x])
+	{
 		if (map[x][ft_strlen(map[x]) - 1] != '1')
 			return(printf("An error occured while reading a map4\n"), -1);
-	printf("here\n");
+		x++;
+	}
 	return (0);
 }
 int	get_map_height(char **map)
