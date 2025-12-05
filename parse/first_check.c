@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/05 23:55:18 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/06 00:13:03 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ char map_validation(char **map)
 	size_t	x;
 	size_t	y;
 
-	x = 0;
+	x = 1;
 	while (map[x])
 	{
-		y = 0;
+		y = 1;
 		while (map[x][y])
 		{
 			if ((map[x][y] == 'P' || map[x][y] == '0'))
@@ -122,43 +122,34 @@ char wall_check(char **map)
 	last = get_map_height(map);
 	while (map[0][y])
 	{
-		if(map[0][y] != '1')
+		if(map[0][y] != '1' && map[0][y] != ' ')
 			return(printf("An error occured while reading a map1\n"), -1);
 		y++;
 	}
 	y = 0;
 	while (map[last - 1][y++])
 	{
-		if (map[last -1][y] != '1')
+		if (map[last -1][y] != '1' && map[last -1][y] != ' ')
 			return(printf("An error occured while reading a map2\n"), -1);
 		y++;
 	}
 	y = 0;
 	while (x < last - 1)
 	{
-		if (map[x][0] != '1')
+		if (map[x][0] != '1' && map[x][0] != ' ')
 			return(printf("An error occured while reading a map3\n"), -1);
 		x++;
 	}
-	printf("Checking map[%d][0] = '%c'\n", x, map[x][0]);
 	x = 0;
 	while (map[x])
 	{
-		if (map[x][ft_strlen(map[x]) - 1] != '1')
+		if (map[x][ft_strlen(map[x]) - 1] != '1' && map[x][ft_strlen(map[x]) - 1] != ' ')
 			return(printf("An error occured while reading a map4\n"), -1);
 		x++;
 	}
 	return (0);
 }
-int	get_map_height(char **map)
-{
-	int	y;
 
-	y = 0;
-	while (map[y])
-		y++;
-	return(y);
-}
 
 
 
