@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/06 00:48:29 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/06 11:50:05 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,10 @@ char wall_height_check(char **map)
 {
 	int	y;
 	int	last;
+	int	x;
 
-	y = 1;
+	x = 0;
+	y = 0;
 	last = get_map_height(map);
 	while (map[0][y])
 	{
@@ -125,13 +127,14 @@ char wall_height_check(char **map)
 		y++;
 	}
 	y = 0;
-	while (map[last - 1][y++])
+	while (map[last - 1][y])
 	{
 		if (map[last -1][y] != '1' && map[last -1][y] != ' ')
 			return(printf("An error occured while reading a map2\n"), -1);
+		if (map[x][ft_strlen(map[x]) - 2] != '1' && map[x][ft_strlen(map[x]) - 2] != ' ')
+			return(printf("An error occured while reading a map4\n"), -1);
 		y++;
 	}
-	y = 0;
 	return (0);
 }
 char map_witdh_check(char **map)
@@ -139,7 +142,7 @@ char map_witdh_check(char **map)
 	int	x;
 	int	last;
 	
-	x = 0;
+	x = 1;
 	last = get_map_height(map);
 	while (x < last  - 1)
 	{
@@ -147,17 +150,5 @@ char map_witdh_check(char **map)
 			return(printf("An error occured while reading a map3\n"), -1);
 		x++;
 	}
-	x = 0;
-	while (map[x])
-	{
-		if (map[x][ft_strlen(map[x]) - 1] != '1' && map[x][ft_strlen(map[x]) - 1] != ' ')
-			return(printf("An error occured while reading a map4\n"), -1);
-		x++;
-	}
 	return (0);
 }
-
-
-
-
-
