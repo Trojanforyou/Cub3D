@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/06 00:39:13 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/06 12:06:22 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(int ac, char **av)
 	map = cordinates_check(av[1]);
 	if (!dublicate_check(map))
 		printf("lesgoo\n");
+	map_char_check(map);
 	map_witdh_check(map);
 	wall_height_check(map);
 	

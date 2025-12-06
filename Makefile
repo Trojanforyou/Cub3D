@@ -7,7 +7,7 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = src/main.c \
-       parse/first_check.c utils/utils.c
+       parse/first_check.c utils/utils.c parse/map_parse.c
 
 OBJS = $(SRCS:.c=.o)
 

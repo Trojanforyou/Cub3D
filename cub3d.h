@@ -14,6 +14,7 @@ char 	wall_height_check(char **map);
 char 	map_witdh_check(char **map);
 int		get_map_height(char **map);
 char	map_validation(char **map);
+char	map_char_check(char **map);
 
 // typedef	enum e_obj
 // {
