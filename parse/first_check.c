@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/06 12:37:32 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/06 13:18:32 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@ char prefix_check(char *filename)
 	return (0);
 }
 
-char	**cordinates_check(char *filename)
+char	**cordinates_check(char *filename, t_data *data)
 {
 	int		fd;
 	char	*line;
 	char	*temp;
-	char	*full_file;
-	char	**map;
+	char	*full_file;;
 
-	map = NULL;
 	full_file = ft_strdup("");
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -44,13 +42,13 @@ char	**cordinates_check(char *filename)
 		}
 		free(line);
 	}
-	map = ft_split(full_file, '\n');
+	data->map = ft_split(full_file, '\n');
 	free(full_file);
 	close(fd);
-	return (map);
+	return (0);
 }
 
-char	dublicate_check(char **map)
+char	dublicate_check(t_data *data)
 {
 	int	x;
 	int	y;
@@ -58,15 +56,15 @@ char	dublicate_check(char **map)
 
 	y = 0;
 	flag = 0;
-	while (map[y])
+	while (data->map[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (data->map[y][x])
 		{
-			if(map[y][x] == 'N' || map[y][x] == 'W' || map[y][x] == 'S' || map[y][x] == 'E')
+			if(data->map[y][x] == 'N' || data->map[y][x] == 'W' || data->map[y][x] == 'S' || data->map[y][x] == 'E')
 			{
 				flag++;
-				map[y][x] = 'P';
+				data->map[y][x] = 'P';
 			}
 			x++;
 		}
@@ -77,31 +75,31 @@ char	dublicate_check(char **map)
 	return(0);
 }
 
-char map_validation(char **map)
+char map_validation(t_data *data)
 {
 	size_t	x;
 	size_t	y;
 
 	x = 1;
-	while (map[x])
+	while (data->map[x])
 	{
 		y = 1;
-		while (map[x][y])
+		while (data->map[x][y])
 		{
-			if ((map[x][y] == 'P' || map[x][y] == '0'))
+			if ((data->map[x][y] == 'P' || data->map[x][y] == '0'))
 			{
 				// printf("here\n");
 				if (y > 0)
-					if (map[x][y - 1] == ' ')
+					if (data->map[x][y - 1] == ' ')
 						return(printf("An error occured while reading a map\n"), -1);
 				if (x > 0)
-					if (map[x -1][y] == ' ')
+					if (data->map[x -1][y] == ' ')
 						return(printf("An error occured while reading a map\n"), -1);
-				if (y < ft_strlen(map[x]) - 1)
-					if (map[x][y + 1] == ' ' && map[x + 1][y])
+				if (y < ft_strlen(data->map[x]) - 1)
+					if (data->map[x][y + 1] == ' ' && data->map[x + 1][y])
 						return(printf("An error occured while reading a map\n"), -1);
-				if (map[x + 1])
-					if (map[x + 1][y] == ' ')
+				if (data->map[x + 1])
+					if (data->map[x + 1][y] == ' ')
 						return(printf("An error occured while reading a map\n"), -1);
 			}
 			y++;
@@ -111,45 +109,45 @@ char map_validation(char **map)
 	return(0);
 }
 
-char wall_height_check(char **map)
+char wall_height_check(t_data *data)
 {
 	int	y;
 	int	last;
 
 	y = 0;
-	last = get_map_height(map);
-	while (map[0][y + 1])
+	last = get_map_height(data->map);
+	while (data->map[0][y + 1])
 	{
-		if(map[0][y] != '1' && map[0][y] != ' ')
+		if(data->map[0][y] != '1' && data->map[0][y] != ' ')
 			return(printf("An error occured while reading a map1\n"), -1);
 		y++;
 	}
 	y = 0;
-	while (map[last - 1][y + 1])
+	while (data->map[last - 1][y + 1])
 	{
-		if (map[last -1][y] != '1' && map[last -1][y] != ' ')
+		if (data->map[last -1][y] != '1' && data->map[last -1][y] != ' ')
 			return(printf("An error occured while reading a map2\n"), -1);
 		y++;
 	}
 	return (0);
 }
-char map_witdh_check(char **map)
+char map_witdh_check(t_data *data)
 {
 	int	x;
 	int	last;
 	
 	x = 0;
-	last = get_map_height(map);
+	last = get_map_height(data->map);
 	while (x < last  - 1)
 	{
-		if (map[x][0] != '1' && map[x][0] != ' ')
+		if (data->map[x][0] != '1' && data->map[x][0] != ' ')
 			return(printf("An error occured while reading a map3\n"), -1);
 		x++;
 	}
 	x = 0;
-	while (map[x])
+	while (data->map[x])
 	{
-		if (map[x][ft_strlen(map[x]) - 1] != '1' && map[x][ft_strlen(map[x]) - 1] != ' ')
+		if (data->map[x][ft_strlen(data->map[x]) - 1] != '1' && data->map[x][ft_strlen(data->map[x]) - 1] != ' ')
 			return(printf("An error occured while reading a map4\n"), -1);
 		x++;
 	}

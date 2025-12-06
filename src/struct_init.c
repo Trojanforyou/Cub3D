@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/06 13:26:43 by msokolov         ###   ########.fr       */
+/*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
+/*   Updated: 2025/12/06 13:20:34 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int main(int ac, char **av)
+void    data_init(t_data *data)
 {
-	t_data	data;
-
-	if (ac < 2)
-		return (printf("Program requires MORE than 2 arguments\n"), 1);
-	if (prefix_check(av[1]))
-		return(1);
-	data_init(&data);
-	cordinates_check(av[1], &data);
-	map_char_check(&data);
-	
-	if (!dublicate_check(&data))
-		printf("lesgoon");
-	map_witdh_check(&data);
-	wall_height_check(&data);
-	map_validation(&data);
+    data->map = NULL;
 }

@@ -7,22 +7,7 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 
-char	**cordinates_check(char *filename);
-char 	prefix_check(char *filename);
-char	dublicate_check(char **map);
-char 	wall_height_check(char **map);
-char 	map_witdh_check(char **map);
-int		get_map_height(char **map);
-char	map_validation(char **map);
-char	map_char_check(char **map);
-
-// typedef	enum e_obj
-// {
-// 	WALL = 1,
-// 	FLOOR = 0,
-// 	PLAYER = 'P'
-// }	t_obj;
-typedef struct t_data
+typedef struct s_data
 {
 	char	**map;
 	int		witdh;
@@ -35,13 +20,31 @@ typedef struct t_data
 	int		no_found;
 	int		so_found;
 	int		we_found;
-}	s_data;
-
+}	t_data;
 typedef struct t_player
 {
 	double	plain;
 	double	dir;
 	double	fov;
 }	s_player;
+
+char	**cordinates_check(char *filename, t_data *data);
+char 	prefix_check(char *filename);
+char	dublicate_check(t_data *data);
+char 	wall_height_check(t_data *data);
+char 	map_witdh_check(t_data *data);
+int		get_map_height(char **map);
+char	map_validation(t_data *data);
+char	map_char_check(t_data *data);
+
+void    data_init(t_data *data);
+
+// typedef	enum e_obj
+// {
+// 	WALL = 1,
+// 	FLOOR = 0,
+// 	PLAYER = 'P'
+// }	t_obj;
+
 #endif
 
