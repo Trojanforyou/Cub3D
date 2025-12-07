@@ -1,25 +1,29 @@
 #ifndef CUB3D_H
 # define CUB3D_H
+#define RGB(r, g, b) ((r << 16) | (g << 8) | b)
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+# include "MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_data
 {
-	char	**map;
-	int		witdh;
-	int		height;
-	char	*no;
-	char	*so;
-	char	*we;
-	int		floor;
-	int		ceiling;
-	int		no_found;
-	int		so_found;
-	int		we_found;
+	mlx_t 		*mlx;
+	mlx_image_t *image;
+	char		**map;
+	int			witdh;
+	int			height;
+	char		*no;
+	char		*so;
+	char		*we;
+	int			floor;
+	int			ceiling;
+	int			no_found;
+	int			so_found;
+	int			we_found;
 }	t_data;
 typedef struct t_player
 {
@@ -28,6 +32,12 @@ typedef struct t_player
 	double	fov;
 }	s_player;
 
+// typedef struct s_texture
+// {
+// 	mlx_texture_t	*wall[4] // 0 = north, 1 = south, 2 = west, 3 = east
+// }	t_text;
+
+char	color_set(char *filename, t_data *data);
 char	**cordinates_check(char *filename, t_data *data);
 char 	prefix_check(char *filename);
 char	dublicate_check(t_data *data);

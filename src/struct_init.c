@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/06 13:20:34 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:59:09 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,6 @@
 void    data_init(t_data *data)
 {
     data->map = NULL;
+    data->floor = 0;
+    data->ceiling = 0;
 }
