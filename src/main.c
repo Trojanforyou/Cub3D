@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/07 18:15:12 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:20:37 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ int main(int ac, char **av)
 	if (prefix_check(av[1]))
 		return(1);
 	data_init(&data);
-	if (!color_set(av[1], &data))
-		printf("%s", av[1]);
+	color_set(av[1], &data);
 	cordinates_check(av[1], &data);
 	map_validation(&data);
 	map_char_check(&data); 
-	if (!dublicate_check(&data))
-		printf("lesgoon");
+	dublicate_check(&data);
 	map_witdh_check(&data);
 	wall_height_check(&data);
 }

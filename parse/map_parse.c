@@ -77,73 +77,76 @@ char map_witdh_check(t_data *data)
 	}
 	return (0);
 }
-// static char	map_shape(t_data *data, size_t x, size_t y)
-// {
-// 	while (y < ft_strlen(data->map[x]))  // пока не конец строки
-// 	{
-//     	if (data->map[x][check_y] == '1')
-//         	break;  // стена
-//     	if (data->map[x])
-// 			ap[x][check_y] == '0' || игрок)
-//         	break;
-//     	if (data->map[x][check_y] == ' ')
-//         	check_y++;  // пробел - идем вправо
-//     	else
-//         	return ERROR;
-// }
+static char map_ud_check(t_data *data, size_t x, size_t y)
+{
+	if (data->map[y + 1])
+	{
+		if (x >= ft_strlen(data->map[y + 1]))
+			return(printf("An error occured while checking MAP\n"), -1); 
+		if (data->map[y + 1][x] == ' ')
+		{
+			int	check_y1 = y + 1;
+			while (data->map[check_y1] && data->map[check_y1][x] == ' ')
+				check_y1++;
+			if (!data->map[check_y1] || x >= ft_strlen(data->map[check_y1]))
+				return(printf("An error occured while checking MAP\n"), -1); 
+			if (data->map[check_y1][x] != '1'&& data->map[check_y1][x] != '0' && data->map[check_y1][x] != 'P')
+				return(printf("An error occured while checking MAP\n"), -1); 
+		}
+		if (y > 0 && data->map[y - 1][x] && data->map[y - 1][x] == ' ')
+		{
+			int	check_y = y - 1;
+			while (check_y >= 0 && data->map[check_y][x] == ' ')
+				check_y--;
+			if (check_y < 0 || x >= ft_strlen(data->map[check_y]))
+				return(printf("An error occured while checking MAP\n"), -1); 
+			if (data->map[check_y][x] != '1'&& data->map[check_y][x] != '0' && data->map[check_y][x] != 'P')
+				return(printf("An error occured while checking MAP\n"), -1);
+		}
+	}
+	return (0);
+}
+
+static char	map_rl_check(t_data *data, size_t x, size_t y)
+{
+	if (data->map[y][x + 1] && data->map[y][x + 1] == ' ')
+	{
+		int	check_x = x + 2;
+		while (check_x && data->map[y][check_x] && data->map[y][check_x] == ' ')
+			check_x++;
+		if (data->map[y][check_x] == '\0')
+			return(printf("error\n"), -1);
+		if (data->map[y][check_x] != '1'&& data->map[y][check_x] != '0' && data->map[y][check_x] != 'P')
+			return(printf("An error occured while checking MAP\n"), -1);
+	}
+	if (x > 0 && data->map[y][x - 1] == ' ')
+	{
+		int	check_x = x - 2;
+		while (check_x >= 0 && data->map[y][check_x] == ' ')
+			check_x--;
+		if (check_x < 0)
+			return(printf("An error occured while checking MAP\n"), -1); 
+		if (data->map[y][check_x] != '1' && data->map[y][check_x] != '0' && data->map[y][check_x] != 'P')
+			return(printf("An error occured while checking MAP\n"), -1); 
+	}
+	return(0);
+
+}
 char map_validation(t_data *data)
 {
 	size_t	x;
 	size_t	y;
 
-	y = 1;
+	y = 0;
 	while (data->map[y])
 	{
-		x = 2;
+		x = 0;
 		while (data->map[y][x])
 		{
 			if ((data->map[y][x] == 'P' || data->map[y][x] == '0'))
 			{
-				if (data->map[y][x + 1] == ' ')
-				{
-					int	check_x = x + 2;
-					while (data->map[y][check_x] && data->map[y][check_x] == ' ')
-						check_x++;
-					if (data->map[y][check_x] == '\0')
-						return(printf("error\n"), -1);
-					if (data->map[y][check_x] != '1'&& data->map[y][check_x] != '0' && data->map[y][check_x] != 'P')
-						return(printf("error\n"), -1);
-				}
-				if (x > 0 && data->map[y][x - 1] == ' ')
-				{
-					int	check_x = x - 2;
-					while (check_x >= 0 && data->map[y][check_x] == ' ')
-						check_x--;
-					if (check_x < 0)
-						return(printf("error\n"), -1);
-					if (data->map[y][check_x] != '1' && data->map[y][check_x] != '0' && data->map[y][check_x] != 'P')
-						return(printf("error\n"), -1);
-				}
-				if (data->map[y + 1] && data->map[y + 1][x] == ' ')
-				{
-					int	check_y1 = y + 1;
-					while (data->map[check_y1] && data->map[check_y1][x] == ' ')
-						check_y1++;
-					if (!data->map[check_y1][x]  || x >= ft_strlen(data->map[check_y1]))
-						return(printf("error\n"), -1);
-					if (data->map[check_y1][x] != '1'&& data->map[check_y1][x] != '0' && data->map[check_y1][x] != 'P')
-						return(printf("error\n"), -1);
-				}
-				if (data->map[y - 1][x] && data->map[y - 1][x] == ' ')
-				{
-					int	check_y = y - 2;
-					while (check_y >= 0 && data->map[check_y][x] == ' ')
-						check_y--;
-					if (check_y < 0 || x >= ft_strlen(data->map[check_y]))
-						return(printf("Error\n"), -1);
-					if (data->map[check_y][x] != '1'&& data->map[check_y][x] != '0' && data->map[check_y][x] != 'P')
-						return(printf("error\n"), -1);
-				}
+				map_rl_check(data, x, y);
+				map_ud_check(data, x, y);
 			}
 			x++;
 		}
