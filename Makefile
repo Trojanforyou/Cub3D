@@ -12,7 +12,7 @@ MLX42_LIB = $(MLX42_BUILD)/libmlx42.a
 MLX42_FLAGS = -I$(MLX42_DIR)/include -L$(MLX42_BUILD) -lmlx42 -lglfw -ldl -pthread -lm
 
 SRCS = src/main.c \
-       parse/first_check.c utils/utils.c parse/map_parse.c src/struct_init.c
+       parse/first_check.c utils/utils.c parse/map_parse.c src/struct_init.c utils/map_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -46,7 +46,10 @@ char 	map_witdh_check(t_data *data);
 int		get_map_height(char **map);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
-
+char 	map_down_check(t_data *data, size_t x, size_t y);
+char 	map_right_check(t_data *data, size_t x, size_t y);
+char 	map_left_check(t_data *data, size_t x, size_t y);
+char 	map_up_check(t_data *data, size_t x, size_t y);
 void    data_init(t_data *data);
 
 // typedef	enum e_obj
