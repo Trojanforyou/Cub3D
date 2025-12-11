@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/11 22:28:59 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:22:14 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char	dublicate_check(t_data *data)
 			{
 				flag++;
 				data->map[y][x] = 'P';
+				if (data->map[y][x] != 'P' && data->map[y][x] != '0' && data->map[y][x] != '1' && data->map[y][x] != ' ')
+					return (printf("Wrong [CHAR] usage\n"), -1);
 			}
 			x++;
 		}

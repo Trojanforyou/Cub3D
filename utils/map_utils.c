@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/11 22:49:32 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:44:08 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool    map_up_check(t_data *data, size_t x, size_t y)
 {
-    if (y == 0 )
+    if (y == 0 || y - 1 >= get_map_height(data->map))
         return(true);
     if (data->map[y + 1][x] == ' ')
     {
@@ -33,7 +33,7 @@ bool    map_up_check(t_data *data, size_t x, size_t y)
 }
 bool    map_down_check(t_data *data, size_t x, size_t y)
 {
-    if (y - 1 >= get_map_height(data->map))
+    if (y - 1 >= get_map_height(data->map) || (y - 1 >= get_map_height(data->map) && data->map[y][x] == '0'))
         return(true);
     if (data->map[y - 1][x] == '0' || data->map[y - 1][x] == 'P')
         return (printf("Map is not covered by the walls1\n"), false);
@@ -44,7 +44,7 @@ bool    map_down_check(t_data *data, size_t x, size_t y)
         if (data->map[y][x] == '1')
             return(true);
         if (data->map[y][x] == '0' || data->map[y][x] == 'P')
-            return (printf("Map is not covered by the walls2\n"), false);
+            return (printf("Map is not covered by the walls3\n"), false);
         else
             return(false);
     }
@@ -53,6 +53,8 @@ bool    map_down_check(t_data *data, size_t x, size_t y)
 }
 bool	map_right_check(t_data *data, size_t x, size_t y)
 {
+    // if ((data->map[y][x] == '0' || data->map[y][x] == 'P') && data->map[y][x - 1] == '\0')
+    //     return(printf("You did it!\n"), false);
     if (x == 0)
         return(true);
     if (data->map[y][x - 1] == '1')
@@ -62,7 +64,7 @@ bool	map_right_check(t_data *data, size_t x, size_t y)
         if (data->map[y][x] == '1')
             return (true);
         if (data->map[y][x] == '0' || data->map[y][x] == 'P')
-            return (printf("Map is not covered by the walls\n"), false);
+                return (printf("Map is not covered by the wallsgo\n"), false);
         else
             return(true);
     }
