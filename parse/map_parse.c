@@ -90,13 +90,13 @@ char map_validation(t_data *data)
 		{
 			if ((data->map[y][x] == ' '))
 			{
-				if (map_right_check(data, x, y) == -1)
+				if (map_right_check(data, x, y) == false)
 					return(-1);
-				if (map_down_check(data, x, y) == -1)
+				if (map_down_check(data, x, y) == false)
 					return(-1);
-				if (map_left_check(data, x, y) == -1)
+				if (map_left_check(data, x, y) == false)
 					return(-1);
-				if (map_up_check(data, x, y) == -1)
+				if (map_up_check(data, x, y) == false)
 					return (-1);
 			}
 			x++;
