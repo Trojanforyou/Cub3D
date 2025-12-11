@@ -43,7 +43,7 @@ char 	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
 char 	wall_height_check(t_data *data);
 char 	map_witdh_check(t_data *data);
-int		get_map_height(char **map);
+size_t		get_map_height(char **map);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
 bool	map_down_check(t_data *data, size_t x, size_t y);

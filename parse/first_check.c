@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/07 17:50:38 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/11 22:28:59 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**cordinates_check(char *filename, t_data *data)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		if (line[0] == '1' || line[0] == '0' || line[0] == 'P') 
+		if (line[0] == '1' || line[0] == '0' || line[0] == 'P' || line[0] == ' ') 
 		{
 			temp = ft_strjoin(full_file, line);
 			free(full_file);
@@ -71,7 +71,7 @@ char	dublicate_check(t_data *data)
 		y++;
 	}
 	if (flag > 1 || flag == 0)
-		return (printf("Wrong [CORDINATE] usage\n"), -1);
+		return (printf("Wrong [CHAR] usage\n"), -1);
 	return(0);
 }
 

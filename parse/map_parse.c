@@ -27,7 +27,7 @@ char	map_char_check(t_data *data)
 			data->map[y][x] == 'W' || data->map[y][x] == 'S' || data->map[y][x] == 'E')
 				x++;
 			else
-				return(printf("data->map has non valid characters\n"), -1);
+				return(printf("map has non valid characters\n"), -1);
 		}
 		y++;
 	}
