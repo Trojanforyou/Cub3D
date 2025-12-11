@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/08 13:20:37 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:51:37 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ int main(int ac, char **av)
 	dublicate_check(&data);
 	map_witdh_check(&data);
 	wall_height_check(&data);
+	free(data.map);
 }

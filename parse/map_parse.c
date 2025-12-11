@@ -88,10 +88,10 @@ char map_validation(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if ((data->map[y][x] == 'P' || data->map[y][x] == '0'))
+			if ((data->map[y][x] == ' '))
 			{
 				if (map_right_check(data, x, y) == -1)
-					return(-1);
+					return(printf("%ld, %ld", y, x), -1);
 				if (map_left_check(data, x, y) == -1)
 					return(-1);
 				if (map_down_check(data, x, y) == -1)
