@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/07 17:50:38 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:31:24 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**cordinates_check(char *filename, t_data *data)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		if (line[0] == '1' || line[0] == '0' || line[0] == 'P') 
+		if (line[0] == '1' || line[0] == '0' || line[0] == 'P' || line[0] == ' ')
 		{
 			temp = ft_strjoin(full_file, line);
 			free(full_file);
@@ -54,21 +54,21 @@ char	dublicate_check(t_data *data)
 	int	y;
 	int	flag;
 
-	y = 0;
+	y = -1;
 	flag = 0;
-	while (data->map[y])
+	while (data->map[++y])
 	{
-		x = 0;
-		while (data->map[y][x])
+		x = -1;
+		while (data->map[y][++x])
 		{
 			if(data->map[y][x] == 'N' || data->map[y][x] == 'W' || data->map[y][x] == 'S' || data->map[y][x] == 'E')
 			{
 				flag++;
 				data->map[y][x] = 'P';
 			}
-			x++;
+			if(data->map[y][x] != 'P' && data->map[y][x] != '0' && data->map[y][x] != '1' && data->map[y][x] != ' ')
+				return(printf("Map has non valid CHARS\n"), -1);
 		}
-		y++;
 	}
 	if (flag > 1 || flag == 0)
 		return (printf("Wrong [CORDINATE] usage\n"), -1);
@@ -104,7 +104,7 @@ char	color_set(char *filename, t_data *data)
 			tmp_floor = ft_split(line + 2, ',');
 		else if (line[0] == 'F')
 			tmp_ceiling = ft_split(line + 2, ',');
-		free(line);			
+		free(line);
 	}
 	parse_rgb(data, tmp_ceiling, tmp_floor);
 	free(tmp_ceiling);

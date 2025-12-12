@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/09 19:51:37 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:13:07 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	color_set(av[1], &data);
 	cordinates_check(av[1], &data);
 	map_validation(&data);
-	map_char_check(&data); 
+	map_char_check(&data);
 	dublicate_check(&data);
 	map_witdh_check(&data);
 	wall_height_check(&data);

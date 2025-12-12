@@ -59,7 +59,7 @@ char map_witdh_check(t_data *data)
 {
 	int	x;
 	int	last;
-	
+
 	x = 0;
 	last = get_map_height(data->map);
 	while (x < last  - 1)
@@ -99,6 +99,8 @@ char map_validation(t_data *data)
 				if (map_up_check(data, x, y) == false)
 					return (-1);
 			}
+			if (island_check(data, y, x) == false)
+				return(-1);
 			x++;
 		}
 		y++;

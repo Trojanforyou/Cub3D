@@ -24,6 +24,7 @@ typedef struct s_data
 	int			no_found;
 	int			so_found;
 	int			we_found;
+	int			wall_found;
 }	t_data;
 typedef struct t_player
 {
@@ -49,6 +50,7 @@ char	map_char_check(t_data *data);
 bool	map_down_check(t_data *data, size_t x, size_t y);
 bool 	map_right_check(t_data *data, size_t x, size_t y);
 bool	map_left_check(t_data *data, size_t x, size_t y);
+bool	island_check(t_data *data, size_t y, size_t x);
 bool 	map_up_check(t_data *data, size_t x, size_t y);
 void    data_init(t_data *data);
 
