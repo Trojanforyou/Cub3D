@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/12 14:31:24 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/12 18:43:04 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ char	dublicate_check(t_data *data)
 	int	y;
 	int	flag;
 
-	y = -1;
+	y = 0;
 	flag = 0;
-	while (data->map[++y])
+	while (data->map[y])
 	{
-		x = -1;
-		while (data->map[y][++x])
+		x = 0;
+		while (data->map[y][x])
 		{
 			if(data->map[y][x] == 'N' || data->map[y][x] == 'W' || data->map[y][x] == 'S' || data->map[y][x] == 'E')
 			{
@@ -68,7 +68,9 @@ char	dublicate_check(t_data *data)
 			}
 			if(data->map[y][x] != 'P' && data->map[y][x] != '0' && data->map[y][x] != '1' && data->map[y][x] != ' ')
 				return(printf("Map has non valid CHARS\n"), -1);
+			x++;
 		}
+		y++;
 	}
 	if (flag > 1 || flag == 0)
 		return (printf("Wrong [CORDINATE] usage\n"), -1);

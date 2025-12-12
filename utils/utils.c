@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/06 13:31:10 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/12 18:28:03 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,23 @@ int	get_map_height(char **map)
 	while (map[y])
 		y++;
 	return(y);
+}
+bool	check_bottom_row(t_data *data)
+{
+	size_t	x;
+	size_t last;
+	size_t len;
+
+	x = 0;
+	last = 0;
+    while (data->map[last + 1])
+        last++;
+    len = ft_strlen(data->map[last]);
+    while (x < len)
+    {
+        if (data->map[last][x] != '1' && data->map[last][x] != ' ')
+            return (printf("Map is not covered by the walls at bottom row, column %zu\n", x), false);
+        x++;
+    }
+    return true;
 }
