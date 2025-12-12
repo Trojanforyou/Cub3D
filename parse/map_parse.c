@@ -23,11 +23,10 @@ char	map_char_check(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'N' || data->map[y][x] == ' ' ||
-			data->map[y][x] == 'W' || data->map[y][x] == 'S' || data->map[y][x] == 'E')
+			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == ' ')
 				x++;
 			else
-				return(printf("data->map has non valid characters\n"), -1);
+				return(printf("data has non valid characters\n"), -1);
 		}
 		y++;
 	}

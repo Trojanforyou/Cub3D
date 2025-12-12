@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 #define RGB(r, g, b) ((r << 16) | (g << 8) | b)
+#define MAX_MAP_LINES 1000
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>

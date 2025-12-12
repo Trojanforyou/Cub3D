@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/12 18:43:04 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/12 19:45:36 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,28 @@ char	**cordinates_check(char *filename, t_data *data)
 {
 	int		fd;
 	char	*line;
-	char	*temp;
-	char	*full_file;;
+	char	**temp;
+	int		i;
 
-	full_file = ft_strdup("");
+	i = 0;
+	temp = malloc(sizeof(char *) * (MAX_MAP_LINES + 1));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		if (line[0] == '1' || line[0] == '0' || line[0] == 'P' || line[0] == ' ')
+		if (line[0] == '1' || line[0] == '0' || line[0] == ' ' || line[0] == ' ')
 		{
-			temp = ft_strjoin(full_file, line);
-			free(full_file);
-			full_file = temp;
+			if (line[1] == 'O' || line[1] == 'O' || line[1] == 'E' || line[1] == 'A') // change it to strcnmp check
+				line++;
+			temp[i++] = line;
 		}
-		free(line);
+		else
+			free(line);
+		printf("%s\n", line);
 	}
-	data->map = ft_split(full_file, '\n');
-	free(full_file);
+	temp[i] = NULL;
+	data->map = temp;
 	close(fd);
 	return (data->map);
 }
@@ -66,8 +69,6 @@ char	dublicate_check(t_data *data)
 				flag++;
 				data->map[y][x] = 'P';
 			}
-			if(data->map[y][x] != 'P' && data->map[y][x] != '0' && data->map[y][x] != '1' && data->map[y][x] != ' ')
-				return(printf("Map has non valid CHARS\n"), -1);
 			x++;
 		}
 		y++;
