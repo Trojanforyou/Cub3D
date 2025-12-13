@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 #define RGB(r, g, b) ((r << 16) | (g << 8) | b)
+#define MAX_MAP_LINES 1000
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -24,6 +25,7 @@ typedef struct s_data
 	int			no_found;
 	int			so_found;
 	int			we_found;
+	int			wall_found;
 }	t_data;
 typedef struct t_player
 {
@@ -43,12 +45,14 @@ char 	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
 char 	wall_height_check(t_data *data);
 char 	map_witdh_check(t_data *data);
-size_t		get_map_height(char **map);
+int		get_map_height(char **map);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
 bool	map_down_check(t_data *data, size_t x, size_t y);
 bool 	map_right_check(t_data *data, size_t x, size_t y);
 bool	map_left_check(t_data *data, size_t x, size_t y);
+bool	island_check(t_data *data, size_t y, size_t x);
+bool	check_bottom_row(t_data *data);
 bool 	map_up_check(t_data *data, size_t x, size_t y);
 void    data_init(t_data *data);
 
@@ -60,4 +64,3 @@ void    data_init(t_data *data);
 // }	t_obj;
 
 #endif
-

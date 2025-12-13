@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/11 23:22:14 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:05:45 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,31 @@ char	**cordinates_check(char *filename, t_data *data)
 {
 	int		fd;
 	char	*line;
-	char	*temp;
-	char	*full_file;;
+	char	**temp;
+	int		i;
 
-	full_file = ft_strdup("");
+	i = 0;
+	temp = malloc(sizeof(char *) * (MAX_MAP_LINES + 1));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		if (line[0] == '1' || line[0] == '0' || line[0] == 'P' || line[0] == ' ') 
+		if (line[0] == '1' || line[0] == '0' || line[0] == ' ' || line[0] == ' ')
 		{
-			temp = ft_strjoin(full_file, line);
-			free(full_file);
-			full_file = temp;
+			if (line[1] == 'O' || line[1] == 'O' || line[1] == 'E' || line[1] == 'A') // change it to strcnmp check
+				line++;
+			if (line[0] == '\n' && line[1] == '\n')
+				return(printf("huy\n"), NULL);
+			temp[i] = line;
+			// printf("%s\n", temp[i]);
+			i++;
 		}
-		free(line);
+		else
+			free(line);
 	}
-	data->map = ft_split(full_file, '\n');
-	free(full_file);
+	temp[i] = NULL;
+	data->map = temp;
 	close(fd);
 	return (data->map);
 }
@@ -65,15 +71,13 @@ char	dublicate_check(t_data *data)
 			{
 				flag++;
 				data->map[y][x] = 'P';
-				if (data->map[y][x] != 'P' && data->map[y][x] != '0' && data->map[y][x] != '1' && data->map[y][x] != ' ')
-					return (printf("Wrong [CHAR] usage\n"), -1);
 			}
 			x++;
 		}
 		y++;
 	}
 	if (flag > 1 || flag == 0)
-		return (printf("Wrong [CHAR] usage\n"), -1);
+		return (printf("Wrong [CORDINATE] usage\n"), -1);
 	return(0);
 }
 
@@ -106,7 +110,7 @@ char	color_set(char *filename, t_data *data)
 			tmp_floor = ft_split(line + 2, ',');
 		else if (line[0] == 'F')
 			tmp_ceiling = ft_split(line + 2, ',');
-		free(line);			
+		free(line);
 	}
 	parse_rgb(data, tmp_ceiling, tmp_floor);
 	free(tmp_ceiling);
@@ -114,4 +118,3 @@ char	color_set(char *filename, t_data *data)
 	close(fd);
 	return(0);
 }
-

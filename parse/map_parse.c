@@ -23,11 +23,10 @@ char	map_char_check(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'N' || data->map[y][x] == ' ' ||
-			data->map[y][x] == 'W' || data->map[y][x] == 'S' || data->map[y][x] == 'E')
+			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == ' ' || data->map[y][x] == '\n')
 				x++;
 			else
-				return(printf("map has non valid characters\n"), -1);
+				return(printf("Y = %d X = %d char = '%c' (%d)\n", y, x, data->map[y][x], data->map[y][x]), -1);
 		}
 		y++;
 	}
@@ -59,20 +58,20 @@ char map_witdh_check(t_data *data)
 {
 	int	x;
 	int	last;
-	
+
 	x = 0;
 	last = get_map_height(data->map);
 	while (x < last  - 1)
 	{
-		if (data->map[x][0] != '1' && data->map[x][0] != ' ')
+		if (data->map[x][0] == '0' || data->map[x][0] == 'p')
 			return(printf("An error occured while reading a map3\n"), -1);
 		x++;
 	}
 	x = 0;
 	while (data->map[x])
 	{
-		if (data->map[x][ft_strlen(data->map[x]) - 1] != '1' && data->map[x][ft_strlen(data->map[x]) - 1] != ' ')
-			return(printf("An error occured while reading a map4\n"), -1);
+		if (data->map[x][ft_strlen(data->map[x]) - 1] == '0' || data->map[x][ft_strlen(data->map[x]) - 1] == 'P')
+			return(printf("here\n %d\n index %ld\nchar: %s", x,ft_strlen(data->map[x]), data->map[x]), -1);
 		x++;
 	}
 	return (0);
@@ -99,6 +98,8 @@ char map_validation(t_data *data)
 				if (map_up_check(data, x, y) == false)
 					return (-1);
 			}
+			// if (island_check(data, y, x) == false)
+			// 	return(-1);
 			x++;
 		}
 		y++;
