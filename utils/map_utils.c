@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/13 14:48:13 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/13 19:32:21 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool    map_down_check(t_data *data, size_t x, size_t y)
     }
     if (y > 0 && x < ft_strlen(data->map[y-1]) && (data->map[y - 1][x] == '0' || data->map[y - 1][x] == 'P'))
         return (printf("Map is not covered by the walls11\n"), false);
-    else if (data->map[y][x] == ' ' && data->map[y - 1][x] == '1')
+    else if (data->map[y][x] == ' ' && (data->map[y - 1][x] == '1' || data->map[y - 1][x] == '\n'))
     {
         while (y > 0 && data->map[y] && data->map[y][x] == ' ')
             y++;
@@ -103,4 +103,19 @@ bool	island_check(t_data *data, size_t y, size_t x)
 			return (printf("Map is not covered by the walls4\n"), false);
 	}
 	return (true);
+}
+
+bool    map_init(t_data *data)
+{
+	if (dublicate_check(data) == -1)
+		return(false);
+	if (map_char_check(data) == -1)
+		return(false);
+	if (map_validation(data) == -1)
+		return(false);
+	if (map_witdh_check(data) == -1)
+		return(false);
+	if (wall_height_check(data) == -1)
+		return(false);
+    return(true);
 }

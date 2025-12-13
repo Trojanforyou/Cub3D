@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/13 15:05:45 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/13 20:17:37 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	**cordinates_check(char *filename, t_data *data)
 	char	*line;
 	char	**temp;
 	int		i;
-
 	i = 0;
 	temp = malloc(sizeof(char *) * (MAX_MAP_LINES + 1));
 	fd = open(filename, O_RDONLY);
@@ -35,18 +34,16 @@ char	**cordinates_check(char *filename, t_data *data)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		if (line[0] == '1' || line[0] == '0' || line[0] == ' ' || line[0] == ' ')
+		if (line[0] == '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\n')
 		{
 			if (line[1] == 'O' || line[1] == 'O' || line[1] == 'E' || line[1] == 'A') // change it to strcnmp check
 				line++;
-			if (line[0] == '\n' && line[1] == '\n')
-				return(printf("huy\n"), NULL);
+
 			temp[i] = line;
-			// printf("%s\n", temp[i]);
 			i++;
 		}
-		else
-			free(line);
+		// else
+		// 	free(line);
 	}
 	temp[i] = NULL;
 	data->map = temp;
@@ -81,7 +78,7 @@ char	dublicate_check(t_data *data)
 	return(0);
 }
 
-static void	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
+static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
 {
 	int	r;
 	int	g;
@@ -89,11 +86,16 @@ static void	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
 	r = ft_atoi(tmp_floor[0]);
 	g = ft_atoi(tmp_floor[1]);
 	b = ft_atoi(tmp_floor[2]);
+	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
+		return(printf("RGB is out from ragne [0-256]"), false);
 	data->floor = RGB(r, g, b);
 	r = ft_atoi(tmp_ceiling[0]);
 	g = ft_atoi(tmp_ceiling[1]);
 	b = ft_atoi(tmp_ceiling[2]);
+	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
+		return(printf("RGB is out from ragne [0-256]"), false);
 	data->ceiling = RGB(r, g, b);
+	return(true);
 }
 char	color_set(char *filename, t_data *data)
 {

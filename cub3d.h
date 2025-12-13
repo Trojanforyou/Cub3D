@@ -2,6 +2,7 @@
 # define CUB3D_H
 #define RGB(r, g, b) ((r << 16) | (g << 8) | b)
 #define MAX_MAP_LINES 1000
+#define TITLE_SIZE 64
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -10,10 +11,13 @@
 # include "libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
 
+
 typedef struct s_data
 {
 	mlx_t 		*mlx;
-	mlx_image_t *image;
+	mlx_image_t *img;
+	mlx_texture_t	*wall[4]; // 0 = north, 1 = south, 2 = west, 3 = east
+	mlx_image_t		*wall_img[4];
 	char		**map;
 	int			witdh;
 	int			height;
@@ -34,10 +38,6 @@ typedef struct t_player
 	double	fov;
 }	s_player;
 
-// typedef struct s_texture
-// {
-// 	mlx_texture_t	*wall[4] // 0 = north, 1 = south, 2 = west, 3 = east
-// }	t_text;
 
 char	color_set(char *filename, t_data *data);
 char	**cordinates_check(char *filename, t_data *data);
@@ -45,16 +45,24 @@ char 	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
 char 	wall_height_check(t_data *data);
 char 	map_witdh_check(t_data *data);
-int		get_map_height(char **map);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
+
+int		get_map_height(char **map);
+
+void    data_init(t_data *data);
+
+bool    load_image(t_data*texture);
 bool	map_down_check(t_data *data, size_t x, size_t y);
 bool 	map_right_check(t_data *data, size_t x, size_t y);
 bool	map_left_check(t_data *data, size_t x, size_t y);
 bool	island_check(t_data *data, size_t y, size_t x);
 bool	check_bottom_row(t_data *data);
 bool 	map_up_check(t_data *data, size_t x, size_t y);
-void    data_init(t_data *data);
+bool    map_init(t_data *data);
+bool    game_init(t_data *data);
+bool	texture_load(t_data *texture);
+bool     load_map(t_data *data);
 
 // typedef	enum e_obj
 // {
