@@ -11,14 +11,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 bool texture_load(t_data *texture)
 {
     texture->wall[0] = mlx_load_png("./textures/northwall.png");
     texture->wall[1] = mlx_load_png("./textures/southwall.png");
     texture->wall[2] = mlx_load_png("./textures/westwall.png");
-    texture->wall[3] = mlx_load_png("./textures/easwall.png");
+    texture->wall[3] = mlx_load_png("./textures/eastwall.png");
     if (!texture->wall[0] || !texture->wall[1] || !texture->wall[2] || !texture->wall[3])
         return (printf("Texture load error\n"), false);
     return true;
