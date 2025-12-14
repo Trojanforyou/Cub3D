@@ -21,6 +21,8 @@ bool	walls_set(char *filename, t_data *data)
     fd = open(filename, O_RDONLY);
     if (fd  < 0)
         return(printf("file descriptor failed\n"), false);
+    if (!filename)
+        return(false);
     while ((line = get_next_line(fd)))
     {
         if (!line)
