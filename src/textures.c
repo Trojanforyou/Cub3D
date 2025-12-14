@@ -44,6 +44,7 @@ bool texture_load(t_data *data)
 bool load_image(t_data *texture)
 {
     texture->wall_img[0] = mlx_texture_to_image(texture->mlx, texture->wall[0]);
+    printf("%p", texture->wall_img[0]);
     texture->wall_img[1] = mlx_texture_to_image(texture->mlx, texture->wall[1]);
     texture->wall_img[2] = mlx_texture_to_image(texture->mlx, texture->wall[2]);
     texture->wall_img[3] = mlx_texture_to_image(texture->mlx, texture->wall[3]);
