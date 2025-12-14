@@ -23,10 +23,6 @@ char	map_char_check(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == '\n')
-				data->n_flag = 1;
-			if (data->n_flag == 2)
-				return(printf("here\n"), -1);
 			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == ' ' || data->map[y][x] == '\n')
 				x++;
 			else
@@ -85,11 +81,11 @@ char map_validation(t_data *data)
 	size_t	x;
 	size_t	y;
 
-	y = 0;
-	while (data->map[y])
+	y = -1;
+	while (data->map[++y])
 	{
-		x = 0;
-		while (data->map[y][x])
+		x = -1;
+		while (data->map[y][++x])
 		{
 			if ((data->map[y][x] == ' '))
 			{
@@ -102,11 +98,9 @@ char map_validation(t_data *data)
 				if (map_up_check(data, x, y) == false)
 					return (-1);
 			}
-			// if (island_check(data, y, x) == false)
-			// 	return(-1);
-			x++;
+			if (island_check(data, y, x) == false)
+				return(-1);
 		}
-		y++;
 	}
 	return(0);
 }

@@ -49,6 +49,7 @@ char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
 
 int		get_map_height(char **map);
+int 	get_map_width(char  **str);
 
 void    data_init(t_data *data);
 

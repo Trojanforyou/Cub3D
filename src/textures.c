@@ -20,11 +20,11 @@ bool	walls_set(char *filename, t_data *data)
 
     fd = open(filename, O_RDONLY);
     if (fd  < 0)
-        return(printf("file descriptor failed\n"), -1);
+        return(printf("file descriptor failed\n"), false);
     while ((line = get_next_line(fd)))
     {
         if (!line)
-            return(printf("path failed\n"), - 1);
+            return(printf("path failed\n"), false);
         set_no_so_walls(data, line);
         set_we_ea_walls(data, line);
     }
