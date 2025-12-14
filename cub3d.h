@@ -40,7 +40,7 @@ typedef struct t_player
 
 
 char	color_set(char *filename, t_data *data);
-char	**cordinates_check(char *filename, t_data *data);
+char	**map_reader(char *filename, t_data *data);
 char 	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
 char 	wall_height_check(t_data *data);
@@ -58,7 +58,6 @@ bool	map_down_check(t_data *data, size_t x, size_t y);
 bool 	map_right_check(t_data *data, size_t x, size_t y);
 bool	map_left_check(t_data *data, size_t x, size_t y);
 bool	island_check(t_data *data, size_t y, size_t x);
-bool	check_bottom_row(t_data *data);
 bool 	map_up_check(t_data *data, size_t x, size_t y);
 bool    map_init(t_data *data);
 bool    game_init(t_data *data);
@@ -67,4 +66,5 @@ bool    load_map(t_data *data);
 bool	walls_set(char *filename, t_data *data);
 bool    set_we_ea_walls(t_data *data, char *ptr);
 bool    set_no_so_walls(t_data *data, char *ptr);
+bool	map_error_check(char **floor, char **ceiling);
 #endif

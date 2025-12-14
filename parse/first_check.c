@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 14:27:41 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/14 18:06:15 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char prefix_check(char *filename)
 	return (0);
 }
 
-char	**cordinates_check(char *filename, t_data *data)
+char	**map_reader(char *filename, t_data *data)
 {
 	int		fd;
 	char	*line;
@@ -81,6 +81,10 @@ static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
 	int	r;
 	int	g;
 	int	b;
+
+	r = 0;
+	g = 0;
+	b = 0;
 	r = ft_atoi(tmp_floor[0]);
 	g = ft_atoi(tmp_floor[1]);
 	b = ft_atoi(tmp_floor[2]);
@@ -97,24 +101,29 @@ static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
 }
 char	color_set(char *filename, t_data *data)
 {
-	int		fd;
-	char	*line;
-	char	**tmp_floor;
-	char	**tmp_ceiling;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return(printf("File is non READABLE\n"), -1);
-	while ((line = get_next_line(fd)))
 	{
-		if (line[0] == 'C')
-			tmp_floor = ft_split(line + 2, ',');
-		else if (line[0] == 'F')
-			tmp_ceiling = ft_split(line + 2, ',');
-		free(line);
+		int fd;
+		char *line;
+		char **tmp_floor = NULL;
+		char **tmp_ceiling = NULL;
+		fd = open(filename, O_RDONLY);
+		if (fd < 0)
+			return (printf("File is non READABLE\n"), -1);
+		while ((line = get_next_line(fd)))
+		{
+			if (line[0] == 'C')
+				tmp_floor = ft_split(line + 2, ',');
+			else if (line[0] == 'F')
+				tmp_ceiling = ft_split(line + 2, ',');
+			free(line);
+		}
+		if (map_error_check(tmp_ceiling, tmp_ceiling) == false)
+			return(-1);
+		parse_rgb(data, tmp_ceiling, tmp_floor);
+		free(tmp_ceiling);
+		free(tmp_floor);
+		close(fd);
+		return (0);
 	}
-	parse_rgb(data, tmp_ceiling, tmp_floor);
-	free(tmp_ceiling);
-	free(tmp_floor);
-	close(fd);
 	return(0);
 }
