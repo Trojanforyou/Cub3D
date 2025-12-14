@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/13 19:32:21 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:36:19 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ bool    map_up_check(t_data *data, size_t x, size_t y)
 
 bool    map_down_check(t_data *data, size_t x, size_t y)
 {
-	check_bottom_row(data);
+	if (check_bottom_row(data) == false)
+        return(-1);
 	if (data->map[0][x] == ' ')
 	{
 		while(y <= ft_strlen(data->map[y]) && data->map[y][x] == ' ')

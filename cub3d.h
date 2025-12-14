@@ -27,8 +27,7 @@ typedef struct s_data
 	char		*ea;
 	int			floor;
 	int			ceiling;
-	int			no_found;
-	int			so_found;
+	int			n_flag;
 	int			we_found;
 	int			wall_found;
 }	t_data;

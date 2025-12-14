@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 13:40:15 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:27:41 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**cordinates_check(char *filename, t_data *data)
 	char	*line;
 	char	**temp;
 	int		i;
-	i = 0;
+	i = -1;
 	temp = malloc(sizeof(char *) * (MAX_MAP_LINES + 1));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -36,14 +36,12 @@ char	**cordinates_check(char *filename, t_data *data)
 	{
 		if (line[0] == '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\n')
 		{
-			if (line[1] == 'O' || line[1] == 'O' || line[1] == 'E' || line[1] == 'A') // change it to strcnmp check
+			if (line[1] == 'O' || line[1] == 'E' || line[1] == 'A') // change it to strcnmp check
 				line++;
-
-			temp[i] = line;
-			i++;
+			temp[++i] = line;
 		}
-		// else
-		// 	free(line);
+		else
+			free(line);
 	}
 	temp[i] = NULL;
 	data->map = temp;

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/13 02:00:50 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:35:40 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ bool	check_bottom_row(t_data *data)
     len = ft_strlen(data->map[last]);
     while (x < len)
     {
-        if (data->map[last][x] != '1' && data->map[last][x] != ' ')
-            return (printf("Map is not covered by the walls at bottom row, column %zu\n", x), false);
+		if (data->map[last][x] != '1' && data->map[last][x] != ' ')
+			return (printf("Map is not covered by the walls"), false);
         x++;
     }
     return true;

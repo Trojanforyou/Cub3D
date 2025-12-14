@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 13:18:23 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:26:21 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void    data_init(t_data *data)
     data->no = 0;
     data->ea = 0;
     data->we = 0;
+    data->n_flag = 0;
     // data->wall[0] = NULL;
     // data->wall[1] = NULL;
     // data->wall[2] = NULL;

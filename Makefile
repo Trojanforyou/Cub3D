@@ -1,3 +1,4 @@
+OBJDIR = obj
 NAME = cub3D
 
 CC = gcc
@@ -16,6 +17,8 @@ SRCS = src/main.c \
 	   src/textures.c src/texture_utils.c
 OBJS = $(SRCS:.c=.o)
 
+OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
+
 all: $(LIBFT) $(MLX42_LIB) $(NAME)
 
 $(LIBFT):
@@ -31,11 +34,20 @@ $(MLX42_LIB):
 $(NAME): $(OBJS) $(LIBFT) $(MLX42_LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX42_FLAGS) -o $(NAME)
 
-%.o: %.c
+$(OBJDIR)/%.o: src/%.c
+	mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR)/%.o: parse/%.c
+	mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR)/%.o: utils/%.c
+	mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean
@@ -45,5 +57,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
 .PHONY: all clean fclean re
