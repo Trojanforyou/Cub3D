@@ -18,7 +18,7 @@ void    data_init(t_data *data)
     data->floor = 0;
     data->ceiling = 0;
     data->height = 0;
-    data->witdh = 0;
+    data->width = 0;
     data->so = 0;
     data->no = 0;
     data->ea = 0;
@@ -28,4 +28,17 @@ void    data_init(t_data *data)
     // data->wall[1] = NULL;
     // data->wall[2] = NULL;
     // data->wall[3] = NULL;
+}
+
+void player_init(s_player *player)
+{
+    player->posX = 22.0;
+    player->posY = 12.0;
+    player->dirX = -1.0;
+    player->dirY = 0.0;
+    player->planeX = 0.0;
+    player->planeY = 0.66;
+    player->plain = 0.0; // If you use this field elsewhere, set a default
+    player->dir = 0.0;   // If you use this field elsewhere, set a default
+    player->fov = 66.0;  // Typical FOV in degrees
 }

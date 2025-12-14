@@ -9,6 +9,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+#include <math.h>
 # include "MLX42/include/MLX42/MLX42.h"
 
 
@@ -19,7 +20,7 @@ typedef struct s_data
 	mlx_texture_t	*wall[4]; // 0 = north, 1 = south, 2 = west, 3 = east
 	mlx_image_t		*wall_img[4];
 	char		**map;
-	int			witdh;
+	int			width;
 	int			height;
 	char		*no;
 	char		*so;
@@ -36,6 +37,12 @@ typedef struct t_player
 	double	plain;
 	double	dir;
 	double	fov;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
 }	s_player;
 
 
@@ -51,7 +58,10 @@ char	map_char_check(t_data *data);
 int		get_map_height(char **map);
 int 	get_map_width(char  **str);
 
+void    render_map(t_data *data);
 void    data_init(t_data *data);
+void   player_init(s_player *player);
+void    raycast_and_draw(t_data *data, s_player *player);
 
 bool    load_image(t_data*texture);
 bool	map_down_check(t_data *data, size_t x, size_t y);

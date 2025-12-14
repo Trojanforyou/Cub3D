@@ -11,22 +11,21 @@
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include <math.h>
 
 bool game_init(t_data *data)
 {
     data->height = get_map_height(data->map) * TITLE_SIZE;
-    data->witdh = get_map_width((data->map)) * TITLE_SIZE;
-    data->mlx = mlx_init(data->witdh, data->height, "cub3D", false);
+    data->width = get_map_width((data->map)) * TITLE_SIZE;
+    data->mlx = mlx_init(data->width, data->height, "cub3D", false);
 
     if (!data->mlx)
         return (free(data->mlx), false);
     if (!texture_load(data) || !load_image(data))
         return false;
-    load_map(data);
-    mlx_loop(data->mlx);
-    mlx_terminate(data->mlx);
     return true;
 }
+
 int get_map_width(char  **str)
 {
     int y;
