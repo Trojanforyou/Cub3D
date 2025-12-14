@@ -1,11 +1,10 @@
 
 #include "../cub3d.h"
 
+
 void raycast_and_draw(t_data *data, s_player *player)
 {
-    int h = data->height;
-
-    mlx_image_t *img = mlx_new_image(data->mlx, data->width, h);
+    mlx_image_t *img = mlx_new_image(data->mlx, data->width, data->height);
     if (!img)
         return;
 
@@ -73,12 +72,12 @@ void raycast_and_draw(t_data *data, s_player *player)
         else
             perpWallDist = (mapY - player->posY + (1 - stepY) / 2) / rayDirY;
 
-        int lineHeight = (int)(h / perpWallDist);
+        int lineHeight = (int)(data->height / perpWallDist);
 
-        int drawStart = -lineHeight / 2 + h / 2;
+        int drawStart = -lineHeight / 2 + data->height / 2;
         if (drawStart < 0) drawStart = 0;
-        int drawEnd = lineHeight / 2 + h / 2;
-        if (drawEnd >= h) drawEnd = h - 1;
+        int drawEnd = lineHeight / 2 + data->height / 2;
+        if (drawEnd >= data->height) drawEnd = data->height - 1;
 
         // Texture selection (example: always wall_img[0])
         mlx_image_t *tex = data->wall_img[0];
@@ -98,7 +97,7 @@ void raycast_and_draw(t_data *data, s_player *player)
 
         for (int y = drawStart; y < drawEnd; y++)
         {
-            int d = y * 256 - h * 128 + lineHeight * 128;
+            int d = y * 256 - data->height * 128 + lineHeight * 128;
             int texY = ((d * tex_height) / lineHeight) / 256;
             uint8_t *pixel = &tex->pixels[4 * (texY * tex_width + texX)];
             uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
