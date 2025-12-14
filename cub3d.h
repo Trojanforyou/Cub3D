@@ -24,6 +24,7 @@ typedef struct s_data
 	char		*no;
 	char		*so;
 	char		*we;
+	char		*ea;
 	int			floor;
 	int			ceiling;
 	int			no_found;
@@ -62,13 +63,8 @@ bool 	map_up_check(t_data *data, size_t x, size_t y);
 bool    map_init(t_data *data);
 bool    game_init(t_data *data);
 bool	texture_load(t_data *texture);
-bool     load_map(t_data *data);
-
-// typedef	enum e_obj
-// {
-// 	WALL = 1,
-// 	FLOOR = 0,
-// 	PLAYER = 'P'
-// }	t_obj;
-
+bool    load_map(t_data *data);
+bool	walls_set(char *filename, t_data *data);
+bool    set_we_ea_walls(t_data *data, char *ptr);
+bool    set_no_so_walls(t_data *data, char *ptr);
 #endif

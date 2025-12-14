@@ -1,7 +1,7 @@
-NO ./texture/Northwall.png
-SO ./texture/southwall.png
-WE ./texture/westwall.png
-EA ./texture/eastwall.png
+NO ./textures/northwall.png
+SO ./textures/southwall.png
+WE ./textures/westwall.png
+EA ./textures/eastwall.png
 F  220,100,-1
 C 225,30,0
 

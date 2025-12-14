@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/13 21:46:47 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/14 12:12:47 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,12 @@ void    data_init(t_data *data)
     data->ceiling = 0;
     data->height = 0;
     data->witdh = 0;
-    
+    data->so = 0;
+    data->no = 0;
+    data->ea = 0;
+    data->we = 0;
+    // data->wall[0] = NULL;
+    // data->wall[1] = NULL;
+    // data->wall[2] = NULL;
+    // data->wall[3] = NULL;
 }

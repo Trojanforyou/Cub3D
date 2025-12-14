@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/13 23:30:57 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/14 00:12:25 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,3 @@ bool game_init(t_data *data)
     load_map(data);
     return true;
 }
-// bool    load_textures(t_data *data)
-// {
-//     int x;
-//     int y;
-
-//     y = -1;
-//     while (data->map[++y])
-//     {
-//         x = -1;
-//         while (data->map[y][x])
-//         {
-//             if (data->floor)
-//         }
-//     }
-//     re
-// }

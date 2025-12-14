@@ -13,13 +13,31 @@
 
 #include "../cub3d.h"
 
-bool texture_load(t_data *texture)
+bool	walls_set(char *filename, t_data *data)
 {
-    texture->wall[0] = mlx_load_png("./textures/northwall.png");
-    texture->wall[1] = mlx_load_png("./textures/southwall.png");
-    texture->wall[2] = mlx_load_png("./textures/westwall.png");
-    texture->wall[3] = mlx_load_png("./textures/eastwall.png");
-    if (!texture->wall[0] || !texture->wall[1] || !texture->wall[2] || !texture->wall[3])
+    int		fd;
+    char	*line;
+
+    fd = open(filename, O_RDONLY);
+    if (fd  < 0)
+        return(printf("file descriptor failed\n"), -1);
+    while ((line = get_next_line(fd)))
+    {
+        if (!line)
+            return(printf("path failed\n"), - 1);
+        set_no_so_walls(data, line);
+        set_we_ea_walls(data, line);
+    }
+    close(fd);
+    return(true);
+}
+bool texture_load(t_data *data)
+{
+    data->wall[0] = mlx_load_png(data->no);
+    data->wall[1] = mlx_load_png(data->so);
+    data->wall[2] = mlx_load_png(data->we);
+    data->wall[3] = mlx_load_png(data->ea);
+    if (!data->wall[0] || !data->wall[1] || !data->wall[2] || !data->wall[3])
         return (printf("Texture load error\n"), false);
     return true;
 }
