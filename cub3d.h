@@ -3,6 +3,8 @@
 #define RGB(r, g, b) ((r << 16) | (g << 8) | b)
 #define MAX_MAP_LINES 1000
 #define TITLE_SIZE 64
+#define MAP_WITDH 800
+#define MAP_HEIGHT 600
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -30,6 +32,9 @@ typedef struct s_data
 	int			n_flag;
 	int			we_found;
 	int			wall_found;
+	char		**tmp_floor;
+	char		**tmp_ceiling;
+	
 }	t_data;
 typedef struct t_player
 {
@@ -67,5 +72,7 @@ bool	walls_set(char *filename, t_data *data);
 bool    set_we_ea_walls(t_data *data, char *ptr);
 bool    set_no_so_walls(t_data *data, char *ptr);
 bool	map_error_check(char **floor, char **ceiling);
-bool	additional_check(char *line);
+bool	additional_check(char *line, t_data *data);
+bool	parse_floor(char *path, t_data *data, char **tmp_floor);
+bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
 #endif

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:38:07 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 13:29:08 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/15 21:37:38 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ bool    set_no_so_walls(t_data *data, char *ptr)
         i += 2;
         while (ptr[i] != '.')
             i++;
+        if (!ptr[i] || !ptr[i + 1] || ptr[i + 1] != '/')
+            return (printf("Invalid texture path\n"), false);
         if (ptr[i + 1] == '/')
             data->so = ft_strdup(ptr + i);
         if (data->so[ft_strlen(data->so) - 1] == '\n')

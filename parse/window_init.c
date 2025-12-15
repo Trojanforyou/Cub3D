@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 15:40:09 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/15 22:59:15 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool game_init(t_data *data)
 {
-    data->height = get_map_height(data->map) * TITLE_SIZE;
-    data->witdh = get_map_width((data->map)) * TITLE_SIZE;
+    data->height = MAP_HEIGHT;
+    data->witdh = MAP_WITDH;
     data->mlx = mlx_init(data->witdh, data->height, "cub3D", false);
 
     if (!data->mlx)

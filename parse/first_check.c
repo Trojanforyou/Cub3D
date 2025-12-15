@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/15 18:51:09 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/15 23:17:43 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ char	**map_reader(char *filename, t_data *data)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 || ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0 || line[0] == 'F' || line[0] == 'C')
-		{ // change it to strcnmp check
+		additional_check(line, data);
+		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 ||
+		ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0 || 
+		line[0] == 'F' || line[0] == 'C')
+		{
 			free(line);
 			continue;
 		}
@@ -74,54 +77,52 @@ char	dublicate_check(t_data *data)
 	return(0);
 }
 
-static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
+bool	parse_floor(char *path, t_data *data, char **tmp_floor)
 {
-	int	r;
-	int	g;
-	int	b;
+	// printf("%s\n", tmp_floor[0]);
+	int		r;
+	int		g;
+	int		b;
+	char	*tmp;
 
 	r = 0;
 	g = 0;
 	b = 0;
-	r = ft_atoi(tmp_floor[0]);
-	g = ft_atoi(tmp_floor[1]);
-	b = ft_atoi(tmp_floor[2]);
-	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
-		return(printf("RGB is out from range [0-256]"), false);
-	data->floor = RGB(r, g, b);
-	r = ft_atoi(tmp_ceiling[0]);
-	g = ft_atoi(tmp_ceiling[1]);
-	b = ft_atoi(tmp_ceiling[2]);
-	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
-		return(printf("RGB is out from range [0-256]"), false);
-	data->ceiling = RGB(r, g, b);
-	return(true);
-}
-char	color_set(char *filename, t_data *data)
-{
+	tmp = path + 2;
+	tmp_floor = ft_split(tmp, ',');
+	if (path[0] == 'F')
 	{
-		int fd;
-		char *line;
-		char **tmp_floor = NULL;
-		char **tmp_ceiling = NULL;
-		fd = open(filename, O_RDONLY);
-		if (fd < 0)
-			return (printf("File is non READABLE\n"), -1);
-		while ((line = get_next_line(fd)))
-		{
-			if (line[0] == 'C')
-				tmp_floor = ft_split(line + 2, ',');
-			else if (line[0] == 'F')
-				tmp_ceiling = ft_split(line + 2, ',');
-			free(line);
-		}
-		if (map_error_check(tmp_ceiling, tmp_ceiling) == false)
-			return(-1);
-		parse_rgb(data, tmp_ceiling, tmp_floor);
-		free(tmp_ceiling);
-		free(tmp_floor);
-		close(fd);
-		return (0);
+		r = ft_atoi(tmp_floor[0]);
+		g = ft_atoi(tmp_floor[1]);
+		b = ft_atoi(tmp_floor[2]);
+		if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
+			return(printf("RGB is out from range [0-256]"), false);
+		data->floor = RGB(r, g, b);
 	}
-	return(0);
+	return(true);
+
+}
+bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
+{
+	int		r;
+	int		g;
+	int		b;
+	char	*tmp;
+
+	r = 0;
+	g = 0;
+	b = 0;
+	tmp = path + 2;
+	tmp_ceiling = ft_split(tmp, ',');
+	if (path[0] == 'C')
+	{
+		data->ceiling = RGB(r, g, b);
+		r = ft_atoi(tmp_ceiling[0]);
+		g = ft_atoi(tmp_ceiling[1]);
+		b = ft_atoi(tmp_ceiling[2]);
+		if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
+			return(printf("RGB is out from range [0-256]"), false);
+		data->ceiling = RGB(r, g, b);
+	}
+	return(true);
 }
