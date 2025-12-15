@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 15:01:21 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/15 17:14:44 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool    map_up_check(t_data *data, size_t x, size_t y)
 {
     if (data->map[0][x] == ' ')
-        x++; 
+        x++;
     if (data->map[y + 1] && y <= ft_strlen(data->map[y]) && data->map[y + 1][x] == ' ')
     {
         while (y > 0 && data->map[y][x] == ' ')
@@ -112,11 +112,11 @@ bool    map_init(t_data *data)
 		return(false);
 	if (map_char_check(data) == -1)
 		return(false);
-	if (map_validation(data) == -1)
-		return(false);
-	if (map_witdh_check(data) == -1)
-		return(false);
+	// if (map_witdh_check(data) == -1)
+	// 	return(false);
 	if (wall_height_check(data) == -1)
+		return(false);
+	if (map_validation(data) == -1)
 		return(false);
     return(true);
 }
