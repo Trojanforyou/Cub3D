@@ -55,21 +55,21 @@ char wall_height_check(t_data *data)
 	}
 	return(0);
 }
-char map_witdh_check(t_data *data)
-{
-    int x;
+// char map_witdh_check(t_data *data)
+// {
+//     int x;
 
-	x = 0;
+// 	x = 0;
 
-	while (data->map[0][x])
-	{
-		printf("%c\n", data->map[0][x]);
-		if (data->map[0][x] == '0')
-			return(printf("here1"), -1);
-		x++;
-	}
-	return(0);
-}
+// 	while (data->map[0][x])
+// 	{
+// 		printf("%c\n", data->map[0][x]);
+// 		if (data->map[0][x] == '0')
+// 			return(printf("here1"), -1);
+// 		x++;
+// 	}
+// 	return(0);
+// }
 char map_validation(t_data *data)
 {
 	size_t	x;
