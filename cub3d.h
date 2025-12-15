@@ -67,4 +67,5 @@ bool	walls_set(char *filename, t_data *data);
 bool    set_we_ea_walls(t_data *data, char *ptr);
 bool    set_no_so_walls(t_data *data, char *ptr);
 bool	map_error_check(char **floor, char **ceiling);
+bool	additional_check(char *line);
 #endif
