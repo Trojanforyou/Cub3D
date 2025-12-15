@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 18:03:04 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/15 17:26:23 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ bool	map_error_check(char **floor, char **ceiling)
 		return (printf("Invalid or missing floor/ceiling color\n"), false);
 	}
 	return(true);
+}
+bool	additional_check(char *line)
+{
+	
 }
 

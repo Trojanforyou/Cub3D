@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 18:06:15 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/15 17:23:41 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,14 @@ char	**map_reader(char *filename, t_data *data)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		if (line[0] == '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\n')
-		{
-			if (line[1] == 'O' || line[1] == 'E' || line[1] == 'A') // change it to strcnmp check
-				line++;
-			temp[++i] = line;
-		}
-		else
+		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 || ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0 || line[0] == 'F' || line[0] == 'C')
+		{ // change it to strcnmp check
 			free(line);
+			continue;
+		}
+		temp[++i] = line;
 	}
-	temp[i] = NULL;
+	temp[i + 1] = NULL;
 	data->map = temp;
 	close(fd);
 	return (data->map);
@@ -89,13 +87,13 @@ static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
 	g = ft_atoi(tmp_floor[1]);
 	b = ft_atoi(tmp_floor[2]);
 	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
-		return(printf("RGB is out from ragne [0-256]"), false);
+		return(printf("RGB is out from range [0-256]"), false);
 	data->floor = RGB(r, g, b);
 	r = ft_atoi(tmp_ceiling[0]);
 	g = ft_atoi(tmp_ceiling[1]);
 	b = ft_atoi(tmp_ceiling[2]);
 	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
-		return(printf("RGB is out from ragne [0-256]"), false);
+		return(printf("RGB is out from range [0-256]"), false);
 	data->ceiling = RGB(r, g, b);
 	return(true);
 }

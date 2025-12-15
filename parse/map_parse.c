@@ -23,6 +23,7 @@ char	map_char_check(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
+			printf("%c", data->map[y][x]);
 			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == ' ' || data->map[y][x] == '\n')
 				x++;
 			else
@@ -35,46 +36,39 @@ char	map_char_check(t_data *data)
 char wall_height_check(t_data *data)
 {
 	int	y;
-	int	last;
+	int	len;
+	int	x;
 
+	x = 0;
+	len = 0;
 	y = 0;
-	last = get_map_height(data->map);
-	while (data->map[0][y + 1])
+	len = get_map_height(data->map) - 1;
+	while (data->map[x][0] != ' ' && data->map[x][0] != '0' && data->map[x][0] != '1' && data->map[x][0] != 'P')
+		x++;
+	if (data->map[x][0] == '0' || data->map[x][0] == 'P')
+		return (printf("not here\n"), -1);
+	while (data->map[len][y])
 	{
-		if(data->map[0][y] == '0' || data->map[0][y] == 'P')
-			return(printf("An error occured while reading a map1\n"), -1);
+		if (data->map[len][y] == '0' || data->map[len][y] == 'P')
+			return (printf("nope"), -1);
 		y++;
 	}
-	y = 0;
-	while (data->map[last - 1][y + 1])
-	{
-		if (data->map[last -1][y] != '1' && data->map[last -1][y] != ' ')
-			return(printf("An error occured while reading a map2\n"), -1);
-		y++;
-	}
-	return (0);
+	return(0);
 }
 char map_witdh_check(t_data *data)
 {
-	int	x;
-	int	last;
+    int x;
 
 	x = 0;
-	last = get_map_height(data->map);
-	while (x < last  - 1)
+
+	while (data->map[0][x])
 	{
-		if (data->map[x][0] == '0' || data->map[x][0] == 'p')
-			return(printf("An error occured while reading a map3\n"), -1);
+		printf("%c\n", data->map[0][x]);
+		if (data->map[0][x] == '0')
+			return(printf("here1"), -1);
 		x++;
 	}
-	x = 0;
-	while (data->map[x])
-	{
-		if (data->map[x][ft_strlen(data->map[x]) - 1] == '0' || data->map[x][ft_strlen(data->map[x]) - 1] == 'P')
-			return(printf("An error occured while reading a map3\n"), -1);
-		x++;
-	}
-	return (0);
+	return(0);
 }
 char map_validation(t_data *data)
 {
