@@ -60,22 +60,15 @@ void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, int x, int drawSta
 
     for (y = drawStart; y < drawEnd; y++)
     {
-        // Map screen pixel y to texture y
         texY = ((y - drawStart) * (int)tex->height) / lineHeight;
 
-        // Clamp texY safely
         if (texY < 0) 
             texY = 0;
         if (texY >= (int)tex->height) 
             texY = (int)tex->height - 1;
 
-        // Access the texture pixel
         pixel = &tex->pixels[4 * (texY * (int)tex->width + texX)];
-
-        // Pack RGBA into a single color
         color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
-
-        // Draw the pixel to the image
         mlx_put_pixel(img, x, y, color);
     }
 }
