@@ -38,7 +38,4 @@ void player_init(s_player *player)
     player->dirY = 0.0;
     player->planeX = 0.0;
     player->planeY = 0.66;
-    player->plain = 0.0; // If you use this field elsewhere, set a default
-    player->dir = 0.0;   // If you use this field elsewhere, set a default
-    player->fov = 66.0;  // Typical FOV in degrees
 }

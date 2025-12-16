@@ -1,132 +1,104 @@
-
 #include "../cub3d.h"
 
+// DDA loop: marches ray through the map until a wall is hit
+void DDA_loop(Ray *ray, t_data *data)
+{
+    ray->hit = 0;
+    while (ray->hit == 0)
+    {
+        if (ray->sideDistX < ray->sideDistY)
+        {
+            ray->sideDistX += ray->deltaDistX;
+            ray->mapX += ray->stepX;
+            ray->side = 0;
+        }
+        else
+        {
+            ray->sideDistY += ray->deltaDistY;
+            ray->mapY += ray->stepY;
+            ray->side = 1;
+        }
+
+        if (data->map[ray->mapY][ray->mapX] != '0')
+            ray->hit = data->map[ray->mapY][ray->mapX] - '0';
+    }
+}
+
+// find the nearst vertical and horizontal lines
+void calculate_step_and_side_dist(Ray *ray, s_player *player)
+{
+    if (ray->rayDirX < 0)
+    {
+        ray->stepX = -1;
+        ray->sideDistX = (player->posX - ray->mapX) * ray->deltaDistX;
+    }
+    else
+    {
+        ray->stepX = 1;
+        ray->sideDistX = (ray->mapX + 1.0 - player->posX) * ray->deltaDistX;
+    }
+
+    if (ray->rayDirY < 0)
+    {
+        ray->stepY = -1;
+        ray->sideDistY = (player->posY - ray->mapY) * ray->deltaDistY;
+    }
+    else
+    {
+        ray->stepY = 1;
+        ray->sideDistY = (ray->mapY + 1.0 - player->posY) * ray->deltaDistY;
+    }
+}
 
 void raycast_and_draw(t_data *data, s_player *player)
 {
     mlx_image_t *img = mlx_new_image(data->mlx, data->width, data->height);
-    if (!img)
-        return;
+    Ray         ray;
+    double      cameraX;
 
+    if (!img) return;
     for (int x = 0; x < data->width; x++)
     {
-        double cameraX = 2 * x / (double)data->width - 1;
-        double rayDirX = player->dirX + player->planeX * cameraX;
-        double rayDirY = player->dirY + player->planeY * cameraX;
-
-        int mapX = (int)player->posX;
-        int mapY = (int)player->posY;
-
-        double sideDistX;
-        double sideDistY;
-
-        double deltaDistX = fabs(1 / rayDirX);
-        double deltaDistY = fabs(1 / rayDirY);
-        double perpWallDist;
-
-        int stepX, stepY;
-        int hit = 0;
-        int side;
-
-        if (rayDirX < 0)
-        {
-            stepX = -1;
-            sideDistX = (player->posX - mapX) * deltaDistX;
-        }
+        cameraX = 2 * x / (double)data->width - 1;
+        ray.rayDirX = player->dirX + player->planeX * cameraX;
+        ray.rayDirY = player->dirY + player->planeY * cameraX;
+        ray.mapX = (int)player->posX;
+        ray.mapY = (int)player->posY;
+        ray.deltaDistX = fabs(1 / ray.rayDirX);
+        ray.deltaDistY = fabs(1 / ray.rayDirY);
+        calculate_step_and_side_dist(&ray, player);
+        DDA_loop(&ray, data);
+        if (ray.side == 0)
+            ray.perpWallDist = (ray.mapX - player->posX + (1 - ray.stepX) / 2) / ray.rayDirX;
         else
-        {
-            stepX = 1;
-            sideDistX = (mapX + 1.0 - player->posX) * deltaDistX;
-        }
-        if (rayDirY < 0)
-        {
-            stepY = -1;
-            sideDistY = (player->posY - mapY) * deltaDistY;
-        }
-        else
-        {
-            stepY = 1;
-            sideDistY = (mapY + 1.0 - player->posY) * deltaDistY;
-        }
+            ray.perpWallDist = (ray.mapY - player->posY + (1 - ray.stepY) / 2) / ray.rayDirY;
 
-        while (hit == 0)
-        {
-            if (sideDistX < sideDistY)
-            {
-                sideDistX += deltaDistX;
-                mapX += stepX;
-                side = 0;
-            }
-            else
-            {
-                sideDistY += deltaDistY;
-                mapY += stepY;
-                side = 1;
-            }
-            if (data->map[mapY][mapX] == '1')
-                hit = 1;
-        }
-
-        if (side == 0)
-            perpWallDist = (mapX - player->posX + (1 - stepX) / 2) / rayDirX;
-        else
-            perpWallDist = (mapY - player->posY + (1 - stepY) / 2) / rayDirY;
-
-        int lineHeight = (int)(data->height / perpWallDist);
-
+        // Line height
+        int lineHeight = (int)(data->height / ray.perpWallDist);
         int drawStart = -lineHeight / 2 + data->height / 2;
-        if (drawStart < 0) drawStart = 0;
         int drawEnd = lineHeight / 2 + data->height / 2;
+        if (drawStart < 0) drawStart = 0;
         if (drawEnd >= data->height) drawEnd = data->height - 1;
 
-        // Texture selection (example: always wall_img[0])
-        mlx_image_t *tex = data->wall_img[0];
-        int tex_width = tex->width;
-        int tex_height = tex->height;
-
-        double wallX;
-        if (side == 0)
-            wallX = player->posY + perpWallDist * rayDirY;
-        else
-            wallX = player->posX + perpWallDist * rayDirX;
+        mlx_image_t *tex = data->wall_img[ray.hit];
+        double wallX = (ray.side == 0)
+            ? player->posY + ray.perpWallDist * ray.rayDirY
+            : player->posX + ray.perpWallDist * ray.rayDirX;
         wallX -= floor(wallX);
 
-        int texX = (int)(wallX * (double)tex_width);
-        if (side == 0 && rayDirX > 0) texX = tex_width - texX - 1;
-        if (side == 1 && rayDirY < 0) texX = tex_width - texX - 1;
+        int texX = (int)(wallX * (double)tex->width);
+        if ((ray.side == 0 && ray.rayDirX > 0) || (ray.side == 1 && ray.rayDirY < 0))
+            texX = tex->width - texX - 1;
 
+        // Draw vertical stripe
         for (int y = drawStart; y < drawEnd; y++)
         {
             int d = y * 256 - data->height * 128 + lineHeight * 128;
-            int texY = ((d * tex_height) / lineHeight) / 256;
-            uint8_t *pixel = &tex->pixels[4 * (texY * tex_width + texX)];
+            int texY = ((d * tex->height) / lineHeight) / 256;
+            uint8_t *pixel = &tex->pixels[4 * (texY * tex->width + texX)];
             uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
             mlx_put_pixel(img, x, y, color);
         }
     }
     mlx_image_to_window(data->mlx, img, 0, 0);
-}
-
-
-void    render_map(t_data *data)
-{
-    int y;
-    int x;
-
-    y = -1;
-    while (data->map[++y])
-    {
-        x = -1;
-        while (data->map[y][++x])
-        {
-            if (data->map[y][x] == '1')
-            {
-                mlx_image_to_window(data->mlx, data->wall_img[0], x * TITLE_SIZE, y * TITLE_SIZE);
-            }
-            else if (data->map[y][x] == '0')
-            {
-                // floors
-            }
-        }
-    }
 }

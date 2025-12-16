@@ -36,9 +36,7 @@ int main(int ac, char **av)
         return (printf("Game init failed\n"), 1);
 
     raycast_and_draw(&data, player);
-
     mlx_loop(data.mlx);
-
     free(data.map);
     free(player);
 }

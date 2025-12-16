@@ -32,18 +32,35 @@ typedef struct s_data
 	int			we_found;
 	int			wall_found;
 }	t_data;
+
+typedef struct Ray
+{
+    double rayDirX;       // X component of ray direction
+    double rayDirY;       // Y component of ray direction
+    double sideDistX;     // Distance to next x-side
+    double sideDistY;     // Distance to next y-side
+    double deltaDistX;    // Distance between x-sides
+    double deltaDistY;    // Distance between y-sides
+    double perpWallDist;  // Perpendicular distance to wall
+    int mapX;             // Current map square X
+    int mapY;             // Current map square Y
+    int stepX;            // Step direction X (+1 or -1)
+    int stepY;            // Step direction Y (+1 or -1)
+    int side;             // 0 = vertical wall, 1 = horizontal wall
+    int hit;              // 0 = no wall, 1 = wall hit
+} Ray;
+
+
 typedef struct t_player
 {
-	double	plain;
-	double	dir;
-	double	fov;
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-}	s_player;
+	double	posX;      // Player's X position in the map
+	double	posY;      // Player's Y position in the map
+	double	speed;  // Player's speed
+	double	dirX;   // Player's direction vector X component
+	double	dirY;   // Player's direction vector Y component
+	double	planeX; // Camera plane X component (perpendicular to direction)
+	double	planeY; // Camera plane Y component (perpendicular to direction)
+} s_player;
 
 
 char	color_set(char *filename, t_data *data);
