@@ -50,6 +50,37 @@ void calculate_step_and_side_dist(Ray *ray, s_player *player)
     }
 }
 
+// Draws a vertical textured stripe at column x
+void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, int x, int drawStart, int drawEnd, int lineHeight, int texX)
+{
+    int y;
+    int texY;
+    uint8_t *pixel;
+    uint32_t color;
+
+    for (y = drawStart; y < drawEnd; y++)
+    {
+        // Map screen pixel y to texture y
+        texY = ((y - drawStart) * (int)tex->height) / lineHeight;
+
+        // Clamp texY safely
+        if (texY < 0) 
+            texY = 0;
+        if (texY >= (int)tex->height) 
+            texY = (int)tex->height - 1;
+
+        // Access the texture pixel
+        pixel = &tex->pixels[4 * (texY * (int)tex->width + texX)];
+
+        // Pack RGBA into a single color
+        color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
+
+        // Draw the pixel to the image
+        mlx_put_pixel(img, x, y, color);
+    }
+}
+
+
 void raycast_and_draw(t_data *data, s_player *player)
 {
     mlx_image_t *img = mlx_new_image(data->mlx, data->width, data->height);
@@ -91,14 +122,7 @@ void raycast_and_draw(t_data *data, s_player *player)
             texX = tex->width - texX - 1;
 
         // Draw vertical stripe
-        for (int y = drawStart; y < drawEnd; y++)
-        {
-            int d = y * 256 - data->height * 128 + lineHeight * 128;
-            int texY = ((d * tex->height) / lineHeight) / 256;
-            uint8_t *pixel = &tex->pixels[4 * (texY * tex->width + texX)];
-            uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
-            mlx_put_pixel(img, x, y, color);
-        }
+        draw_vertical_stripe(img, tex, x, drawStart, drawEnd, lineHeight, texX);
     }
     mlx_image_to_window(data->mlx, img, 0, 0);
 }
