@@ -50,7 +50,7 @@ void calculate_step_and_side_dist(Ray *ray, s_player *player)
     }
 }
 
-// Draws a vertical textured stripe at column x
+// Draws a Y axis texture line at column x
 void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, int x, int drawStart, int drawEnd, int lineHeight, int texX)
 {
     int y;
@@ -113,8 +113,6 @@ void raycast_and_draw(t_data *data, s_player *player)
         int texX = (int)(wallX * (double)tex->width);
         if ((ray.side == 0 && ray.rayDirX > 0) || (ray.side == 1 && ray.rayDirY < 0))
             texX = tex->width - texX - 1;
-
-        // Draw vertical stripe
         draw_vertical_stripe(img, tex, x, drawStart, drawEnd, lineHeight, texX);
     }
     mlx_image_to_window(data->mlx, img, 0, 0);
