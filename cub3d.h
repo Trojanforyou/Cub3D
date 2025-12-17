@@ -60,6 +60,7 @@ typedef struct t_player
 	double	dirY;   // Player's direction vector Y component
 	double	planeX; // Camera plane X component (perpendicular to direction)
 	double	planeY; // Camera plane Y component (perpendicular to direction)
+	t_data  *data;
 } s_player;
 
 
@@ -94,4 +95,8 @@ bool    load_map(t_data *data);
 bool	walls_set(char *filename, t_data *data);
 bool    set_we_ea_walls(t_data *data, char *ptr);
 bool    set_no_so_walls(t_data *data, char *ptr);
+
+// PLAYER
+void    move_forward(s_player *player);
+
 #endif
