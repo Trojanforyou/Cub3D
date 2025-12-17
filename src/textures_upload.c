@@ -13,26 +13,6 @@
 
 #include "../cub3d.h"
 
-bool	walls_set(char *filename, t_data *data)
-{
-    int		fd;
-    char	*line;
-
-    fd = open(filename, O_RDONLY);
-    if (fd  < 0)
-        return(printf("file descriptor failed\n"), false);
-    if (!filename)
-        return(false);
-    while ((line = get_next_line(fd)))
-    {
-        if (!line)
-            return(printf("path failed\n"), false);
-        set_no_so_walls(data, line);
-        set_we_ea_walls(data, line);
-    }
-    close(fd);
-    return(true);
-}
 bool texture_load(t_data *data)
 {
     data->wall[0] = mlx_load_png(data->no);
