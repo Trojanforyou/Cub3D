@@ -73,12 +73,7 @@ void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, int x, int drawSta
     }
 }
 
-void draw_textured_wall(
-    t_data *data,
-    s_player *player,
-    mlx_image_t *img,
-    Ray *ray,
-    int x)
+void draw_textured_wall( t_data *data, s_player *player, mlx_image_t *img, Ray *ray, int x)
 {
     int         lineHeight;
     int         drawStart;
@@ -90,25 +85,20 @@ void draw_textured_wall(
     lineHeight = (int)(data->height / ray->perpWallDist);
     drawStart = -lineHeight / 2 + data->height / 2;
     drawEnd = lineHeight / 2 + data->height / 2;
-
     if (drawStart < 0)
         drawStart = 0;
     if (drawEnd >= data->height)
         drawEnd = data->height - 1;
-
     tex = data->wall_img[ray->hit];
-
     if (ray->side == 0)
         wallX = player->posY + ray->perpWallDist * ray->rayDirY;
     else
         wallX = player->posX + ray->perpWallDist * ray->rayDirX;
     wallX -= floor(wallX);
-
     texX = (int)(wallX * tex->width);
     if ((ray->side == 0 && ray->rayDirX > 0)
         || (ray->side == 1 && ray->rayDirY < 0))
         texX = tex->width - texX - 1;
-
     draw_vertical_stripe(img, tex, x, drawStart, drawEnd, lineHeight, texX);
 }
 
