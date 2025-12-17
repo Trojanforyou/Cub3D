@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/17 17:09:31 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:35:52 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	floor_error_check(char **floor)
 		while (floor[i][j] != '\n' && floor[i][j] != '\0')
 		{
 			if (!ft_isdigit(floor[i][j] ))
-				return(printf("here:%d\n", floor[i][j]), false);
+				return(printf("Floor has Non [INT] value\n"), false);
 			j++;
 		}
 		i++;
@@ -64,7 +64,7 @@ bool	ceiling_error_check(char ** ceiling)
 		while (ceiling[i][j] != '\n' && ceiling[i][j] != '\0')
 		{
 			if (!ft_isdigit(ceiling[i][j] ))
-				return(printf("Floor has Non [INT] value"), false);
+				return(printf("Ceiling has Non [INT] value"), false);
 			j++;
 		}
 		i++;
