@@ -52,9 +52,12 @@ char 	wall_height_check(t_data *data);
 char 	map_witdh_check(t_data *data);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
+char	**trim_floor(char **floor);
+char    **trim_celing(char **ceiling);
 
 int		get_map_height(char **map);
 int 	get_map_width(char  **str);
+
 
 void    data_init(t_data *data);
 
@@ -68,11 +71,10 @@ bool    map_init(t_data *data);
 bool    game_init(t_data *data);
 bool	texture_load(t_data *texture);
 bool    load_map(t_data *data);
-bool	walls_set(char *filename, t_data *data);
-bool    set_we_ea_walls(t_data *data, char *ptr);
-bool    set_no_so_walls(t_data *data, char *ptr);
-bool	map_error_check(char **floor, char **ceiling);
+bool    set_walls_texture(t_data *data, char *ptr);
+bool	ceiling_error_check(char ** ceiling);
+bool	floor_error_check(char **floor);
 bool	additional_check(char *line, t_data *data);
-bool	parse_floor(char *path, t_data *data, char **tmp_floor);
-bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
+bool 	parse_floor(char *path, t_data *data, char **tmp_floor);
+bool parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
 #endif

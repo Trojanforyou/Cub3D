@@ -23,7 +23,6 @@ char	map_char_check(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			printf("%c", data->map[y][x]);
 			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == ' ' || data->map[y][x] == '\n')
 				x++;
 			else

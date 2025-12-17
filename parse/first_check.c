@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/15 23:17:43 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:21:52 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ char	**map_reader(char *filename, t_data *data)
 		return(printf("Sosal?\n"), NULL);
 	while ((line = get_next_line(fd)))
 	{
-		additional_check(line, data);
+		if (additional_check(line, data) == false)
+			return(NULL);
 		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 ||
 		ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0 || 
 		line[0] == 'F' || line[0] == 'C')
@@ -77,19 +78,31 @@ char	dublicate_check(t_data *data)
 	return(0);
 }
 
-bool	parse_floor(char *path, t_data *data, char **tmp_floor)
+bool parse_floor(char *path, t_data *data, char **tmp_floor)
 {
 	// printf("%s\n", tmp_floor[0]);
 	int		r;
 	int		g;
 	int		b;
 	char	*tmp;
+	char	*tmp2;
+	int	i=0;
 
 	r = 0;
 	g = 0;
 	b = 0;
 	tmp = path + 2;
 	tmp_floor = ft_split(tmp, ',');
+	tmp_floor = trim_floor(tmp_floor);
+	while (tmp_floor[i])
+	{
+		tmp2 = tmp_floor[i];
+		tmp_floor[i] = ft_strtrim(tmp2, "\n");
+		free(tmp2);
+		i++;
+	}
+	if (floor_error_check(tmp_floor) == false) 
+		return(false);
 	if (path[0] == 'F')
 	{
 		r = ft_atoi(tmp_floor[0]);
@@ -100,7 +113,6 @@ bool	parse_floor(char *path, t_data *data, char **tmp_floor)
 		data->floor = RGB(r, g, b);
 	}
 	return(true);
-
 }
 bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
 {
@@ -114,6 +126,9 @@ bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
 	b = 0;
 	tmp = path + 2;
 	tmp_ceiling = ft_split(tmp, ',');
+	tmp_ceiling = trim_celing(tmp_ceiling);
+	if (ceiling_error_check(tmp_ceiling) == false)
+		return(false);
 	if (path[0] == 'C')
 	{
 		data->ceiling = RGB(r, g, b);

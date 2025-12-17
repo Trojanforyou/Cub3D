@@ -14,7 +14,7 @@ MLX42_FLAGS = -I$(MLX42_DIR)/include -L$(MLX42_BUILD) -lmlx42 -lglfw -ldl -pthre
 
 SRCS = src/main.c \
        parse/first_check.c utils/utils.c parse/map_parse.c src/struct_init.c utils/map_utils.c parse/window_init.c \
-	   src/textures_upload.c src/texture_utils.c
+	   src/textures_upload.c src/texture_utils.c utils/extras.c
 OBJS = $(SRCS:.c=.o)
 
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
