@@ -73,14 +73,54 @@ void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, int x, int drawSta
     }
 }
 
-
-void raycast_and_draw(t_data *data, s_player *player)
+void draw_textured_wall(
+    t_data *data,
+    s_player *player,
+    mlx_image_t *img,
+    Ray *ray,
+    int x)
 {
-    mlx_image_t *img = mlx_new_image(data->mlx, data->width, data->height);
+    int         lineHeight;
+    int         drawStart;
+    int         drawEnd;
+    mlx_image_t *tex;
+    double      wallX;
+    int         texX;
+
+    lineHeight = (int)(data->height / ray->perpWallDist);
+    drawStart = -lineHeight / 2 + data->height / 2;
+    drawEnd = lineHeight / 2 + data->height / 2;
+
+    if (drawStart < 0)
+        drawStart = 0;
+    if (drawEnd >= data->height)
+        drawEnd = data->height - 1;
+
+    tex = data->wall_img[ray->hit];
+
+    if (ray->side == 0)
+        wallX = player->posY + ray->perpWallDist * ray->rayDirY;
+    else
+        wallX = player->posX + ray->perpWallDist * ray->rayDirX;
+    wallX -= floor(wallX);
+
+    texX = (int)(wallX * tex->width);
+    if ((ray->side == 0 && ray->rayDirX > 0)
+        || (ray->side == 1 && ray->rayDirY < 0))
+        texX = tex->width - texX - 1;
+
+    draw_vertical_stripe(img, tex, x, drawStart, drawEnd, lineHeight, texX);
+}
+
+void    raycast_and_draw(t_data *data, s_player *player)
+{
+    mlx_image_t *img;
     Ray         ray;
     double      cameraX;
 
-    if (!img) return;
+    img = mlx_new_image(data->mlx, data->width, data->height);
+    if (!img)
+        return;
     for (int x = 0; x < data->width; x++)
     {
         cameraX = 2 * x / (double)data->width - 1;
@@ -92,28 +132,10 @@ void raycast_and_draw(t_data *data, s_player *player)
         ray.deltaDistY = fabs(1 / ray.rayDirY);
         calculate_step_and_side_dist(&ray, player);
         DDA_loop(&ray, data);
+        ray.perpWallDist = (ray.mapY - player->posY + (1 - ray.stepY) / 2) / ray.rayDirY;
         if (ray.side == 0)
             ray.perpWallDist = (ray.mapX - player->posX + (1 - ray.stepX) / 2) / ray.rayDirX;
-        else
-            ray.perpWallDist = (ray.mapY - player->posY + (1 - ray.stepY) / 2) / ray.rayDirY;
-
-        // Line height
-        int lineHeight = (int)(data->height / ray.perpWallDist);
-        int drawStart = -lineHeight / 2 + data->height / 2;
-        int drawEnd = lineHeight / 2 + data->height / 2;
-        if (drawStart < 0) drawStart = 0;
-        if (drawEnd >= data->height) drawEnd = data->height - 1;
-
-        mlx_image_t *tex = data->wall_img[ray.hit];
-        double wallX = (ray.side == 0)
-            ? player->posY + ray.perpWallDist * ray.rayDirY
-            : player->posX + ray.perpWallDist * ray.rayDirX;
-        wallX -= floor(wallX);
-
-        int texX = (int)(wallX * (double)tex->width);
-        if ((ray.side == 0 && ray.rayDirX > 0) || (ray.side == 1 && ray.rayDirY < 0))
-            texX = tex->width - texX - 1;
-        draw_vertical_stripe(img, tex, x, drawStart, drawEnd, lineHeight, texX);
+        draw_textured_wall(data, player, img, &ray, x);
     }
     mlx_image_to_window(data->mlx, img, 0, 0);
 }
