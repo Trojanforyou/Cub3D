@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/17 18:21:52 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:37:38 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ bool parse_floor(char *path, t_data *data, char **tmp_floor)
 	int		g;
 	int		b;
 	char	*tmp;
-	char	*tmp2;
-	int	i=0;
 
 	r = 0;
 	g = 0;
@@ -94,13 +92,6 @@ bool parse_floor(char *path, t_data *data, char **tmp_floor)
 	tmp = path + 2;
 	tmp_floor = ft_split(tmp, ',');
 	tmp_floor = trim_floor(tmp_floor);
-	while (tmp_floor[i])
-	{
-		tmp2 = tmp_floor[i];
-		tmp_floor[i] = ft_strtrim(tmp2, "\n");
-		free(tmp2);
-		i++;
-	}
 	if (floor_error_check(tmp_floor) == false) 
 		return(false);
 	if (path[0] == 'F')
@@ -108,7 +99,7 @@ bool parse_floor(char *path, t_data *data, char **tmp_floor)
 		r = ft_atoi(tmp_floor[0]);
 		g = ft_atoi(tmp_floor[1]);
 		b = ft_atoi(tmp_floor[2]);
-		if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
+		if ((r < 0 || r > 256) || (g < 0 || g > 256) || (b  < 0 || b > 256))
 			return(printf("RGB is out from range [0-256]"), false);
 		data->floor = RGB(r, g, b);
 	}
@@ -135,7 +126,7 @@ bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
 		r = ft_atoi(tmp_ceiling[0]);
 		g = ft_atoi(tmp_ceiling[1]);
 		b = ft_atoi(tmp_ceiling[2]);
-		if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
+		if ((r < 0 || r > 256) || (g < 0 || g > 256) || (b  < 0 || b > 256))
 			return(printf("RGB is out from range [0-256]"), false);
 		data->ceiling = RGB(r, g, b);
 	}
