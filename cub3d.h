@@ -30,10 +30,13 @@ typedef struct s_data
 	int			floor;
 	int			ceiling;
 	int			n_flag;
-	int			we_found;
 	int			wall_found;
 	char		**tmp_floor;
 	char		**tmp_ceiling;
+	int			we_flag;
+	int			no_flag;
+	int			ea_flag;
+	int			so_flag;
 	
 }	t_data;
 typedef struct t_player
@@ -48,8 +51,6 @@ char	color_set(char *filename, t_data *data);
 char	**map_reader(char *filename, t_data *data);
 char 	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
-char 	wall_height_check(t_data *data);
-char 	map_witdh_check(t_data *data);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
 char	**trim_floor(char **floor);
@@ -61,6 +62,7 @@ int 	get_map_width(char  **str);
 
 void    data_init(t_data *data);
 
+bool	collums_check(t_data *data);
 bool    load_image(t_data*texture);
 bool	map_down_check(t_data *data, size_t x, size_t y);
 bool 	map_right_check(t_data *data, size_t x, size_t y);

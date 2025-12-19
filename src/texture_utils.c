@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:38:07 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/17 14:31:21 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/19 01:01:12 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ static bool    set_no_walls(t_data *data, char *ptr)
 {
     int i;
 
+    data->no_flag++;
     i = 0;
+    if (data->no_flag != 1)
+        return(printf("Path has MORE than required ARGS [NO]\n"), false);
     if (!ptr[i])
-        return(printf("An error occured on text route\n"), -1);
+        return(printf("An error occured on text route\n"), false);
     if (!ptr[0])
         return(printf("Empty path\n"), false);
     i += 2;
@@ -38,8 +41,11 @@ static bool set_we_walls(t_data *data, char *ptr)
     int i;
 
     i = 0;
+    data->we_flag++;
+    if (data->we_flag != 1)
+        return(printf("Path has MORE than required ARGS [WE]\n"), false);
     if (!ptr[i])
-        return(printf("An error occured on text route\n"), -1);
+        return(printf("An error occured on text route\n"), false);
     if (!ptr[0])
         return(printf("Empty path\n"), false);
     i += 2;
@@ -58,8 +64,11 @@ static bool    set_ea_wall(t_data *data, char *ptr)
     int i;
 
     i = 0;
+    data->ea_flag++;
+    if (data->ea_flag != 1)
+        return(printf("Path has MORE than required ARGS [EA]\n"), false);
     if (!ptr[i])
-        return(printf("An error occured on text route\n"), -1);
+        return(printf("An error occured on text route\n"), false);
     if (!ptr[0])
         return(printf("Empty path\n"), false);
     i += 2;
@@ -79,8 +88,11 @@ static bool set_so_walls(t_data *data, char *ptr)
     int i;
 
     i = 0;
+    data->so_flag++;
+    if (data->so_flag != 1)
+        return(printf("Path has MORE than required ARGS [SO]\n"), false);
     if (!ptr[i])
-        return(printf("An error occured on text route\n"), -1);
+        return(printf("An error occured on text route\n"), false);
     if (!ptr[0])
         return(printf("Empty path\n"), false);
     i += 2;

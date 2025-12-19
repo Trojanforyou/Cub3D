@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:11:41 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/17 18:23:15 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/18 23:44:07 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,29 @@ char	**trim_floor(char **floor)
 		i++;
 	}
 	return(floor);
+}
+bool	floor_error_check(char **floor)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!floor || !floor[0] || !floor[1] || !floor[2])
+	{
+		if (floor)
+			free(floor);
+		return (printf("Invalid or missing floor color\n"), false);
+	}
+	while (floor[i])
+	{
+		j = 0;
+		while (floor[i][j] != '\n' && floor[i][j] != '\0')
+		{
+			if (!ft_isdigit(floor[i][j] ))
+				return(printf("Floor has Non [INT] value\n"), false);
+			j++;
+		}
+		i++;
+	}
+	return(true);
 }

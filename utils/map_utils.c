@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/15 22:50:20 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/19 00:42:37 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ bool    map_init(t_data *data)
 		return(false);
 	// if (map_witdh_check(data) == -1)
 	// 	return(false);
-	if (wall_height_check(data) == -1)
+	if (collums_check(data) == false)
 		return(false);
 	if (map_validation(data) == -1)
 		return(false);
