@@ -32,43 +32,32 @@ char	map_char_check(t_data *data)
 	}
 	return(0);
 }
-char wall_height_check(t_data *data)
+bool	collums_check(t_data *data)
 {
-	int	y;
-	int	len;
 	int	x;
+	int	y;
+	int	witdh;
+	// int	heigth;
 
+	witdh = get_map_width(data->map);
+	// heigth = get_map_height(data->map);
 	x = 0;
-	len = 0;
-	y = 0;
-	len = get_map_height(data->map) - 1;
-	while (data->map[x][0] != ' ' && data->map[x][0] != '0' && data->map[x][0] != '1' && data->map[x][0] != 'P')
-		x++;
-	if (data->map[x][0] == '0' || data->map[x][0] == 'P')
-		return (printf("not here\n"), -1);
-	while (data->map[len][y])
+	while (x < witdh)
 	{
-		if (data->map[len][y] == '0' || data->map[len][y] == 'P')
-			return (printf("nope"), -1);
-		y++;
+		y = 0;
+		while (data->map[y])
+		{
+			if (data->map[y][x] == ' ')
+			{
+				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
+					return(printf("here"), false);
+			}
+			y++;
+		}
+		x++;
 	}
-	return(0);
+	return(true);
 }
-// char map_witdh_check(t_data *data)
-// {
-//     int x;
-
-// 	x = 0;
-
-// 	while (data->map[0][x])
-// 	{
-// 		printf("%c\n", data->map[0][x]);
-// 		if (data->map[0][x] == '0')
-// 			return(printf("here1"), -1);
-// 		x++;
-// 	}
-// 	return(0);
-// }
 char map_validation(t_data *data)
 {
 	size_t	x;

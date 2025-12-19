@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/17 18:35:52 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/18 23:44:00 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,24 @@ int	get_map_height(char **map)
 		y++;
 	return(y);
 }
-bool	floor_error_check(char **floor)
+char get_max_witdh(t_data *data)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	max;
 
-	i = 0;
-	if (!floor || !floor[0] || !floor[1] || !floor[2])
+	max = 0;
+	y = 0;
+	int	len;
+	while (data->map[y])
 	{
-		if (floor)
-			free(floor);
-		return (printf("Invalid or missing floor color\n"), false);
+		len = ft_strlen(data->map[y]);
+		if (len > max)
+			max = len;
+		y++;
 	}
-	while (floor[i])
-	{
-		j = 0;
-		while (floor[i][j] != '\n' && floor[i][j] != '\0')
-		{
-			if (!ft_isdigit(floor[i][j] ))
-				return(printf("Floor has Non [INT] value\n"), false);
-			j++;
-		}
-		i++;
-	}
-	return(true);
+	return(max);
 }
+
 bool	ceiling_error_check(char ** ceiling)
 {
 	int	i;

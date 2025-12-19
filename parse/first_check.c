@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/17 18:37:38 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/19 01:13:36 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ char	dublicate_check(t_data *data)
 
 bool parse_floor(char *path, t_data *data, char **tmp_floor)
 {
-	// printf("%s\n", tmp_floor[0]);
 	int		r;
 	int		g;
 	int		b;
