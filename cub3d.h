@@ -20,6 +20,8 @@ typedef struct s_data
 	mlx_image_t *img;
 	mlx_texture_t	*wall[4]; // 0 = north, 1 = south, 2 = west, 3 = east
 	mlx_image_t		*wall_img[4];
+	mlx_texture_t	*minimap_t[3];
+	mlx_image_t		*minimap_i[3]; // 0 = minimap_floor 1 = player 2 = wall
 	char		**map;
 	int			witdh;
 	int			height;
@@ -78,5 +80,11 @@ bool	ceiling_error_check(char ** ceiling);
 bool	floor_error_check(char **floor);
 bool	additional_check(char *line, t_data *data);
 bool 	parse_floor(char *path, t_data *data, char **tmp_floor);
-bool parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
+bool 	parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
+bool	window_witdh(t_data *data);
+bool	window_hight(t_data *data);
+bool    minimap_image(t_data *data);
+bool    minimap_textures(t_data *data);
+bool    draw_minimap(t_data *data);
+
 #endif

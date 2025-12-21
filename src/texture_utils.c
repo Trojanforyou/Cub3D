@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:38:07 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/19 01:01:12 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/19 17:16:02 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static bool set_so_walls(t_data *data, char *ptr)
     i += 2;
     while (ptr[i] == ' ')
         i++;
-    if (ptr[i] == '.' && ptr[i + 1] == '/')
+    if (ptr[i] == '.' && ptr[i + 1] == '/' && ptr[i + 2] == 't')
         data->so = ft_strdup(ptr + i);
     else
         return(printf("Wrong path [ARG]\n"), false);

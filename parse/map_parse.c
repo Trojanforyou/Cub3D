@@ -36,13 +36,12 @@ bool	collums_check(t_data *data)
 {
 	int	x;
 	int	y;
-	int	witdh;
 	// int	heigth;
 
-	witdh = get_map_width(data->map);
+	data->witdh = get_map_width(data->map);
 	// heigth = get_map_height(data->map);
 	x = 0;
-	while (x < witdh)
+	while (x < data->witdh)
 	{
 		y = 0;
 		while (data->map[y])
@@ -52,6 +51,10 @@ bool	collums_check(t_data *data)
 				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
 					return(printf("here"), false);
 			}
+			if (data->map[y][x] == '\n')
+				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
+					return(printf("here"), false);
+
 			y++;
 		}
 		x++;
