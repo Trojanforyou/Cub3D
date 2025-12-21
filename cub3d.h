@@ -1,10 +1,13 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-#define RGB(r, g, b) ((r << 16) | (g << 8) | b)
+#define RGB(r, g, b) ((0xFF << 24) | ((r) << 16) | ((g) << 8) | (b))
 #define MAX_MAP_LINES 1000
 #define TITLE_SIZE 64
-#define MAP_WITDH 800
-#define MAP_HEIGHT 600
+#define MINIMAP_SIZE 10
+#define OFFSET_X -8
+#define OFFSET_Y -10
+#define MAP_WITDH 1600
+#define MAP_HEIGHT 900
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -20,8 +23,7 @@ typedef struct s_data
 	mlx_image_t *img;
 	mlx_texture_t	*wall[4]; // 0 = north, 1 = south, 2 = west, 3 = east
 	mlx_image_t		*wall_img[4];
-	mlx_texture_t	*minimap_t[3];
-	mlx_image_t		*minimap_i[3]; // 0 = minimap_floor 1 = player 2 = wall
+	mlx_image_t		*minimap_i;
 	char		**map;
 	int			witdh;
 	int			height;
@@ -83,8 +85,8 @@ bool 	parse_floor(char *path, t_data *data, char **tmp_floor);
 bool 	parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
 bool	window_witdh(t_data *data);
 bool	window_hight(t_data *data);
-bool    minimap_image(t_data *data);
-bool    minimap_textures(t_data *data);
+bool    set_minimap_img(t_data *data);
 bool    draw_minimap(t_data *data);
+bool    put_pixel(t_data *data, int x, int y, int color);
 
 #endif

@@ -12,44 +12,62 @@
 
 #include "../cub3d.h"
 
-bool    minimap_textures(t_data *data)
+bool    set_minimap_img(t_data *data)
 {
-    data->minimap_t[0] =  mlx_load_png("./textures/minimap_t_floor.png");
-    data->minimap_t[1] =  mlx_load_png("./textures/minimap_t_player.png");
-    data->minimap_t[2] =  mlx_load_png("./textures/minimap_t_wall.png");
-    if (!data->minimap_t[0] || !data->minimap_t[1] || data->minimap_t[2])
-        return(false);
+    data->minimap_i = mlx_new_image(data->mlx, get_map_width(data->map) * MINIMAP_SIZE, get_map_height(data->map) * MINIMAP_SIZE);
+    if (!data->minimap_i)
+        return(printf("Image was not created\n"), false);
     return(true);
+    
 }
-bool    minimap_image(t_data *data)
-{
-    data->minimap_i[0] = mlx_texture_to_image(data->mlx, data->minimap_t[0]);
-    data->minimap_i[1] = mlx_texture_to_image(data->mlx, data->minimap_t[1]);
-    data->minimap_i[2] = mlx_texture_to_image(data->mlx, data->minimap_t[2]);
-    if (!data->minimap_i[0] || !data->minimap_i[1] || data->minimap_i[2])
-        return(false);
-    return(true);
-}
-bool    draw_minimap(t_data *data)
+bool draw_minimap(t_data *data)
 {
     int y;
     int x;
+    int color;
 
     y = 0;
+    color = 0;
     while (data->map[y])
     {
         x = 0;
         while (data->map[y][x])
         {
-            if (data->map[y][x] == '1')
-                mlx_image_to_window(data->mlx, data->minimap_i[2], x, y);
             if (data->map[y][x] == '0')
-                mlx_image_to_window(data->mlx, data->minimap_i[0], x, y);
-            if (data->map[y][x] == 'P')
-                mlx_image_to_window(data->mlx, data->minimap_i[1], x, y);
+                color = 0x654321FF; // Hex (RGBA / 0xRRGGBBAA):
+            else if (data->map[y][x] == '1')
+                color = 0x000000FF; // Hex (RGBA / 0xRRGGBBAA):
+            else if (data->map[y][x] == 'P')
+                color = 0xFF0000FF; // Hex (RGBA / 0xRRGGBBAA):
+            else 
+            {
+                x++;
+                continue;
+            }
             x++;
+            put_pixel(data, x, y, color);
         }
         y++;
+    }
+    if (mlx_image_to_window(data->mlx, data->minimap_i, OFFSET_X, OFFSET_Y) < false)
+        return(false);
+    return true;
+}
+bool    put_pixel(t_data *data, int x, int y, int color)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < MINIMAP_SIZE -1)
+    {
+        j = 0;
+        while (j < MINIMAP_SIZE - 1)
+        {
+            mlx_put_pixel(data->minimap_i, x * MINIMAP_SIZE + i, y * MINIMAP_SIZE + j, color);
+            j++;
+        }
+        i++;
     }
     return(true);
 }

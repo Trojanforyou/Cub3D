@@ -41,7 +41,8 @@ bool     load_map(t_data *data)
 {
     int y;
     int x;
-    // data->img = mlx_new_image(data->mlx, data->witdh * TITLE_SIZE, data->height * TITLE_SIZE);
+
+    data->img = mlx_new_image(data->mlx, data->witdh * TITLE_SIZE, data->height * TITLE_SIZE);
     y = -1;
     while (data->map[++y])
     {
@@ -53,14 +54,16 @@ bool     load_map(t_data *data)
                 if (data->wall_img[1])
                     mlx_image_to_window(data->mlx, data->wall_img[1], x * TITLE_SIZE, y * TITLE_SIZE);
             }
-            // else if(data->map[y][x] == '0')
-            // {
-            //     mlx_put_pixel(data->img, x  * TITLE_SIZE, y  * TITLE_SIZE, data->floor);
-            // }
-        }
-    }
+            else if (data->map[y][x] == '0')
+            {
+                for (int i = 0; i < TITLE_SIZE; i++)
+                    for (int j = 0; j < TITLE_SIZE; j++)
+                        mlx_put_pixel(data->img, x * TITLE_SIZE + i, y * TITLE_SIZE + j, data->floor);
+            }
+                    }
+                }
     //     if (!data->mlx) { printf("mlx is NULL\\n"); return false; }
     // if (!data->img) { printf("img is NULL\\n"); return false; }
-    // mlx_image_to_window(data->mlx, data->img, 1, 1);
+    mlx_image_to_window(data->mlx, data->img, x - 25, y -25);
     return(true);
 }

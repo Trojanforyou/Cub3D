@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/21 12:51:05 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/21 23:32:43 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,5 @@ void    data_init(t_data *data)
     data->ea_flag = 0;
     data->no_flag = 0;
     data->so_flag = 0;
-    data->wall[0] = NULL;
-    data->wall[1] = NULL;
-    data->wall[2] = NULL;
-    data->wall[3] = NULL;
-    data->minimap_t[0] = NULL;
-    data->minimap_i[1] = NULL;
-    data->minimap_t[2] = NULL;
-    data->minimap_t[3] = NULL;
+    data->minimap_i = NULL;
 }
