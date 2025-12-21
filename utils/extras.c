@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:11:41 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/18 23:44:07 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/19 01:43:56 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,54 @@ bool	floor_error_check(char **floor)
 	}
 	return(true);
 }
+bool	window_hight(t_data *data)
+{
+	int	x;
+	int	y;
+	int	witdh;
+
+	witdh = get_map_width(data->map);
+	// heigth = get_map_height(data->map);
+	x = 0;
+	while (x < data->witdh)
+	{
+		y = 0;
+		while (data->map[y])
+		{
+			if (data->map[y][x] == ' ')
+			{
+				if (data->map[y + 1] && (data->map[y + 1][x] == '\n' || data->map[y + 1][x] == '0'))
+					y++;
+			}
+			y++;
+		}
+		x++;
+	}
+	return(witdh);
+}
+bool	window_witdh(t_data *data)
+{
+	int	x;
+	int	y;
+	int	heigth;
+
+	// data->witdh = get_map_width(data->map);
+	heigth = get_map_height(data->map);
+	y = 0;
+	while (y < heigth)
+	{
+		x = 0;
+		while (data->map[y])
+		{
+			if (data->map[y][x] == ' ')
+			{
+				if (data->map[y + 1] && (data->map[y][x + 1] == '\n' || data->map[y][x + 1] == '0'))
+					continue;
+			}
+			x++;
+		}
+		y++;
+	}
+	return(heigth);
+}
+

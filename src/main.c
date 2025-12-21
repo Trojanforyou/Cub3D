@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/15 21:25:01 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/19 17:57:35 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int main(int ac, char **av)
 		return(-1);
 	if(map_init(&data) == false)
 		return(-1);
-	game_init(&data);
+	if (game_init(&data) == false)
+		return(false);
 	free(data.map);
 }
