@@ -4,8 +4,8 @@
 #define MAX_MAP_LINES 1000
 #define TITLE_SIZE 64
 #define MINIMAP_SIZE 10
-#define OFFSET_X -8
-#define OFFSET_Y -10
+#define OFFSET_X 0
+#define OFFSET_Y 0
 #define MAP_WITDH 1600
 #define MAP_HEIGHT 900
 # include <stdio.h>
@@ -41,7 +41,7 @@ typedef struct s_data
 	int			no_flag;
 	int			ea_flag;
 	int			so_flag;
-	
+
 }	t_data;
 typedef struct t_player
 {
@@ -59,6 +59,7 @@ char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
 char	**trim_floor(char **floor);
 char    **trim_celing(char **ceiling);
+char **set_map(char *line, int fd, t_data *data, char **temp, int *i);
 
 int		get_map_height(char **map);
 int 	get_map_width(char  **str);

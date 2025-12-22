@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/21 12:05:01 by msokolov         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:43:25 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,14 @@ char	**map_reader(char *filename, t_data *data)
 	char	*line;
 	char	**temp;
 	int		i;
-	i = -1;
+
+	i = 0;
+	line = NULL;
 	temp = malloc(sizeof(char *) * (MAX_MAP_LINES + 1));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return(printf("Sosal?\n"), NULL);
-	while ((line = get_next_line(fd)))
-	{
-		if (additional_check(line, data) == false)
-			return(NULL);
-		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 ||
-		ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0 || 
-		line[0] == 'F' || line[0] == 'C')
-		{
-			free(line);
-			continue;
-		}
-		temp[++i] = line;
-	}
+	set_map(line, fd, data, temp, &i);
 	temp[i + 1] = NULL;
 	data->map = temp;
 	close(fd);
@@ -91,7 +81,7 @@ bool parse_floor(char *path, t_data *data, char **tmp_floor)
 	tmp = path + 2;
 	tmp_floor = ft_split(tmp, ',');
 	tmp_floor = trim_floor(tmp_floor);
-	if (floor_error_check(tmp_floor) == false) 
+	if (floor_error_check(tmp_floor) == false)
 		return(false);
 	if (path[0] == 'F')
 	{
