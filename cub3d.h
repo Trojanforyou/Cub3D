@@ -59,7 +59,8 @@ char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
 char	**trim_floor(char **floor);
 char    **trim_celing(char **ceiling);
-char **set_map(char *line, int fd, t_data *data, char **temp, int *i);
+char 	**set_map(char *line, int fd, t_data *data, char **temp, int *i);
+bool	set_collor(t_data *data, int y, int x);
 
 int		get_map_height(char **map);
 int 	get_map_width(char  **str);

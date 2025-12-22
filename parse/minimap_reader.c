@@ -24,31 +24,10 @@ bool draw_minimap(t_data *data)
 {
     int y;
     int x;
-    int color;
 
     y = 0;
-    color = 0;
-    while (data->map[y])
-    {
-        x = 0;
-        while (data->map[y][x])
-        {
-            if (data->map[y][x] == '0')
-                color = 0x654321FF; // Hex (RGBA / 0xRRGGBBAA):
-            else if (data->map[y][x] == '1')
-                color = 0x000000FF; // Hex (RGBA / 0xRRGGBBAA):
-            else if (data->map[y][x] == 'P')
-                color = 0xFF0000FF; // Hex (RGBA / 0xRRGGBBAA):
-            else
-            {
-                x++;
-                continue;
-            }
-            put_pixel(data, x, y, color);
-            x++;
-        }
-        y++;
-    }
+	x = 0;
+	set_collor(data, y, x);
     if (mlx_image_to_window(data->mlx, data->minimap_i, OFFSET_X, OFFSET_Y) < false)
         return(false);
     return true;
