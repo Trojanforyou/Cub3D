@@ -18,7 +18,7 @@ bool    set_minimap_img(t_data *data)
     if (!data->minimap_i)
         return(printf("Image was not created\n"), false);
     return(true);
-    
+
 }
 bool draw_minimap(t_data *data)
 {
@@ -39,13 +39,13 @@ bool draw_minimap(t_data *data)
                 color = 0x000000FF; // Hex (RGBA / 0xRRGGBBAA):
             else if (data->map[y][x] == 'P')
                 color = 0xFF0000FF; // Hex (RGBA / 0xRRGGBBAA):
-            else 
+            else
             {
                 x++;
                 continue;
             }
-            x++;
             put_pixel(data, x, y, color);
+            x++;
         }
         y++;
     }
