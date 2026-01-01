@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/19 00:42:37 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/01 16:40:00 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,14 @@ bool	island_check(t_data *data, size_t y, size_t x)
 {
 	if (data->map[y][x] == '0' || data->map[y][x] == 'P')
 	{
-		if (data->map[y - 1][x] == '\0')
-			return (printf("Map is not covered by the walls1\n"), false);
-		if (data->map[y + 1][x] == '\0')
-			return (printf("Map is not covered by the walls2\n"), false);
-		if (data->map[y][x - 1] == '\0')
-			return (printf("Map is not covered by the walls3\n"), false);
-		if (data->map[y][x + 1] == '\0')
-			return (printf("Map is not covered by the walls4\n"), false);
+		if (data->map[y - 1][x] == '\n' || data->map[y - 1][x] == '\0')
+			return (printf("Map is not covered by the walls11\n"), false);
+		if (data->map[y + 1][x] == '\n' || data->map[y + 1][x] == '\0')
+			return (printf("Map is not covered by the walls22\n"), false);
+		if (data->map[y][x - 1] == '\n' || data->map[y][x - 1] == '\0')
+			return (printf("Map is not covered by the walls33\n"), false);
+		if (data->map[y][x + 1] == '\n' || data->map[y][x + 1] == '\0')
+			return (printf("Map is not covered by the walls44\n"), false);
 	}
 	return (true);
 }
@@ -112,8 +112,6 @@ bool    map_init(t_data *data)
 		return(false);
 	if (map_char_check(data) == -1)
 		return(false);
-	// if (map_witdh_check(data) == -1)
-	// 	return(false);
 	if (collums_check(data) == false)
 		return(false);
 	if (map_validation(data) == -1)

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/21 23:30:00 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/01 15:55:38 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ bool game_init(t_data *data)
         return (free(data->mlx), false);
     // if (texture_load(data) == false || load_image(data) == false)
     //     return (false);
-    set_minimap_img(data);
+    if (set_minimap_img(data) == false)
+        return(false);
     // load_map(data);
     if (draw_minimap(data) == false)
         return(printf("here\n"), false);
@@ -35,8 +36,14 @@ int get_map_width(char  **str)
     int x;
 
     y = 0;
+    
     while (str[y])
     {
+        if (str[y][0] == '\0')
+        {
+            y++;
+            continue;
+        }
         x = 0;
         while (str[y][x])
             x++;

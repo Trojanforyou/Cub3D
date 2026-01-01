@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/22 15:16:04 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/01 15:26:24 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ char **set_map(char *line, int fd, t_data *data, char **temp, int *i)
 			continue;
 		}
 		if (line[0] == '\n')
-		{
-			free(line);
-			continue;
-		}
+			line[0] = '\0';
 		temp[*i] = line;
 		(*i)++;
 	}
