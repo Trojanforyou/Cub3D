@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/01 19:30:04 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/01 21:20:26 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ bool parse_floor(char *path, t_data *data, char **tmp_floor)
 			return(printf("RGB is out from range [0-256]"), false);
 		data->floor = RGB(r, g, b);
 	}
+	clean_floor(tmp_floor);
 	return(true);
 }
 bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
@@ -120,5 +121,6 @@ bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
 			return(printf("RGB is out from range [0-256]"), false);
 		data->ceiling = RGB(r, g, b);
 	}
+	clean_floor(tmp_ceiling);
 	return(true);
 }

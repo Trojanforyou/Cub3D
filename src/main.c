@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/01 20:16:08 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/01 21:20:51 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,4 @@ int main(int ac, char **av)
 	// if (!game_init(&data))
 	// 	return(-1);
 	clean_data(&data);
-	// clean_ceiling(&data);
-// 	clean_floor(&data);
 }
