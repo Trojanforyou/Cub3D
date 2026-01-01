@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/22 14:43:25 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/01 19:30:04 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ char	**map_reader(char *filename, t_data *data)
 
 	i = 0;
 	line = NULL;
-	temp = malloc(sizeof(char *) * (MAX_MAP_LINES + 1));
-	fd = open(filename, O_RDONLY);
+	temp = ft_calloc(MAX_MAP_LINES + 1, sizeof(char *));
+	if (!temp)
+		return (NULL);
+	fd = open(filename, O_RDONLY);	temp[i + 1] = NULL;
 	if (fd < 0)
 		return(printf("Sosal?\n"), NULL);
 	set_map(line, fd, data, temp, &i);
-	temp[i + 1] = NULL;
 	data->map = temp;
 	close(fd);
 	return (data->map);

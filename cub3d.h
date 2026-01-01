@@ -67,6 +67,9 @@ int 	get_map_width(char  **str);
 
 
 void    data_init(t_data *data);
+void    clean_data(t_data *data);
+void    clean_ceiling(t_data *data);
+void    clean_floor(t_data *data);
 
 bool	collums_check(t_data *data);
 bool    load_image(t_data*texture);
