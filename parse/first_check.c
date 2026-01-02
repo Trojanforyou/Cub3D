@@ -81,11 +81,18 @@ static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
 	int	r;
 	int	g;
 	int	b;
+
+	if (!tmp_floor || !tmp_floor[0] || !tmp_floor[1] || !tmp_floor[2])
+	{
+	    printf("Floor RGB is incomplete\n");
+	    return false;
+	}
 	r = ft_atoi(tmp_floor[0]);
 	g = ft_atoi(tmp_floor[1]);
 	b = ft_atoi(tmp_floor[2]);
 	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
 		return(printf("RGB is out from ragne [0-256]"), false);
+	printf("half\n");
 	data->floor = RGB(r, g, b);
 	r = ft_atoi(tmp_ceiling[0]);
 	g = ft_atoi(tmp_ceiling[1]);
@@ -95,6 +102,7 @@ static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
 	data->ceiling = RGB(r, g, b);
 	return(true);
 }
+
 char	color_set(char *filename, t_data *data)
 {
 	int		fd;
@@ -112,9 +120,8 @@ char	color_set(char *filename, t_data *data)
 			tmp_ceiling = ft_split(line + 2, ',');
 		free(line);
 	}
+	printf("ooo\n");
 	parse_rgb(data, tmp_ceiling, tmp_floor);
-	free(tmp_ceiling);
-	free(tmp_floor);
 	close(fd);
 	return(0);
 }

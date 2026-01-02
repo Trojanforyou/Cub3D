@@ -24,13 +24,15 @@ void    data_init(t_data *data)
     data->ea = 0;
     data->we = 0;
     data->n_flag = 0;
+    data->render_width = 0;
+    data->screen_width = 0;
     // data->wall[0] = NULL;
     // data->wall[1] = NULL;
     // data->wall[2] = NULL;
     // data->wall[3] = NULL;
 }
 
-void player_init(s_player *player)
+int player_init(s_player *player, t_data *data)
 {
     player->posX = 22.0;
     player->posY = 12.0;
@@ -38,4 +40,7 @@ void player_init(s_player *player)
     player->dirY = 0.0;
     player->planeX = 0.0;
     player->planeY = 0.66;
+    player->data = data;
+    player->speed = 0.1;
+    return (1);
 }

@@ -14,9 +14,9 @@ MLX42_FLAGS = -I$(MLX42_DIR)/include -L$(MLX42_BUILD) -lmlx42 -lglfw -ldl -pthre
 
 SRCS = src/main.c \
        parse/first_check.c utils/utils.c parse/map_parse.c src/struct_init.c utils/map_utils.c parse/window_init.c \
-	   src/textures.c src/texture_utils.c src/render_map.c
+	   src/textures.c src/texture_utils.c src/player.c \
+	   src/raycasting_calc.c src/render_map.c src/init_raycasting.c
 OBJS = $(SRCS:.c=.o)
-
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
 all: $(LIBFT) $(MLX42_LIB) $(NAME)

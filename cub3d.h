@@ -12,6 +12,19 @@
 #include <math.h>
 # include "MLX42/include/MLX42/MLX42.h"
 
+typedef struct s_data s_data;
+
+typedef struct t_player
+{
+	double	posX;      // Player's X position in the map
+	double	posY;      // Player's Y position in the map
+	double	speed;  // Player's speed
+	double	dirX;   // Player's direction vector X component
+	double	dirY;   // Player's direction vector Y component
+	double	planeX; // Camera plane X component (perpendicular to direction)
+	double	planeY; // Camera plane Y component (perpendicular to direction)
+	s_data  *data;
+} s_player;
 
 typedef struct s_data
 {
@@ -31,6 +44,9 @@ typedef struct s_data
 	int			n_flag;
 	int			we_found;
 	int			wall_found;
+	int			render_width;
+	int			screen_width;
+	s_player	*player;
 }	t_data;
 
 typedef struct Ray
@@ -48,21 +64,23 @@ typedef struct Ray
     int stepY;            // Step direction Y (+1 or -1)
     int side;             // 0 = vertical wall, 1 = horizontal wall
     int hit;              // 0 = no wall, 1 = wall hit
-} Ray;
+} s_Ray;
 
-
-typedef struct t_player
+typedef struct s_stripe
 {
-	double	posX;      // Player's X position in the map
-	double	posY;      // Player's Y position in the map
-	double	speed;  // Player's speed
-	double	dirX;   // Player's direction vector X component
-	double	dirY;   // Player's direction vector Y component
-	double	planeX; // Camera plane X component (perpendicular to direction)
-	double	planeY; // Camera plane Y component (perpendicular to direction)
-	t_data  *data;
-} s_player;
+    int	drawStart;
+    int	drawEnd;
+    int	lineHeight;
+    int	texX;
+    int	x;
+} s_stripe;
 
+typedef struct t_camera
+{
+	double fov;
+	double Y_rotation;
+	double X_rotation;
+} s_camera;
 
 char	color_set(char *filename, t_data *data);
 char	**cordinates_check(char *filename, t_data *data);
@@ -78,7 +96,7 @@ int 	get_map_width(char  **str);
 
 void    render_map(t_data *data);
 void    data_init(t_data *data);
-void   player_init(s_player *player);
+int		player_init(s_player *player, t_data *data);
 void    raycast_and_draw(t_data *data, s_player *player);
 
 bool    load_image(t_data*texture);
@@ -97,6 +115,16 @@ bool    set_we_ea_walls(t_data *data, char *ptr);
 bool    set_no_so_walls(t_data *data, char *ptr);
 
 // PLAYER
-void    move_forward(s_player *player);
+void	clear_screen(t_data *data);
+void	move_player(t_data *data);
+void	mouse_look(t_data *data);
+
+// raycasting init
+void	calculate_perp_wall_dist(s_Ray *ray, s_player *player);
+void    init_ray(s_Ray *ray, s_player *player, int x, int width);
+
+//raycasting calc
+void	calculate_step_and_side_dist(s_Ray *ray, s_player *player);
+void    DDA_loop(s_Ray *ray, t_data *data);
 
 #endif

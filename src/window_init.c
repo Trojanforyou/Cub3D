@@ -18,7 +18,8 @@ bool game_init(t_data *data)
     data->height = get_map_height(data->map) * TITLE_SIZE;
     data->width = get_map_width((data->map)) * TITLE_SIZE;
     data->mlx = mlx_init(data->width, data->height, "cub3D", false);
-
+    data->screen_width = data->width;
+    data->render_width = data->width;
     if (!data->mlx)
         return (free(data->mlx), false);
     if (!texture_load(data) || !load_image(data))
