@@ -23,7 +23,9 @@ static double delta(double rayDir)
 
 void init_ray(s_Ray *ray, s_player *player, int x, int width)
 {
-    double cameraX = 2.0 * x / (double)width - 1.0;
+    double cameraX;
+
+    cameraX = 2.0 * x / (double)width - 1.0;
     ray->rayDirX = player->dirX + player->planeX * cameraX;
     ray->rayDirY = player->dirY + player->planeY * cameraX;
     ray->mapX = (int)player->posX;
