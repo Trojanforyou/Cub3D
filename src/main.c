@@ -18,7 +18,6 @@ void clear_screen(t_data *data)
 
     if (!data || !data->img || !data->img->pixels)
         return;
-
     size = (size_t)data->img->width * (size_t)data->img->height * 4;
     memset(data->img->pixels, 0, size);
 }
@@ -29,6 +28,7 @@ void game_loop(void *param)
 
     move_player(data);
     mouse_look(data);
+    arrow_look(data);
     clear_screen(data);
     raycast_and_draw(data, data->player);
 }

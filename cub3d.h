@@ -118,6 +118,7 @@ bool    set_no_so_walls(t_data *data, char *ptr);
 void	clear_screen(t_data *data);
 void	move_player(t_data *data);
 void	mouse_look(t_data *data);
+void    arrow_look(t_data *data);
 
 // raycasting init
 void	calculate_perp_wall_dist(s_Ray *ray, s_player *player);
