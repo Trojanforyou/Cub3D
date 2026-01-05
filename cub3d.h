@@ -1,15 +1,15 @@
-#ifndef CUB3D_H
+# ifndef CUB3D_H
 # define CUB3D_H
-#define RGB(r, g, b) ((r << 16) | (g << 8) | b)
-#define MAX_MAP_LINES 1000
-#define TITLE_SIZE 64
+# define RGB(r, g, b) ((r << 16) | (g << 8) | b)
+# define MAX_MAP_LINES 1000
+# define TITLE_SIZE 64
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-#include <math.h>
+# include <math.h>
 # include "MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_data s_data;
@@ -19,6 +19,12 @@ typedef struct t_point
     double x;
     double y;
 } s_point;
+
+typedef struct t_ipoint
+{
+    int x;
+    int y;
+} s_ipoint;
 
 typedef struct t_player
 {
@@ -52,17 +58,14 @@ typedef struct s_data
 	s_player	*player;
 }	t_data;
 
-// make a point struct to hold all the x and y values
 typedef struct Ray
 {
     s_point rayDir;       // component of ray direction
     s_point sideDist;     // Distance to next side
     s_point deltaDist;    // Distance between sides
     double perpWallDist;  // Perpendicular distance to wall
-    int mapX;             // Current map square X
-    int mapY;             // Current map square Y
-    int stepX;            // Step direction X (+1 or -1)
-    int stepY;            // Step direction Y (+1 or -1)
+    s_ipoint map;         // Current map square
+    s_point step;         // Step direction
     int side;             // 0 = vertical wall, 1 = horizontal wall
     int hit;              // 0 = no wall, 1 = wall hit
 } s_Ray;
@@ -75,13 +78,6 @@ typedef struct s_stripe
     int	texX;
     int	x;
 } s_stripe;
-
-typedef struct t_camera
-{
-	double fov;
-	double Y_rotation;
-	double X_rotation;
-} s_camera;
 
 char	color_set(char *filename, t_data *data);
 char	**cordinates_check(char *filename, t_data *data);
