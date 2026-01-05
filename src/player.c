@@ -13,14 +13,14 @@ void    rotate_camera(s_player *p, double rot)
     double  old_dir_x;
     double  old_plane_x;
 
-    old_dir_x = p->dirX;
-    old_plane_x = p->planeX;
+    old_dir_x = p->dir.x;
+    old_plane_x = p->plane.x;
 
-    p->dirX = p->dirX * cos(rot) - p->dirY * sin(rot);
-    p->dirY = old_dir_x * sin(rot) + p->dirY * cos(rot);
+    p->dir.x = p->dir.x * cos(rot) - p->dir.y * sin(rot);
+    p->dir.y = old_dir_x * sin(rot) + p->dir.y * cos(rot);
 
-    p->planeX = p->planeX * cos(rot) - p->planeY * sin(rot);
-    p->planeY = old_plane_x * sin(rot) + p->planeY * cos(rot);
+    p->plane.x = p->plane.x * cos(rot) - p->plane.y * sin(rot);
+    p->plane.y = old_plane_x * sin(rot) + p->plane.y * cos(rot);
 }
 
 void    arrow_look(t_data *data)
@@ -42,28 +42,28 @@ void move_player(t_data *data)
     speed = data->player->speed;
     if (mlx_is_key_down(data->mlx, MLX_KEY_W))
     {
-        moveX += data->player->dirX * speed;
-        moveY += data->player->dirY * speed;
+        moveX += data->player->dir.x * speed;
+        moveY += data->player->dir.y * speed;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_S))
     {
-        moveX -= data->player->dirX * speed;
-        moveY -= data->player->dirY * speed;
+        moveX -= data->player->dir.x * speed;
+        moveY -= data->player->dir.y * speed;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_A))
     {
-        moveX -= data->player->dirY * speed;
-        moveY += data->player->dirX * speed;
+        moveX -= data->player->dir.y * speed;
+        moveY += data->player->dir.x * speed;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_D))
     {
-        moveX += data->player->dirY * speed;
-        moveY -= data->player->dirX * speed;
+        moveX += data->player->dir.y * speed;
+        moveY -= data->player->dir.x * speed;
     }
-    if (is_free_tile(data, (int)(data->player->posX + moveX), (int)data->player->posY))
-        data->player->posX += moveX;
-    if (is_free_tile(data, (int)data->player->posX, (int)(data->player->posY + moveY)))
-        data->player->posY += moveY;
+    if (is_free_tile(data, (int)(data->player->pos.x + moveX), (int)data->player->pos.y))
+        data->player->pos.x += moveX;
+    if (is_free_tile(data, (int)data->player->pos.x, (int)(data->player->pos.y + moveY)))
+        data->player->pos.y += moveY;
 }
 
 void mouse_look(t_data *data)

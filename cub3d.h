@@ -14,15 +14,18 @@
 
 typedef struct s_data s_data;
 
+typedef struct t_point
+{
+    double x;
+    double y;
+} s_point;
+
 typedef struct t_player
 {
-	double	posX;      // Player's X position in the map
-	double	posY;      // Player's Y position in the map
-	double	speed;  // Player's speed
-	double	dirX;   // Player's direction vector X component
-	double	dirY;   // Player's direction vector Y component
-	double	planeX; // Camera plane X component (perpendicular to direction)
-	double	planeY; // Camera plane Y component (perpendicular to direction)
+	s_point	pos;   // Player's position in the map
+	double	speed; // Player's speed
+	s_point	dir;   // Player's direction vector
+	s_point	plane; // Camera plane (perpendicular to direction)
 	s_data  *data;
 } s_player;
 
@@ -49,14 +52,12 @@ typedef struct s_data
 	s_player	*player;
 }	t_data;
 
+// make a point struct to hold all the x and y values
 typedef struct Ray
 {
-    double rayDirX;       // X component of ray direction
-    double rayDirY;       // Y component of ray direction
-    double sideDistX;     // Distance to next x-side
-    double sideDistY;     // Distance to next y-side
-    double deltaDistX;    // Distance between x-sides
-    double deltaDistY;    // Distance between y-sides
+    s_point rayDir;       // component of ray direction
+    s_point sideDist;     // Distance to next side
+    s_point deltaDist;    // Distance between sides
     double perpWallDist;  // Perpendicular distance to wall
     int mapX;             // Current map square X
     int mapY;             // Current map square Y

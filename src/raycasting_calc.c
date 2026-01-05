@@ -7,15 +7,15 @@ void    DDA_loop(s_Ray *ray, t_data *data)
 
     while (ray->hit == 0)
     {
-        if (ray->sideDistX < ray->sideDistY)
+        if (ray->sideDist.x < ray->sideDist.y)
         {
-            ray->sideDistX += ray->deltaDistX;
+            ray->sideDist.x += ray->deltaDist.x;
             ray->mapX += ray->stepX;
             ray->side = 0;
         }
         else
         {
-            ray->sideDistY += ray->deltaDistY;
+            ray->sideDist.y += ray->deltaDist.y;
             ray->mapY += ray->stepY;
             ray->side = 1;
         }
@@ -32,24 +32,24 @@ void    DDA_loop(s_Ray *ray, t_data *data)
 
 void calculate_step_and_side_dist(s_Ray *ray, s_player *player)
 {
-    if (ray->rayDirX < 0)
+    if (ray->rayDir.x < 0)
     {
         ray->stepX = -1;
-        ray->sideDistX = (player->posX - ray->mapX) * ray->deltaDistX;
+        ray->sideDist.x = (player->pos.x - ray->mapX) * ray->deltaDist.x;
     }
     else
     {
         ray->stepX = 1;
-        ray->sideDistX = (ray->mapX + 1.0 - player->posX) * ray->deltaDistX;
+        ray->sideDist.x = (ray->mapX + 1.0 - player->pos.x) * ray->deltaDist.x;
     }
-    if (ray->rayDirY < 0)
+    if (ray->rayDir.y < 0)
     {
         ray->stepY = -1;
-        ray->sideDistY = (player->posY - ray->mapY) * ray->deltaDistY;
+        ray->sideDist.y = (player->pos.y - ray->mapY) * ray->deltaDist.y;
     }
     else
     {
         ray->stepY = 1;
-        ray->sideDistY = (ray->mapY + 1.0 - player->posY) * ray->deltaDistY;
+        ray->sideDist.y = (ray->mapY + 1.0 - player->pos.y) * ray->deltaDist.y;
     }
 }

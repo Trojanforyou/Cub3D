@@ -2,7 +2,7 @@
 
 //raycast_and_draw
 //│
-//├── init_ray                // math setup
+//├─ init_ray                // math setup
 //├── calculate_step_and_side // grid stepping setup
 //├── DDA_loop                // map collision
 //├── calculate_perp_dist     // camera correction
@@ -50,14 +50,14 @@ void draw_textured_wall(s_player *player, mlx_image_t *img, s_Ray *ray, int x)
     if (stripe.drawEnd >= player->data->height) 
         stripe.drawEnd = player->data->height - 1;
     if (ray->side == 0)
-        wallX = player->posY + ray->perpWallDist * ray->rayDirY;
+        wallX = player->pos.y + ray->perpWallDist * ray->rayDir.y;
     else
-        wallX = player->posX + ray->perpWallDist * ray->rayDirX;
+        wallX = player->pos.x + ray->perpWallDist * ray->rayDir.x;
     wallX -= floor(wallX);
     // texture
     stripe.texX = (int)(wallX * player->data->wall_img[ray->hit]->width);
-    if ((ray->side == 0 && ray->rayDirX > 0) 
-     || (ray->side == 1 && ray->rayDirY < 0))
+    if ((ray->side == 0 && ray->rayDir.x > 0) 
+     || (ray->side == 1 && ray->rayDir.y < 0))
         stripe.texX = player->data->wall_img[ray->hit]->width - stripe.texX - 1;
     draw_vertical_stripe(img, player->data->wall_img[ray->hit], stripe);
 }

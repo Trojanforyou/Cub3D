@@ -34,12 +34,12 @@ void    data_init(t_data *data)
 
 int player_init(s_player *player, t_data *data)
 {
-    player->posX = 22.0;
-    player->posY = 12.0;
-    player->dirX = -1.0;
-    player->dirY = 0.0;
-    player->planeX = 0.0;
-    player->planeY = 0.66;
+    player->pos.x = 22.0;
+    player->pos.y = 12.0;
+    player->dir.x = -1.0;
+    player->dir.y = 0.0;
+    player->plane.x = 0.0;
+    player->plane.y = 0.66;
     player->data = data;
     player->speed = 0.1;
     return (1);
