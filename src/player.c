@@ -5,7 +5,7 @@ static int is_free_tile(t_data *data, int x, int y)
 {
     if (x < 0 || y < 0 || x >= data->width || y >= data->height)
         return 0;
-    return data->map[y][x] == '0';
+    return (data->map[y][x] == '0');
 }
 
 void    rotate_camera(s_player *p, double rot)
@@ -35,30 +35,28 @@ void move_player(t_data *data)
 {
     double moveX;
     double moveY;
-    double speed;
 
     moveX = 0.0;
     moveY = 0.0;
-    speed = data->player->speed;
     if (mlx_is_key_down(data->mlx, MLX_KEY_W))
     {
-        moveX += data->player->dir.x * speed;
-        moveY += data->player->dir.y * speed;
+        moveX += data->player->dir.x * data->player->speed;
+        moveY += data->player->dir.y * data->player->speed;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_S))
     {
-        moveX -= data->player->dir.x * speed;
-        moveY -= data->player->dir.y * speed;
+        moveX -= data->player->dir.x * data->player->speed;
+        moveY -= data->player->dir.y * data->player->speed;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_A))
     {
-        moveX -= data->player->dir.y * speed;
-        moveY += data->player->dir.x * speed;
+        moveX -= data->player->dir.y * data->player->speed;
+        moveY += data->player->dir.x * data->player->speed;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_D))
     {
-        moveX += data->player->dir.y * speed;
-        moveY -= data->player->dir.x * speed;
+        moveX += data->player->dir.y * data->player->speed;
+        moveY -= data->player->dir.x * data->player->speed;
     }
     if (is_free_tile(data, (int)(data->player->pos.x + moveX), (int)data->player->pos.y))
         data->player->pos.x += moveX;
@@ -71,14 +69,12 @@ void mouse_look(t_data *data)
     int     x;
     int     y;
     int     cx;
-    int     cy;
     double  dx;
 
     cx = data->width / 2;
-    cy = data->height / 2;
     mlx_get_mouse_pos(data->mlx, &x, &y);
     dx = x - cx;
     if (dx > 1 || dx < -1)
         rotate_camera(data->player, dx * 0.002);
-    mlx_set_mouse_pos(data->mlx, cx, cy);
+    mlx_set_mouse_pos(data->mlx, cx, (data->height / 2));
 }

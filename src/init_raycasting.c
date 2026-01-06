@@ -20,6 +20,7 @@ static double delta(double rayDir)
         return 1e30;
     return fabs(1.0 / rayDir);
 }
+
 void init_ray(s_Ray *ray, s_player *player, int x, int width)
 {
     double cameraX;
