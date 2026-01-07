@@ -15,6 +15,8 @@
 
 bool texture_load(t_data *data)
 {
+    if (!data->no || !data->so || !data->we || !data->ea)
+        return (printf("Texture paths not set\n"), false);
     data->wall[0] = mlx_load_png(data->no);
     data->wall[1] = mlx_load_png(data->so);
     data->wall[2] = mlx_load_png(data->we);
@@ -42,7 +44,7 @@ bool     load_map(t_data *data)
     int y;
     int x;
 
-    data->img = mlx_new_image(data->mlx, data->witdh * TITLE_SIZE, data->height * TITLE_SIZE);
+    data->img = mlx_new_image(data->mlx, data->width * TITLE_SIZE, data->height * TITLE_SIZE);
     y = -1;
     while (data->map[++y])
     {

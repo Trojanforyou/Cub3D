@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/01 15:26:24 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/07 17:14:57 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,19 @@ bool	set_collor(t_data *data, int y, int x)
 	int	color;
 
 	color = 0;
+    if (!data || !data->map)
+        return (printf("Error: data or map is NULL\n"), false);
     while (data->map[y])
     {
 		x = 0;
         while (data->map[y][x])
         {
-            if (data->map[y][x] == '0')
+         	if (data->player && data->player->pos.x == x && data->player->pos.y == y)
+                color = 0xFF0000FF; // Hex (RGBA / 0xRRGGBBAA):
+			else if (data->map[y][x] == '0')
                 color = 0x654321FF; // Hex (RGBA / 0xRRGGBBAA):
             else if (data->map[y][x] == '1')
                 color = 0x000000FF; // Hex (RGBA / 0xRRGGBBAA):
-            else if (data->map[y][x] == 'P')
-                color = 0xFF0000FF; // Hex (RGBA / 0xRRGGBBAA):
             else
             {
                 (x)++;

@@ -38,10 +38,10 @@ bool	collums_check(t_data *data)
 	int	y;
 	// int	heigth;
 
-	data->witdh = get_map_width(data->map);
+	data->width = get_map_width(data->map);
 	// heigth = get_map_height(data->map);
 	x = 0;
-	while (x < data->witdh)
+	while (x < data->width)
 	{
 		y = 0;
 		while (data->map[y])

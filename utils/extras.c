@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:11:41 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/19 01:43:56 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/07 15:59:13 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char    **trim_celing(char **ceiling)
 {
     int i;
     char *temp;
-    
+
     i = 0;
     temp = 0;
     while (ceiling[i])
@@ -32,7 +32,7 @@ char	**trim_floor(char **floor)
 {
 	int i;
     char *temp;
-    
+
     i = 0;
     temp = 0;
     while (floor[i])
@@ -73,12 +73,12 @@ bool	window_hight(t_data *data)
 {
 	int	x;
 	int	y;
-	int	witdh;
+	int	width;
 
-	witdh = get_map_width(data->map);
+	width = get_map_width(data->map);
 	// heigth = get_map_height(data->map);
 	x = 0;
-	while (x < data->witdh)
+	while (x < data->width)
 	{
 		y = 0;
 		while (data->map[y])
@@ -92,15 +92,15 @@ bool	window_hight(t_data *data)
 		}
 		x++;
 	}
-	return(witdh);
+	return(width);
 }
-bool	window_witdh(t_data *data)
+bool	window_width(t_data *data)
 {
 	int	x;
 	int	y;
 	int	heigth;
 
-	// data->witdh = get_map_width(data->map);
+	// data->width = get_map_width(data->map);
 	heigth = get_map_height(data->map);
 	y = 0;
 	while (y < heigth)
