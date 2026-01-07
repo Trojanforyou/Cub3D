@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:49:17 by otanovic          #+#    #+#             */
-/*   Updated: 2026/01/07 13:53:57 by otanovic         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:47:45 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 //├── calculate_perp_dist     // camera correction
 //└── draw_textured_wall      // rendering only
 
-// seg faultin here for 
-// whenever I go past the last walls so its due to reading 
+// seg faultin here for
+// whenever I go past the last walls so its due to reading
 // from the map past a valid place
 // DDA loop: marches ray through the map until a wall is hit
 
@@ -30,7 +30,7 @@ void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, s_stripe stripe)
 	int			y;
 	int			texy;
 	uint8_t		*pixel;
-	uint32_t	color;	
+	uint32_t	color;
 
 	y = stripe.drawStart;
 	while (y < stripe.drawEnd)
@@ -53,14 +53,14 @@ void	draw_textured_wall(s_player *player, mlx_image_t *img, s_Ray *ray, int x)
 
 	stripe.x = x; // current screen column
 	// wall height
-	stripe.lineHeight = (int)(player->data->height / ray->perpWallDist);
+	stripe.lineHeight = (int)(MAP_HEIGHT / ray->perpWallDist);
 	// top & bottom on screen
-	stripe.drawStart = -stripe.lineHeight / 2 + player->data->height / 2;
-	stripe.drawEnd = stripe.lineHeight / 2 + player->data->height / 2;
+	stripe.drawStart = -stripe.lineHeight / 2 + MAP_HEIGHT / 2;
+	stripe.drawEnd = stripe.lineHeight / 2 + MAP_HEIGHT / 2;
 	if (stripe.drawStart < 0)
 		stripe.drawStart = 0;
-	if (stripe.drawEnd >= player->data->height)
-		stripe.drawEnd = player->data->height - 1;
+	if (stripe.drawEnd >= MAP_HEIGHT)
+		stripe.drawEnd = MAP_HEIGHT - 1;
 	if (ray->side == 0)
 		wallX = player->pos.y + ray->perpWallDist * ray->rayDir.y;
 	else
@@ -77,20 +77,20 @@ void	raycast_and_draw(t_data *data, s_player *player)
 {
 	mlx_image_t	*img;
 	s_Ray		ray;
-	int			x;	
+	int			x;
 
 	img = data->img;
 	x = 0;
-	while (x < data->width)
+	while (x < MAP_WITDH)
 	{
-		init_ray(&ray, player, x, data->width);
+		init_ray(&ray, player, x, MAP_WITDH);
 		calculate_step_and_side_dist(&ray, player);
-		if (ray.hit != -1)
+		DDA_loop(&ray, data);
+		if (ray.hit >= 0 && ray.hit < 4 && player->data->wall_img[ray.hit])
 		{
-			DDA_loop(&ray, data);
 			calculate_perp_wall_dist(&ray, player);
-			draw_textured_wall(player, img, &ray, x++);
+			draw_textured_wall(player, img, &ray, x);
 		}
+		x++;
 	}
-	mlx_image_to_window(data->mlx, img, 0, 0);
 }

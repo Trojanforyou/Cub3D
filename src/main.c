@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/07 13:36:23 by otanovic         ###   ########.fr       */
+/*   Updated: 2026/01/07 17:08:40 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	game_loop(void *param)
 	arrow_look(data);
 	clear_screen(data);
 	raycast_and_draw(data, data->player);
+	draw_minimap(data);
 }
 
 int	main(int ac, char **av)
@@ -47,21 +48,13 @@ int	main(int ac, char **av)
 	if (prefix_check(av[1]))
 		return (1);
 	data_init(&data);
-	walls_set(av[1], &data);
-	color_set(av[1], &data);
-	if (!cordinates_check(av[1], &data))
-		return (-1);
-	map_init(&data);
-	player_init(player, &data);
-	if (!game_init(&data))
+	if (!map_reader(av[1], &data))
+		return(-1);
+	if(!map_init(&data))
+		return(-1);
+	if (!player_init(player, &data))
+		return (false);
+	if (!game_init(&data, player))
 		return (printf("Game init failed\n"), 1);
-	data.player = player;
-	data.img = mlx_new_image(data.mlx, data.width, data.height);
-	if (!data.img)
-		return (printf("Failed to create image\n"), 1);
-	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_DISABLED);
-	mlx_loop_hook(data.mlx, game_loop, &data);
-	mlx_loop(data.mlx);
-	free(data.map);
-	free(player);
+	return 0;
 }

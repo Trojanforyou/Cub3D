@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:36:31 by otanovic          #+#    #+#             */
-/*   Updated: 2026/01/07 13:47:39 by otanovic         ###   ########.fr       */
+/*   Updated: 2026/01/07 17:07:20 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static int	is_free_tile(t_data *data, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= data->width || y >= data->height)
+	if (y < 0 || !data->map[y])
 		return (0);
-	return (data->map[y][x] == '0');
+	if (x < 0 || !data->map[y][x] || data->map[y][x] == '\n')
+		return (0);
+	return (data->map[y][x] == '0' || data->map[y][x] == 'P');
 }
 
 void	rotate_camera(s_player *p, double rot)
@@ -81,7 +83,7 @@ void mouse_look(t_data *data)
 	int		x;
 	int		y;
 	int		cx;
-	double	dx;	
+	double	dx;
 
 	cx = data->width / 2;
 	mlx_get_mouse_pos(data->mlx, &x, &y);
