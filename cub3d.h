@@ -6,8 +6,8 @@
 #define MINIMAP_SIZE 10
 #define OFFSET_X 0
 #define OFFSET_Y 0
-#define MAP_WITDH 1600
-#define MAP_HEIGHT 1600
+#define MAP_WITDH 1920
+#define MAP_HEIGHT 1080
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -140,6 +140,7 @@ void	data_init(t_data *data);
 void	clean_data(t_data *data);
 void	clean_ceiling(t_data *data);
 void	clean_floor(char **data);
+void    change_perspective(t_data *data);
 bool	game_init(t_data *data, s_player *player);
 void	game_loop(void *param);
 

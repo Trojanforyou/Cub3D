@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/07 17:08:40 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/09 16:01:46 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ void	game_loop(void *param)
 	raycast_and_draw(data, data->player);
 	draw_minimap(data);
 }
+void	find_player(t_data *data, s_player *player)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'P')
+			{
+				player->pos.x = x;
+				player->pos.y = y;
+			}
+			x++;
+		}
+		y++;
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -52,9 +73,11 @@ int	main(int ac, char **av)
 		return(-1);
 	if(!map_init(&data))
 		return(-1);
+	find_player(&data, player);
 	if (!player_init(player, &data))
 		return (false);
 	if (!game_init(&data, player))
 		return (printf("Game init failed\n"), 1);
+	clean_data(&data);
 	return 0;
 }

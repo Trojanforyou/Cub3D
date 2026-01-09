@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/07 17:14:57 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/09 15:57:02 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,21 @@ bool	set_collor(t_data *data, int y, int x)
 	color = 0;
     if (!data || !data->map)
         return (printf("Error: data or map is NULL\n"), false);
+		
     while (data->map[y])
     {
 		x = 0;
         while (data->map[y][x])
         {
-         	if (data->player && data->player->pos.x == x && data->player->pos.y == y)
-                color = 0xFF0000FF; // Hex (RGBA / 0xRRGGBBAA):
+			if (data->player && (int)data->player->pos.x == x && (int)data->player->pos.y == y)
+                color = 0xFF0000FF; // Red - Player position
 			else if (data->map[y][x] == '0')
-                color = 0x654321FF; // Hex (RGBA / 0xRRGGBBAA):
+                color = 0x654321FF; // Brown - Floor
             else if (data->map[y][x] == '1')
-                color = 0x000000FF; // Hex (RGBA / 0xRRGGBBAA):
+                color = 0x000000FF; // Black - Wall
+			// else if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || 
+            //          data->map[y][x] == 'E' || data->map[y][x] == 'W')
+            //     color = 0xFF0000FF; // Red - Player spawn
             else
             {
                 (x)++;

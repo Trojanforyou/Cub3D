@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/18 23:44:00 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/09 16:00:41 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,23 @@ bool	additional_check(char *line, t_data *data)
 		return(true);
 	}
 	return(true);
+}
+void    change_perspective(t_data *data)
+{
+    int y;
+    int x;
+
+	y = 0;
+    while(data->map[y])
+    {
+        x = 0;
+        while (data->map[y][x])
+        {   if (data->map[y][x] == 'P')
+                if (data->player->pos.x != 0 || data->player->pos.y != 0 )
+                    data->map[y][x] = '0';
+            x++;
+        }
+        y++;
+    }
 }
 
