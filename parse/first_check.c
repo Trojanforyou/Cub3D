@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/09 13:44:39 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/10 23:44:13 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ char	**map_reader(char *filename, t_data *data)
 	temp = ft_calloc(MAX_MAP_LINES + 1, sizeof(char *));
 	if (!temp)
 		return (NULL);
-	fd = open(filename, O_RDONLY);	temp[i + 1] = NULL;
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return(printf("Sosal?\n"), NULL);
-	set_map(line, fd, data, temp, &i);
+	if (set_map(line, fd, data, temp, &i) == NULL)
+		return(NULL);
 	data->map = temp;
 	close(fd);
 	return (data->map);
@@ -111,6 +112,8 @@ bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
 	tmp_ceiling = trim_celing(tmp_ceiling);
 	if (ceiling_error_check(tmp_ceiling) == false)
 		return(false);
+	if (ft_strlen(tmp) > 3)
+		return(-1);
 	if (path[0] == 'C')
 	{
 		data->ceiling = RGB(r, g, b);

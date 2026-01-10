@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/10 21:56:19 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/10 23:42:10 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (printf("Program requires MORE than 2 arguments\n"), 1);
 	if (prefix_check(av[1]))
-		return (1);
+		return (-1);
 	data_init(&data);
 	if (!map_reader(av[1], &data))
 		return(free(player), clean_data(&data), -1);
@@ -77,8 +77,9 @@ int	main(int ac, char **av)
 	if (!player_init(player, &data))
 		return (free(player), -1);
 	if (!game_init(&data, player))
-		return (printf("Game init failed\n"), 1);
+		return (printf("Game init failed\n"), -1);
 	clean_data(&data);
 	free(player);
+	// clean_ceiling(&data);
 	return 0;
 }

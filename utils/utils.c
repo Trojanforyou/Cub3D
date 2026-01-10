@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/09 16:00:41 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/10 23:39:35 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	ceiling_error_check(char ** ceiling)
 	int	j;
 	
 	i = 0;
-	if (!ceiling || !ceiling[0] || !ceiling[1] || !ceiling[2])
+	if (!ceiling || !ceiling[0] || !ceiling[1] || !ceiling[2] || ceiling[3])
 	{
 		if (ceiling)
 			free(ceiling);

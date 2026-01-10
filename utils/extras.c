@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:11:41 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/07 15:59:13 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/10 23:38:40 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool	floor_error_check(char **floor)
 	int	j;
 
 	i = 0;
-	if (!floor || !floor[0] || !floor[1] || !floor[2])
+	if (!floor || !floor[0] || !floor[1] || !floor[2] || floor[3])
 	{
 		if (floor)
 			free(floor);
