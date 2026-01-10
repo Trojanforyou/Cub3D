@@ -46,12 +46,17 @@ bool	collums_check(t_data *data)
 		y = 0;
 		while (data->map[y])
 		{
+			if (x >= (int)ft_strlen(data->map[y]))
+            {
+                y++;
+                continue;
+            }
 			if (data->map[y][x] == ' ')
 			{
 				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
 					return(printf("here"), false);
 			}
-			if (data->map[y][x] == '\n')
+			else if (data->map[y][x] == '\n')
 				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
 					return(printf("here"), false);
 

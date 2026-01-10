@@ -6,13 +6,13 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/09 15:57:25 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/10 21:55:19 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-bool game_init(t_data *data, s_player *player)
+bool game_init(t_data *data, s_player *player )
 {
     data->height = get_map_height(data->map);
     data->width = get_map_width(data->map);
@@ -34,8 +34,6 @@ bool game_init(t_data *data, s_player *player)
 	mlx_loop_hook(data->mlx, game_loop, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
-	free(data->map);
-	free(player);
     return true;
 }
 

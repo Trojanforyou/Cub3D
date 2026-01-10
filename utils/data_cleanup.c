@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 19:35:45 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/01 21:18:13 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/10 21:44:57 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,26 @@ void    clean_data(t_data *data)
     int i;
 
     i = 0;
-    while (data->map && data->map[i])
+    if (data)
     {
-        free(data->map[i]);
-        i++;
+        if (data->map)
+        {
+            while (data->map && data->map[i])
+            {
+                free(data->map[i]);
+                i++;
+            }
+        }
+        free(data->map);
+        if (data->no)
+            free(data->no);
+        if (data->so)
+            free(data->so);
+        if (data-> we)
+            free(data->we);
+        if (data->ea)
+            free(data->ea);
     }
-    free(data->map);
-    free(data->no);
-	free(data->so);
-	free(data->we);
-	free(data->ea);
 }
 void    clean_floor(char **data)
 {
