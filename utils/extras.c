@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:11:41 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/10 23:38:40 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/17 13:42:41 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char    **trim_celing(char **ceiling)
 {
-    int i;
+	int i;
     char *temp;
 
     i = 0;

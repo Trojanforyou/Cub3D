@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/10 23:44:13 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/17 13:49:48 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
 	int		g;
 	int		b;
 	char	*tmp;
+	// char **split;
 
 	r = 0;
 	g = 0;
@@ -110,13 +111,11 @@ bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
 	tmp = path + 2;
 	tmp_ceiling = ft_split(tmp, ',');
 	tmp_ceiling = trim_celing(tmp_ceiling);
+	// clean_floor(split);
 	if (ceiling_error_check(tmp_ceiling) == false)
 		return(false);
-	if (ft_strlen(tmp) > 3)
-		return(-1);
 	if (path[0] == 'C')
 	{
-		data->ceiling = RGB(r, g, b);
 		r = ft_atoi(tmp_ceiling[0]);
 		g = ft_atoi(tmp_ceiling[1]);
 		b = ft_atoi(tmp_ceiling[2]);
