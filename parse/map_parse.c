@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 char	map_char_check(t_data *data)
 {
@@ -32,49 +32,39 @@ char	map_char_check(t_data *data)
 	}
 	return(0);
 }
-char wall_height_check(t_data *data)
-{
-	int	y;
-	int	last;
-
-	y = 0;
-	last = get_map_height(data->map);
-	while (data->map[0][y + 1])
-	{
-		if(data->map[0][y] == '0' || data->map[0][y] == 'P')
-			return(printf("An error occured while reading a map1\n"), -1);
-		y++;
-	}
-	y = 0;
-	while (data->map[last - 1][y + 1])
-	{
-		if (data->map[last -1][y] != '1' && data->map[last -1][y] != ' ')
-			return(printf("An error occured while reading a map2\n"), -1);
-		y++;
-	}
-	return (0);
-}
-char map_witdh_check(t_data *data)
+bool	collums_check(t_data *data)
 {
 	int	x;
-	int	last;
+	int	y;
+	// int	heigth;
 
+	data->width = get_map_width(data->map);
+	// heigth = get_map_height(data->map);
 	x = 0;
-	last = get_map_height(data->map);
-	while (x < last  - 1)
+	while (x < data->width)
 	{
-		if (data->map[x][0] == '0' || data->map[x][0] == 'p')
-			return(printf("An error occured while reading a map3\n"), -1);
+		y = 0;
+		while (data->map[y])
+		{
+			if (x >= (int)ft_strlen(data->map[y]))
+            {
+                y++;
+                continue;
+            }
+			if (data->map[y][x] == ' ')
+			{
+				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
+					return(printf("here"), false);
+			}
+			else if (data->map[y][x] == '\n')
+				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
+					return(printf("here"), false);
+
+			y++;
+		}
 		x++;
 	}
-	x = 0;
-	while (data->map[x])
-	{
-		if (data->map[x][ft_strlen(data->map[x]) - 1] == '0' || data->map[x][ft_strlen(data->map[x]) - 1] == 'P')
-			return(printf("An error occured while reading a map3\n"), -1);
-		x++;
-	}
-	return (0);
+	return(true);
 }
 char map_validation(t_data *data)
 {

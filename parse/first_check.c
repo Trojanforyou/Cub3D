@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/14 14:27:41 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/17 13:49:48 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,23 @@ char prefix_check(char *filename)
 	return (0);
 }
 
-char	**cordinates_check(char *filename, t_data *data)
+char	**map_reader(char *filename, t_data *data)
 {
 	int		fd;
 	char	*line;
 	char	**temp;
 	int		i;
-	i = -1;
-	temp = malloc(sizeof(char *) * (MAX_MAP_LINES + 1));
+
+	i = 0;
+	line = NULL;
+	temp = ft_calloc(MAX_MAP_LINES + 1, sizeof(char *));
+	if (!temp)
+		return (NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return(printf("Sosal?\n"), NULL);
-	while ((line = get_next_line(fd)))
-	{
-		if (line[0] == '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\n')
-		{
-			if (line[1] == 'O' || line[1] == 'E' || line[1] == 'A') // change it to strcnmp check
-				line++;
-			temp[++i] = line;
-		}
-		else
-			free(line);
-	}
-	temp[i] = NULL;
+	if (set_map(line, fd, data, temp, &i) == NULL)
+		return(NULL);
 	data->map = temp;
 	close(fd);
 	return (data->map);
@@ -76,8 +70,9 @@ char	dublicate_check(t_data *data)
 	return(0);
 }
 
-static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
+bool parse_floor(char *path, t_data *data, char **tmp_floor)
 {
+<<<<<<< HEAD
 	int	r;
 	int	g;
 	int	b;
@@ -103,23 +98,65 @@ static bool	parse_rgb(t_data *data,char **tmp_ceiling, char **tmp_floor)
 }
 
 char	color_set(char *filename, t_data *data)
-{
-	int		fd;
-	char	*line;
-	char	**tmp_floor;
-	char	**tmp_ceiling;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return(printf("File is non READABLE\n"), -1);
-	while ((line = get_next_line(fd)))
+=======
+	int		r;
+	int		g;
+	int		b;
+	char	*tmp;
+
+	r = 0;
+	g = 0;
+	b = 0;
+	tmp = path + 2;
+	tmp_floor = ft_split(tmp, ',');
+	tmp_floor = trim_floor(tmp_floor);
+	if (floor_error_check(tmp_floor) == false)
+		return(false);
+	if (path[0] == 'F')
 	{
-		if (line[0] == 'C')
-			tmp_floor = ft_split(line + 2, ',');
-		else if (line[0] == 'F')
-			tmp_ceiling = ft_split(line + 2, ',');
-		free(line);
+		r = ft_atoi(tmp_floor[0]);
+		g = ft_atoi(tmp_floor[1]);
+		b = ft_atoi(tmp_floor[2]);
+		if ((r < 0 || r > 256) || (g < 0 || g > 256) || (b  < 0 || b > 256))
+			return(printf("RGB is out from range [0-256]"), false);
+		data->floor = RGB(r, g, b);
 	}
+	clean_floor(tmp_floor);
+	return(true);
+}
+bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
+>>>>>>> origin
+{
+	int		r;
+	int		g;
+	int		b;
+	char	*tmp;
+	// char **split;
+
+	r = 0;
+	g = 0;
+	b = 0;
+	tmp = path + 2;
+	tmp_ceiling = ft_split(tmp, ',');
+	tmp_ceiling = trim_celing(tmp_ceiling);
+	// clean_floor(split);
+	if (ceiling_error_check(tmp_ceiling) == false)
+		return(false);
+	if (path[0] == 'C')
+	{
+		r = ft_atoi(tmp_ceiling[0]);
+		g = ft_atoi(tmp_ceiling[1]);
+		b = ft_atoi(tmp_ceiling[2]);
+		if ((r < 0 || r > 256) || (g < 0 || g > 256) || (b  < 0 || b > 256))
+			return(printf("RGB is out from range [0-256]"), false);
+		data->ceiling = RGB(r, g, b);
+	}
+<<<<<<< HEAD
 	parse_rgb(data, tmp_ceiling, tmp_floor);
 	close(fd);
 	return(0);
+=======
+	clean_floor(tmp_ceiling);
+	return(true);
+>>>>>>> origin
 }

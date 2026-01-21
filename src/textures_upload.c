@@ -13,26 +13,10 @@
 
 #include "../cub3d.h"
 
-bool	walls_set(char *filename, t_data *data)
-{
-    int		fd;
-    char	*line;
-
-    fd = open(filename, O_RDONLY);
-    if (fd  < 0)
-        return(printf("file descriptor failed\n"), false);
-    while ((line = get_next_line(fd)))
-    {
-        if (!line)
-            return(printf("path failed\n"), false);
-        set_no_so_walls(data, line);
-        set_we_ea_walls(data, line);
-    }
-    close(fd);
-    return(true);
-}
 bool texture_load(t_data *data)
 {
+    if (!data->no || !data->so || !data->we || !data->ea)
+        return (printf("Texture paths not set\n"), false);
     data->wall[0] = mlx_load_png(data->no);
     data->wall[1] = mlx_load_png(data->so);
     data->wall[2] = mlx_load_png(data->we);
@@ -60,6 +44,7 @@ bool     load_map(t_data *data)
     int y;
     int x;
 
+    data->img = mlx_new_image(data->mlx, data->width * TITLE_SIZE, data->height * TITLE_SIZE);
     y = -1;
     while (data->map[++y])
     {
@@ -67,11 +52,20 @@ bool     load_map(t_data *data)
         while (data->map[y][++x])
         {
             if (data->map[y][x] == '1')
+            {
                 if (data->wall_img[1])
                     mlx_image_to_window(data->mlx, data->wall_img[1], x * TITLE_SIZE, y * TITLE_SIZE);
-                // if (data->map[y][x] == '0')
-                //     mlx_image_to_window(data->mlx, data->floor, x, y);
-        }
-    }
+            }
+            else if (data->map[y][x] == '0')
+            {
+                for (int i = 0; i < TITLE_SIZE; i++)
+                    for (int j = 0; j < TITLE_SIZE; j++)
+                        mlx_put_pixel(data->img, x * TITLE_SIZE + i, y * TITLE_SIZE + j, data->floor);
+            }
+                    }
+                }
+    //     if (!data->mlx) { printf("mlx is NULL\\n"); return false; }
+    // if (!data->img) { printf("img is NULL\\n"); return false; }
+    mlx_image_to_window(data->mlx, data->img, x - 25, y -25);
     return(true);
 }
