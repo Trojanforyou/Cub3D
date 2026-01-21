@@ -34,6 +34,18 @@ void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, s_stripe stripe)
     }
 }
 
+void decide_ray_hit_texture(s_Ray *ray, s_player *player)
+{
+    if (player->dir.x > 0 && ray->side == 0)
+        ray->hit = 3; // east wall
+    else if (player->dir.x < 0 && ray->side == 0)
+        ray->hit = 2; // west wall
+    else if (player->dir.y > 0 && ray->side == 1)
+        ray->hit = 1; // south wall
+    else if (player->dir.y < 0 && ray->side == 1)
+        ray->hit = 0; // north wall
+}
+
 void draw_textured_wall(s_player *player, mlx_image_t *img, s_Ray *ray, int x)
 {
     s_stripe stripe;
@@ -59,6 +71,8 @@ void draw_textured_wall(s_player *player, mlx_image_t *img, s_Ray *ray, int x)
     if ((ray->side == 0 && ray->rayDir.x > 0) 
      || (ray->side == 1 && ray->rayDir.y < 0))
         stripe.texX = player->data->wall_img[ray->hit]->width - stripe.texX - 1;
+    // we need to decide the direction from player and the texture of the wall
+    decide_ray_hit_texture(ray, player);
     draw_vertical_stripe(img, player->data->wall_img[ray->hit], stripe);
 }
 
