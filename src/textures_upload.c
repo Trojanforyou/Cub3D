@@ -37,8 +37,8 @@ bool load_image(t_data *texture)
     mlx_delete_texture(texture->wall[1]);
     mlx_delete_texture(texture->wall[2]);
     mlx_delete_texture(texture->wall[3]);
-    return true;
-}
+    return true;}
+
 bool     load_map(t_data *data)
 {
     int y;

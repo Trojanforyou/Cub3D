@@ -1,5 +1,10 @@
 # ifndef CUB3D_H
 # define CUB3D_H
+<<<<<<< HEAD
+# define RGB(r, g, b) ((r << 16) | (g << 8) | b)
+# define MAX_MAP_LINES 1000
+# define TITLE_SIZE 64
+=======
 #define RGB(r, g, b) ((0xFF << 24) | ((r) << 16) | ((g) << 8) | (b))
 #define MAX_MAP_LINES 1000
 #define TITLE_SIZE 64
@@ -8,6 +13,7 @@
 #define OFFSET_Y 0
 #define MAP_WITDH 1920
 #define MAP_HEIGHT 1080
+>>>>>>> origin
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -65,6 +71,11 @@ typedef struct s_data
 	int			ea_flag;
 	int			so_flag;
 	int			wall_found;
+<<<<<<< HEAD
+	int			render_width;
+	int			screen_width;
+=======
+>>>>>>> origin
 	s_player	*player;
 }	t_data;
 
@@ -88,8 +99,11 @@ typedef struct s_stripe
     int	texX;
     int	x;
 } s_stripe;
+<<<<<<< HEAD
+=======
 
 /* ===================== PARSING / MAP ===================== */
+>>>>>>> origin
 
 char	color_set(char *filename, t_data *data);
 char	**map_reader(char *filename, t_data *data);
@@ -120,10 +134,37 @@ bool	check_bottom_row(t_data *data);
 int		get_map_height(char **map);
 int		get_map_width(char **str);
 
+<<<<<<< HEAD
+void    render_map(t_data *data);
+void    data_init(t_data *data);
+int		player_init(s_player *player, t_data *data);
+void    raycast_and_draw(t_data *data, s_player *player);
+=======
 /* ===================== TEXTURES / COLORS ===================== */
+>>>>>>> origin
 
 bool	set_walls_texture(t_data *data, char *ptr);
 bool	walls_set(char *filename, t_data *data);
+<<<<<<< HEAD
+bool    set_we_ea_walls(t_data *data, char *ptr);
+bool    set_no_so_walls(t_data *data, char *ptr);
+
+// PLAYER
+void	clear_screen(t_data *data);
+void	move_player(t_data *data);
+void	mouse_look(t_data *data);
+void    arrow_look(t_data *data);
+
+// raycasting init
+void	calculate_perp_wall_dist(s_Ray *ray, s_player *player);
+void    init_ray(s_Ray *ray, s_player *player, int x, int width);
+
+//raycasting calc
+void	calculate_step_and_side_dist(s_Ray *ray, s_player *player);
+void    DDA_loop(s_Ray *ray, t_data *data);
+
+#endif
+=======
 
 bool	parse_floor(char *path, t_data *data, char **tmp_floor);
 bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
@@ -178,3 +219,4 @@ void	DDA_loop(s_Ray *ray, t_data *data);
 void	calculate_perp_wall_dist(s_Ray *ray, s_player *player);
 
 #endif
+>>>>>>> origin
