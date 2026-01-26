@@ -12,10 +12,18 @@
 
 #include "../cub3d.h"
 
+static int face_from_ray(s_Ray *ray)
+{
+    if (ray->side == 0) /* vertical wall (x-side) */
+        return (ray->rayDir.x > 0) ? 3 : 1;
+    /* horizontal wall (y-side) */
+    return (ray->rayDir.y > 0) ? 0 : 2;
+}
+
 void	DDA_loop(s_Ray *ray, t_data *data)
 {
-	ray->hit = 0;
-	while (ray->hit == 0)
+	ray->hit = -1;
+	while (ray->hit == -1)
 	{
 		if (ray->sideDist.x < ray->sideDist.y)
 		{
@@ -37,7 +45,7 @@ void	DDA_loop(s_Ray *ray, t_data *data)
 			return ;
 		}
 		if (data->map[ray->map.y][ray->map.x] != '0')
-			ray->hit = data->map[ray->map.y][ray->map.x] - '0';
+			ray->hit = face_from_ray(ray);
 	}
 }
 
