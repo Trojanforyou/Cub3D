@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                              :+:    :+:           */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/27 15:10:17 by otanovic       ########   odam.nl        */
+/*   Updated: 2026/01/27 15:39:50 by otanovic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,5 @@ int	main(int ac, char **av)
 		return (clean_data(&data), -1);
 	if (!game_init(&data, &player))
 		return (printf("Game init failed\n"), -1);
-	clean_data(&data);
-	return 0;
+	return (clean_data(&data), 0);
 }
-
