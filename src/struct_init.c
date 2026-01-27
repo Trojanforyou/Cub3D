@@ -14,24 +14,6 @@
 
 void    data_init(t_data *data)
 {
-<<<<<<< HEAD
-    data->map = NULL;
-    data->floor = 0;
-    data->ceiling = 0;
-    data->height = 0;
-    data->width = 0;
-    data->so = 0;
-    data->no = 0;
-    data->ea = 0;
-    data->we = 0;
-    data->n_flag = 0;
-    data->render_width = 0;
-    data->screen_width = 0;
-    // data->wall[0] = NULL;
-    // data->wall[1] = NULL;
-    // data->wall[2] = NULL;
-    // data->wall[3] = NULL;
-=======
 	data->map = NULL;
 	data->floor = 0;
 	data->ceiling = 0;
@@ -50,18 +32,6 @@ void    data_init(t_data *data)
 	data->no_flag = 0;
 	data->so_flag = 0;
 	data->minimap_i = NULL;
-}
-
-int player_init(s_player *player, t_data *data)
-{
-	player->dir.x = -1.0;
-	player->dir.y = 0.0;
-	player->plane.x = 0.0;
-	player->plane.y = 0.66;
-	player->data = data;
-	player->speed = 0.1;
-	return (1);
->>>>>>> origin
 }
 
 int player_init(s_player *player, t_data *data)

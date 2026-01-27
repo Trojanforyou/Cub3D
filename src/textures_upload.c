@@ -62,8 +62,8 @@ bool     load_map(t_data *data)
                     for (int j = 0; j < TITLE_SIZE; j++)
                         mlx_put_pixel(data->img, x * TITLE_SIZE + i, y * TITLE_SIZE + j, data->floor);
             }
-                    }
-                }
+        }
+    }
     //     if (!data->mlx) { printf("mlx is NULL\\n"); return false; }
     // if (!data->img) { printf("img is NULL\\n"); return false; }
     mlx_image_to_window(data->mlx, data->img, x - 25, y -25);

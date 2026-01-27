@@ -72,33 +72,6 @@ char	dublicate_check(t_data *data)
 
 bool parse_floor(char *path, t_data *data, char **tmp_floor)
 {
-<<<<<<< HEAD
-	int	r;
-	int	g;
-	int	b;
-
-	if (!tmp_floor || !tmp_floor[0] || !tmp_floor[1] || !tmp_floor[2])
-	{
-	    printf("Floor RGB is incomplete\n");
-	    return false;
-	}
-	r = ft_atoi(tmp_floor[0]);
-	g = ft_atoi(tmp_floor[1]);
-	b = ft_atoi(tmp_floor[2]);
-	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
-		return(printf("RGB is out from ragne [0-256]"), false);
-	data->floor = RGB(r, g, b);
-	r = ft_atoi(tmp_ceiling[0]);
-	g = ft_atoi(tmp_ceiling[1]);
-	b = ft_atoi(tmp_ceiling[2]);
-	if ((r < 0 && r > 256) || (g < 0 && g > 256) || (b  < 0 && b > 256))
-		return(printf("RGB is out from ragne [0-256]"), false);
-	data->ceiling = RGB(r, g, b);
-	return(true);
-}
-
-char	color_set(char *filename, t_data *data)
-=======
 	int		r;
 	int		g;
 	int		b;
@@ -125,7 +98,6 @@ char	color_set(char *filename, t_data *data)
 	return(true);
 }
 bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
->>>>>>> origin
 {
 	int		r;
 	int		g;
@@ -151,12 +123,6 @@ bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling)
 			return(printf("RGB is out from range [0-256]"), false);
 		data->ceiling = RGB(r, g, b);
 	}
-<<<<<<< HEAD
-	parse_rgb(data, tmp_ceiling, tmp_floor);
-	close(fd);
-	return(0);
-=======
 	clean_floor(tmp_ceiling);
 	return(true);
->>>>>>> origin
 }
