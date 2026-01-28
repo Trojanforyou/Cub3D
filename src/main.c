@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/28 17:43:17 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/29 00:00:43 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	game_loop(void *param)
 	move_player(data);
 	mouse_look(data);
 	arrow_look(data);
-	open_the_door(data, data->player);
+	door(data, data->player);
 	clear_screen(data);
 	raycast_and_draw(data, data->player);
 	draw_minimap(data);

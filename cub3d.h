@@ -66,6 +66,8 @@ typedef struct s_data
 	int			so_flag;
 	int			wall_found;
 	int			door_flag;
+	int			door_y;
+	int			door_x;
 	s_player	*player;
 }	t_data;
 
@@ -116,7 +118,7 @@ bool	map_up_check(t_data *data, size_t x, size_t y);
 bool	map_down_check(t_data *data, size_t x, size_t y);
 bool	map_left_check(t_data *data, size_t x, size_t y);
 bool	map_right_check(t_data *data, size_t x, size_t y);
-bool	check_bottom_row(t_data *data);
+// bool	check_bottom_row(t_data *data);
 
 int		get_map_height(char **map);
 int		get_map_width(char **str);
@@ -124,7 +126,7 @@ int		get_map_width(char **str);
 /* ===================== TEXTURES / COLORS ===================== */
 
 bool	set_walls_texture(t_data *data, char *ptr);
-bool	walls_set(char *filename, t_data *data);
+// bool	walls_set(char *filename, t_data *data);
 
 bool	parse_floor(char *path, t_data *data, char **tmp_floor);
 bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
@@ -135,6 +137,7 @@ bool	set_collor(t_data *data, int y, int x);
 bool	texture_load(t_data *texture);
 bool	load_image(t_data *texture);
 
+
 /* ===================== INIT / CLEAN ===================== */
 
 void	data_init(t_data *data);
@@ -144,6 +147,8 @@ void	clean_floor(char **data);
 void    change_perspective(t_data *data);
 bool	game_init(t_data *data, s_player *player);
 void	game_loop(void *param);
+
+
 
 /* ===================== WINDOW / RENDER ===================== */
 
@@ -165,8 +170,7 @@ void	clear_screen(t_data *data);
 void	move_player(t_data *data);
 void	mouse_look(t_data *data);
 void	arrow_look(t_data *data);
-void	open_the_door(t_data *data, s_player *player);
-
+void	door(t_data *data, s_player *player);
 /* ===================== RAYCASTING ===================== */
 
 void	raycast_and_draw(t_data *data, s_player *player);

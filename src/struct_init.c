@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/28 15:44:48 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/28 23:17:11 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void    data_init(t_data *data)
 	data->no_flag = 0;
 	data->so_flag = 0;
 	data->door_flag = 0;
+	data->door_y = 0;
+	data->door_x = 0;
 	data->minimap_i = NULL;
 }
 
 int player_init(s_player *player, t_data *data)
 {
-    player->pos.x = 22.0;
-    player->pos.y = 12.0;
     player->dir.x = -1.0;
     player->dir.y = 0.0;
     player->plane.x = 0.0;
