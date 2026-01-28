@@ -44,8 +44,8 @@ typedef struct s_data
 {
 	mlx_t 		*mlx;
 	mlx_image_t *img;
-	mlx_texture_t	*wall[4]; // 0 = north, 1 = south, 2 = west, 3 = east
-	mlx_image_t		*wall_img[4];
+	mlx_texture_t	*wall[5]; // 0 = north, 1 = south, 2 = west, 3 = east
+	mlx_image_t		*wall_img[5];
 	mlx_image_t		*minimap_i;
 	char		**map;
 	int			width;
@@ -65,6 +65,7 @@ typedef struct s_data
 	int			ea_flag;
 	int			so_flag;
 	int			wall_found;
+	int			door_flag;
 	s_player	*player;
 }	t_data;
 

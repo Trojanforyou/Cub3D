@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/17 13:10:46 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:51:15 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ bool	island_check(t_data *data, size_t y, size_t x)
 {
 	if (data->map[y][x] == '0' || data->map[y][x] == 'P')
 	{
-		if (y != 0&& (data->map[y - 1][x] == '\n' || data->map[y - 1][x] == '\0'))
+		if (y != 0 && (data->map[y - 1][x] == '\n' || data->map[y - 1][x] == '\0'))
 			return (printf("Map is not covered by the walls11\n"), false);
 		if (data->map[y + 1] && y < ft_strlen(data->map[y]) && (data->map[y + 1][x] == '\n' || data->map[y + 1][x] == '\0'))
 			return (printf("Map is not covered by the walls22\n"), false);

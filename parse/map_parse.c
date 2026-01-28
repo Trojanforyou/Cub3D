@@ -23,7 +23,8 @@ char	map_char_check(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == ' ' || data->map[y][x] == '\n')
+			if (data->map[y][x] == '1' || data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == ' '
+				|| data->map[y][x] == '\n' || data->map[y][x] == 'D')
 				x++;
 			else
 				return(printf("Map has non valid CHARS\n"), -1);

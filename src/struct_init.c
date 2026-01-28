@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/10 21:24:29 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:44:48 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void    data_init(t_data *data)
 	data->ea_flag = 0;
 	data->no_flag = 0;
 	data->so_flag = 0;
+	data->door_flag = 0;
 	data->minimap_i = NULL;
 }
 

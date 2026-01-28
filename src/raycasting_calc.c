@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_calc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:47:46 by otanovic          #+#    #+#             */
-/*   Updated: 2026/01/27 15:37:07 by otanovic         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:56:07 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void	DDA_loop(s_Ray *ray, t_data *data)
 		 || !data->map || !data->map[ray->map.y])
 		{
 			ray->hit = -1;
+			return ;
+		}
+		if (data->map[ray->map.y][ray->map.x] == 'D')
+		{
+			ray->hit = 4;
 			return ;
 		}
 		if (data->map[ray->map.y][ray->map.x] != '0')

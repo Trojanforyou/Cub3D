@@ -13,6 +13,7 @@
 
 #include "../cub3d.h"
 
+// fix the memory leak if texture is not correct 
 bool texture_load(t_data *data)
 {
     if (!data->no || !data->so || !data->we || !data->ea)
@@ -21,7 +22,8 @@ bool texture_load(t_data *data)
     data->wall[1] = mlx_load_png(data->so);
     data->wall[2] = mlx_load_png(data->we);
     data->wall[3] = mlx_load_png(data->ea);
-    if (!data->wall[0] || !data->wall[1] || !data->wall[2] || !data->wall[3])
+	data->wall[4] = mlx_load_png("textures/exito.png");
+    if (!data->wall[0] || !data->wall[1] || !data->wall[2] || !data->wall[3] || !data->wall[4])
         return (printf("Texture load error\n"), false);
     return true;
 }
@@ -31,7 +33,9 @@ bool load_image(t_data *texture)
     texture->wall_img[1] = mlx_texture_to_image(texture->mlx, texture->wall[1]);
     texture->wall_img[2] = mlx_texture_to_image(texture->mlx, texture->wall[2]);
     texture->wall_img[3] = mlx_texture_to_image(texture->mlx, texture->wall[3]);
-    if (!texture->wall_img[0] || !texture->wall_img[1] || !texture->wall_img[2] || !texture->wall_img[3])
+	texture->wall_img[4] = mlx_texture_to_image(texture->mlx, texture->wall[4]);
+    if (!texture->wall_img[0] || !texture->wall_img[1] || !texture->wall_img[2]
+		|| !texture->wall_img[3] || !texture->wall_img[4])
         return (printf("Image load error\n"), false);
     mlx_delete_texture(texture->wall[0]);
     mlx_delete_texture(texture->wall[1]);

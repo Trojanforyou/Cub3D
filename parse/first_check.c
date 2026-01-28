@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/17 13:49:48 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:45:41 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,13 @@ char	dublicate_check(t_data *data)
 				flag++;
 				data->map[y][x] = 'P';
 			}
+			else if (data->map[y][x] == 'D')
+				data->door_flag++;
 			x++;
 		}
 		y++;
 	}
-	if (flag > 1 || flag == 0)
+	if (flag > 1 || flag == 0 || data->door_flag > 1)
 		return (printf("Wrong [CORDINATE] usage\n"), -1);
 	return(0);
 }
