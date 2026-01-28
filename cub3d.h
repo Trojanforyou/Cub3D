@@ -165,6 +165,7 @@ void	clear_screen(t_data *data);
 void	move_player(t_data *data);
 void	mouse_look(t_data *data);
 void	arrow_look(t_data *data);
+void	open_the_door(t_data *data, s_player *player);
 
 /* ===================== RAYCASTING ===================== */
 

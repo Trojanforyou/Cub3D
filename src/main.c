@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/27 15:39:50 by otanovic         ###   ########.fr       */
+/*   Updated: 2026/01/28 17:43:17 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ void	game_loop(void *param)
 	t_data	*data;
 
 	data = param;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx);
 	move_player(data);
 	mouse_look(data);
 	arrow_look(data);
+	open_the_door(data, data->player);
 	clear_screen(data);
 	raycast_and_draw(data, data->player);
 	draw_minimap(data);

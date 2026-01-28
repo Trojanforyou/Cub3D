@@ -13,7 +13,7 @@
 
 #include "../cub3d.h"
 
-// fix the memory leak if texture is not correct 
+// fix the memory leak if texture is not correct
 bool texture_load(t_data *data)
 {
     if (!data->no || !data->so || !data->we || !data->ea)
@@ -41,6 +41,7 @@ bool load_image(t_data *texture)
     mlx_delete_texture(texture->wall[1]);
     mlx_delete_texture(texture->wall[2]);
     mlx_delete_texture(texture->wall[3]);
+	mlx_delete_texture(texture->wall[4]);
     return true;}
 
 bool     load_map(t_data *data)
