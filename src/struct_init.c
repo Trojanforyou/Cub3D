@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/28 23:17:11 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/31 22:19:27 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void    data_init(t_data *data)
 	data->ea_flag = 0;
 	data->no_flag = 0;
 	data->so_flag = 0;
-	data->door_flag = 0;
+	data->door_count = 0;
+	data->door_flag = -1;
+	data->key_e_was_pressed = 0;
 	data->door_y = 0;
 	data->door_x = 0;
 	data->minimap_i = NULL;

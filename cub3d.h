@@ -65,7 +65,9 @@ typedef struct s_data
 	int			ea_flag;
 	int			so_flag;
 	int			wall_found;
+	int			door_count;
 	int			door_flag;
+	int			key_e_was_pressed;
 	int			door_y;
 	int			door_x;
 	s_player	*player;
@@ -122,7 +124,7 @@ bool	map_right_check(t_data *data, size_t x, size_t y);
 
 int		get_map_height(char **map);
 int		get_map_width(char **str);
-
+void	find_door(t_data *data);
 /* ===================== TEXTURES / COLORS ===================== */
 
 bool	set_walls_texture(t_data *data, char *ptr);

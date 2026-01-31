@@ -62,12 +62,12 @@ char	dublicate_check(t_data *data)
 				data->map[y][x] = 'P';
 			}
 			else if (data->map[y][x] == 'D')
-				data->door_flag++;
+				data->door_count++;
 			x++;
 		}
 		y++;
 	}
-	if (flag > 1 || flag == 0 || data->door_flag > 1)
+	if (flag > 1 || flag == 0 || data->door_count > 1)
 		return (printf("Wrong [CORDINATE] usage\n"), -1);
 	return(0);
 }

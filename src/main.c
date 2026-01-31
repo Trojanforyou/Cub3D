@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/29 00:00:43 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/31 22:07:30 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	main(int ac, char **av)
 	if (!map_init(&data))
 		return (clean_data(&data), -1);
 	find_player(&data, &player);
+	find_door(&data);
 	if (!player_init(&player, &data))
 		return (clean_data(&data), -1);
 	if (!game_init(&data, &player))
