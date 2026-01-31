@@ -54,11 +54,11 @@ bool	collums_check(t_data *data)
             }
 			if (data->map[y][x] == ' ')
 			{
-				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
+				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0' || data->map[y + 1][x] == 'D'))
 					return(printf("here"), false);
 			}
 			else if (data->map[y][x] == '\n')
-				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0'))
+				if (data->map[y + 1] && (data->map[y + 1][x] == 'P' || data->map[y + 1][x] == '0' || data->map[y + 1][x] == 'D'))
 					return(printf("here"), false);
 
 			y++;
