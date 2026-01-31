@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:12:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/29 00:11:51 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/01/31 01:00:12 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,19 @@ static void	open_the_door(t_data *data, s_player *player)
 	
 	y = data->door_y;
 	x = data->door_x;
+	printf("%d\n%d\n", data->door_x, data->door_y);
 	if (data->map[(int)player->pos.y - 1][(int)player->pos.x] == data->map[y][x] && mlx_is_key_down(data->mlx, MLX_KEY_E)
 	&& data->door_flag == 0)
-		data->map[y][x]= '0';
+		data->map[y][x]= 'D';
 	else if (data->map[(int)player->pos.y + 1][(int)player->pos.x] == data->map[y][x]  && mlx_is_key_down(data->mlx, MLX_KEY_E) 
 	&& data->door_flag == 0)
-		data->map[y][x]= '0';
+		data->map[y][x]= 'D';
 	else if (data->map[(int)player->pos.y][(int)player->pos.x - 1] == data->map[y][x]  && mlx_is_key_down(data->mlx, MLX_KEY_E)
 	&& data->door_flag == 0)
-		data->map[y][x]= '0';
+		data->map[y][x]= 'D';
 	else if (data->map[(int)player->pos.y][(int)player->pos.x + 1] == data->map[y][x]  && mlx_is_key_down(data->mlx, MLX_KEY_E)
 	&& data->door_flag == 0)
-		data->map[y][x]= '0';
+		data->map[y][x]= 'D';
 	data->door_flag = 1;
 }
 static void	close_the_door(t_data *data, s_player *player)
@@ -65,16 +66,16 @@ static void	close_the_door(t_data *data, s_player *player)
 	x = data->door_x;
 	if (data->map[(int)player->pos.y - 1][(int)player->pos.x] == data->map[y][x]&& mlx_is_key_down(data->mlx, MLX_KEY_E)
 	&& data->door_flag == 1)
-		data->map[y][x]= 'D';
+		data->map[y][x]= '0';
 	else if (data->map[(int)player->pos.y + 1][(int)player->pos.x] == data->map[y][x] && mlx_is_key_down(data->mlx, MLX_KEY_E) 
 	&& data->door_flag == 1)
-		data->map[y][x]= 'D';
+		data->map[y][x]= '0';
 	else if (data->map[(int)player->pos.y][(int)player->pos.x - 1] == data->map[y][x] && mlx_is_key_down(data->mlx, MLX_KEY_E)
 	&& data->door_flag == 1)
-		data->map[y][x]= 'D';
+		data->map[y][x]= '0';
 	else if (data->map[(int)player->pos.y][(int)player->pos.x + 1] == data->map[y][x] && mlx_is_key_down(data->mlx, MLX_KEY_E)
 	&& data->door_flag == 1)
-		data->map[y][x]= 'D';
+		data->map[y][x]= '0';
 	data->door_flag = 0;
 }
 void	door(t_data *data, s_player *player)
