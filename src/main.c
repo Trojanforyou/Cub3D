@@ -12,14 +12,27 @@
 
 #include "./cub3d.h"
 
-void	clear_screen(t_data *data)
+void clear_screen(t_data *data)
 {
-	size_t	size;
+    uint32_t 		*p;
+    unsigned int	x;
+    unsigned int	y;
 
-	if (!data || !data->img || !data->img->pixels)
-		return ;
-	size = (size_t)data->img->width * (size_t)data->img->height * 4;
-	memset(data->img->pixels, 0, size);
+    p = (uint32_t *)data->img->pixels;
+    y = 0;
+    while (y < data->img->height)
+    {
+        x = 0;
+        while (x < data->img->width)
+        {
+            if (y < data->img->height / 2)
+                p[y * data->img->width + x] = data->ceiling;
+            else
+                p[y * data->img->width + x] = data->floor;
+            x++;
+        }
+        y++;
+    }
 }
 
 void	game_loop(void *param)

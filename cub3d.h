@@ -8,6 +8,7 @@
 #define OFFSET_Y 0
 #define MAP_WIDTH 1920
 #define MAP_HEIGHT 1080
+#define	CEILING_COLOUR 120
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
