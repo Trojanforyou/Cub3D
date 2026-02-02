@@ -12,6 +12,41 @@
 
 #include "./cub3d.h"
 
+int parse_color(char *line)
+{
+	int r, g, b;
+
+	if (sscanf(line, "%d,%d,%d", &r, &g, &b) != 3)
+		return (-1);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (-1);
+	return ((r << 16) | (g << 8) | b);
+}
+
+void	set_wall_and_ceiling_colour(t_data *data, char *input_file)
+{
+	char *line;
+	int fd;
+
+	fd = open(input_file, O_RDONLY);
+	if (fd < 0)
+		return ;
+	while ((line = get_next_line(fd)))
+	{
+		char *ptr = line;
+		while (*ptr == ' ')
+			ptr++;
+		if (!ft_strncmp(ptr, "C ", 2))
+			data->ceiling = parse_color(ptr + 2);
+		else if (!ft_strncmp(ptr, "F ", 2))
+			data->floor = parse_color(ptr + 2);
+		free(line);
+	}
+	printf("Ceiling color: 0x%06X\n", data->ceiling);
+	printf("Floor color: 0x%06X\n", data->floor);
+	close(fd);
+}
+
 void clear_screen(t_data *data)
 {
     uint32_t 		*p;
@@ -26,9 +61,9 @@ void clear_screen(t_data *data)
         while (x < data->img->width)
         {
             if (y < data->img->height / 2)
-                p[y * data->img->width + x] = data->ceiling;
+                p[y * data->img->width + x] = 0xFF000000 | (data->ceiling & 0x00FFFFFF); /* add alpha */
             else
-                p[y * data->img->width + x] = data->floor;
+                p[y * data->img->width + x] = 0xFF000000 | (data->floor & 0x00FFFFFF);   /* add alpha */
             x++;
         }
         y++;
@@ -88,6 +123,7 @@ int	main(int ac, char **av)
 		return (clean_data(&data), -1);
 	find_player(&data, &player);
 	find_door(&data);
+	set_wall_and_ceiling_colour(&data, av[1]);
 	if (!player_init(&player, &data))
 		return (clean_data(&data), -1);
 	if (!game_init(&data, &player))
