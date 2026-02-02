@@ -1,6 +1,6 @@
 # ifndef CUB3D_H
 # define CUB3D_H
-#define RGB(r, g, b) ((0xFF << 24) | ((b) << 16) | ((g) << 8) | (r))
+#define RGB(r, g, b) ((uint32_t)((0xFF << 24) | ((b) << 16) | ((g) << 8) | (r)))
 #define MAX_MAP_LINES 1000
 #define TITLE_SIZE 64
 #define MINIMAP_SIZE 10
@@ -55,8 +55,8 @@ typedef struct s_data
 	char		*so;
 	char		*we;
 	char		*ea;
-	int			floor;
-	int			ceiling;
+	uint32_t	floor;
+	uint32_t	ceiling;
 	int			n_flag;
 	int			we_found;
 	char		**tmp_floor;
