@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/31 22:34:31 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/02 13:24:26 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool    map_left_check(t_data *data, size_t x, size_t y)
 }
 bool	island_check(t_data *data, size_t y, size_t x)
 {
-	if (data->map[y][x] == '0' || data->map[y][x] == 'P')
+	if (data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == 'D')
 	{
 		if (y != 0 && (data->map[y - 1][x] == '\n' || data->map[y - 1][x] == '\0'))
 			return (printf("Map is not covered by the walls11\n"), false);
