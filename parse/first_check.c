@@ -6,11 +6,23 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/02 16:39:56 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/02 16:59:47 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static void main_dublicate_check(t_data *data, int *y, int *x, int *flag)
+{
+	if (data->map[*y][*x] == 'N' || data->map[*y][*x] == 'W'
+		|| data->map[*y][*x] == 'S' || data->map[*y][*x] == 'E')
+	{
+		(*flag)++;
+		data->map[*y][*x] = 'P';
+	}
+	else if (data->map[*y][*x] == 'D')
+		data->door_count++;
+}
 
 char	prefix_check(char *filename)
 {
@@ -56,14 +68,8 @@ char	dublicate_check(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == 'N' || data->map[y][x] == 'W'
-				|| data->map[y][x] == 'S' || data->map[y][x] == 'E')
-			{
-				flag++;
-				data->map[y][x] = 'P';
-			}
-			else if (data->map[y][x] == 'D')
-				data->door_count++;
+			main_dublicate_check(data, &y, &x, &flag);
+			printf("%d", flag);
 			x++;
 		}
 		y++;
@@ -97,3 +103,4 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	clean_floor(line);
 	return (true);
 }
+
