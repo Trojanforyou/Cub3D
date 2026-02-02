@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:11:41 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/02 15:35:14 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:54:44 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,22 @@ bool	floor_ceiling_check(char **path)
 	int	j;
 
 	i = 0;
-	if (!path || !path[0] || !path[1] || !path[2] || path[3])
-	{
-		if (path)
-			free(path);
-		return (printf("Invalid or missing floor color\n"), false);
-	}
 	while (path[i])
 	{
 		j = 0;
 		while (path[i][j])
 		{
-			if (path)
 			if (ft_isalpha(path[i][j]))
 				return(printf("Floor has Non [INT] value\n"), false);
 			j++;
 		}
 		i++;
+	}
+	if (!path || !path[0] || !path[1] || !path[2] || path[3])
+	{
+		if (path)
+			free(path);
+		return (printf("Invalid or missing floor color\n"), false);
 	}
 	return(true);
 }

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/02 18:01:54 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/02 20:11:02 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,12 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	line = trim_floor(line);
 	if (floor_ceiling_check(line) == false)
 		return (false);
+	if (ft_strlen(line[0]) == 0 || ft_strlen(line[1]) == 0 || ft_strlen(line[2]) == 0)
+		return(printf("RGB args is not valid\n"), false);
 	r = ft_atoi(line[0]);
 	g = ft_atoi(line[1]);
 	b = ft_atoi(line[2]);
+	printf("%ld\n", ft_strlen(line[2]));
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (printf("RGB is out from range [0-256]"), false);
 	if (path[0] == 'F')

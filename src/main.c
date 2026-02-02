@@ -6,46 +6,12 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/02 17:56:32 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:39:21 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3d.h"
 
-// int parse_color(char *line)
-// {
-// 	int r, g, b;
-
-// 	if (sscanf(line, "%d,%d,%d", &r, &g, &b) != 3)
-// 		return (-1);
-// 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-// 		return (-1);
-// 	return ((b << 16) | (g << 8) | r);
-// }
-
-// void	set_wall_and_ceiling_colour(t_data *data, char *input_file)
-// {
-// 	char *line;
-// 	int fd;
-
-// 	fd = open(input_file, O_RDONLY);
-// 	if (fd < 0)
-// 		return ;
-// 	while ((line = get_next_line(fd)))
-// 	{
-// 		char *ptr = line;
-// 		while (*ptr == ' ')
-// 			ptr++;
-// 		if (!ft_strncmp(ptr, "C ", 2))
-// 			data->ceiling = parse_color(ptr + 2);
-// 		else if (!ft_strncmp(ptr, "F ", 2))
-// 			data->floor = parse_color(ptr + 2);
-// 		free(line);
-// 	}
-// 	printf("Ceiling color: 0x%06X\n", data->ceiling);
-// 	printf("Floor color: 0x%06X\n", data->floor);
-// 	close(fd);
-// }
 
 void clear_screen(t_data *data)
 {
@@ -123,11 +89,8 @@ int	main(int ac, char **av)
 		return (clean_data(&data), -1);
 	find_player(&data, &player);
 	find_door(&data);
-	// set_wall_and_ceiling_colour(&data, av[1]);
 	if (!player_init(&player, &data))
 		return (clean_data(&data), -1);
-	printf("%d\n", data.floor);
-	printf("%d\n", data.ceiling);
 	if (!game_init(&data, &player))
 		return (printf("Game init failed\n"), -1);
 	return (clean_data(&data), 0);
