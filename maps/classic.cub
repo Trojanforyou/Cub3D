@@ -3,7 +3,7 @@ SO ./textures/southwall.png
 WE ./textures/westwall.png
 EA ./textures/eastwall.png
 F 220,100,122
-C 225,30,0
+C 225,30,255
 
 111111111111111111111111
 11111111111111111111111

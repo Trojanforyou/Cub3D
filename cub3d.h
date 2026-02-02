@@ -131,10 +131,8 @@ void	find_door(t_data *data);
 bool	set_walls_texture(t_data *data, char *ptr);
 // bool	walls_set(char *filename, t_data *data);
 
-bool	parse_floor(char *path, t_data *data, char **tmp_floor);
-bool	parse_ceiling(char *path, t_data *data, char **tmp_ceiling);
-bool	floor_error_check(char **floor);
-bool	ceiling_error_check(char **ceiling);
+bool parse_floor_ceiling(char *path, t_data *data, char **line);
+bool	floor_ceiling_check(char **path);
 bool	set_collor(t_data *data, int y, int x);
 
 bool	texture_load(t_data *texture);
