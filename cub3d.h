@@ -1,6 +1,6 @@
 # ifndef CUB3D_H
 # define CUB3D_H
-#define RGB(r, g, b) ((0xFF << 24) | ((r) << 16) | ((g) << 8) | (b))
+#define RGB(r, g, b) ((0xFF << 24) | ((b) << 16) | ((g) << 8) | (r))
 #define MAX_MAP_LINES 1000
 #define TITLE_SIZE 64
 #define MINIMAP_SIZE 10

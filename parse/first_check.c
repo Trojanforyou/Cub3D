@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/02 16:59:47 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/02 18:01:54 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	dublicate_check(t_data *data)
 		while (data->map[y][x])
 		{
 			main_dublicate_check(data, &y, &x, &flag);
-			printf("%d", flag);
 			x++;
 		}
 		y++;
@@ -99,7 +98,10 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	b = ft_atoi(line[2]);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (printf("RGB is out from range [0-256]"), false);
-	data->floor = RGB(r, g, b);
+	if (path[0] == 'F')
+		data->floor = RGB(r, g, b);
+	if (path[0] == 'C')
+		data->ceiling = RGB(r, g, b);
 	clean_floor(line);
 	return (true);
 }
