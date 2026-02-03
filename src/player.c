@@ -78,7 +78,7 @@ void	move_player(t_data *data)
 	collision_and_update(data, move);
 }
 
-void mouse_look(t_data *data)
+void	mouse_look(t_data *data)
 {
 	int		x;
 	int		y;

@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void    data_init(t_data *data)
+void	data_init(t_data *data)
 {
 	data->map = NULL;
 	data->floor = 0;
@@ -39,13 +39,13 @@ void    data_init(t_data *data)
 	data->minimap_i = NULL;
 }
 
-int player_init(s_player *player, t_data *data)
+int	player_init(s_player *player, t_data *data)
 {
-    player->dir.x = -1.0;
-    player->dir.y = 0.0;
-    player->plane.x = 0.0;
-    player->plane.y = 0.66;
-    player->data = data;
-    player->speed = 0.1;
-    return (1);
+	player->dir.x = -1.0;
+	player->dir.y = 0.0;
+	player->plane.x = 0.0;
+	player->plane.y = 0.66;
+	player->data = data;
+	player->speed = 0.1;
+	return (1);
 }

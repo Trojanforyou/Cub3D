@@ -15,12 +15,12 @@
 void	calculate_perp_wall_dist(s_Ray *ray, s_player *player)
 {
 	if (ray->side == 0)
-		ray->perpWallDist = 
-			(ray->map.x - player->pos.x + 
+		ray->perpWallDist = \
+			(ray->map.x - player->pos.x + \
 				(1 - ray->step.x) / 2) / ray->rayDir.x;
 	else
-		ray->perpWallDist = 
-			(ray->map.y - player->pos.y + 
+		ray->perpWallDist = \
+			(ray->map.y - player->pos.y + \
 				(1 - ray->step.y) / 2) / ray->rayDir.y;
 }
 

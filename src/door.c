@@ -30,20 +30,21 @@ void	find_door(t_data *data)
 				data->door_y = y;
 				data->door_x = x;
 				data->door_flag = 0;
-				return;
+				return ;
 			}
 			x++;
 		}
 		y++;
 	}
 }
+
 static void	open_the_door(t_data *data, s_player *player)
 {
 	int	y;
 	int	x;
 	int	px;
 	int	py;
-	
+
 	y = data->door_y;
 	x = data->door_x;
 	px = (int)player->pos.x;
@@ -56,6 +57,7 @@ static void	open_the_door(t_data *data, s_player *player)
 		return ;
 	}
 }
+
 static void	close_the_door(t_data *data, s_player *player)
 {
 	int	y;
@@ -67,7 +69,7 @@ static void	close_the_door(t_data *data, s_player *player)
 	x = data->door_x;
 	px = (int)player->pos.x;
 	py = (int)player->pos.y;
-	if (((py - 1 == y && px == x) || (py + 1 == y && px == x) || 
+	if (((py - 1 == y && px == x) || (py + 1 == y && px == x) ||
 	(px - 1 == x && py == y) || (px + 1 == x && py == y)))
 	{
 		data->door_flag = 0;
@@ -75,10 +77,12 @@ static void	close_the_door(t_data *data, s_player *player)
 		return ;
 	}
 }
+
 void	door(t_data *data, s_player *player)
 {
-	int key_is_pressed = mlx_is_key_down(data->mlx, MLX_KEY_E);
+	int	key_is_pressed;
 
+	key_is_pressed = mlx_is_key_down(data->mlx, MLX_KEY_E);
 	if (key_is_pressed && !data->key_e_was_pressed)
 	{
 		if (data->door_flag == 0)

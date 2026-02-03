@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-bool game_init(t_data *data, s_player *player)
+bool	game_init(t_data *data, s_player *player)
 	{
 	data->height = get_map_height(data->map);
 	data->width = get_map_width(data->map);
@@ -22,7 +22,7 @@ bool game_init(t_data *data, s_player *player)
 	if (texture_load(data) == false || load_image(data) == false)
 		return (printf("Texture loading failed\n"), false);
 	if (set_minimap_img(data) == false)
-		return(false);
+		return (false);
 	data->player = player;
 	data->img = mlx_new_image(data->mlx, MAP_WIDTH, MAP_HEIGHT);
 	if (!data->img)
@@ -34,21 +34,21 @@ bool game_init(t_data *data, s_player *player)
 	mlx_loop_hook(data->mlx, game_loop, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
-	return true;
-	}
+	return (true);
+}
 
-int get_map_width(char  **str)
+int	get_map_width(char **str)
 {
-    int y;
-    int x;
+	int	y;
+	int	x;
 
-    y = 0;
-    while (str[y])
-    {
-        x = 0;
-        while (str[y][x])
-            x++;
-        y++;
-    }
-    return(x);
+	y = 0;
+	while (str[y])
+	{
+		x = 0;
+		while (str[y][x])
+			x++;
+		y++;
+	}
+	return (x);
 }

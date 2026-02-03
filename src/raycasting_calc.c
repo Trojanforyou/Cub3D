@@ -14,13 +14,20 @@
 
 static int face_from_ray(s_Ray *ray)
 {
-    if (ray->side == 0) /* vertical wall (x-side) */
-        return (ray->rayDir.x > 0) ? 3 : 1;
-    /* horizontal wall (y-side) */
-    return (ray->rayDir.y > 0) ? 0 : 2;
+	if (ray->side == 0)
+	{
+		if (ray->rayDir.x > 0)
+			return (3);
+		else
+			return (1);
+	}
+	if (ray->rayDir.y > 0)
+		return (0);
+	else
+		return (2);
 }
 
-void	DDA_loop(s_Ray *ray, t_data *data)
+void	dda_loop(s_Ray *ray, t_data *data)
 {
 	ray->hit = -1;
 	while (ray->hit == -1)
@@ -38,8 +45,8 @@ void	DDA_loop(s_Ray *ray, t_data *data)
 			ray->side = 1;
 		}
 		if (ray->map.y < 0 || ray->map.y >= data->height
-		 || ray->map.x < 0 || ray->map.x >= data->width
-		 || !data->map || !data->map[ray->map.y])
+			|| ray->map.x < 0 || ray->map.x >= data->width
+			|| !data->map || !data->map[ray->map.y])
 		{
 			ray->hit = -1;
 			return ;

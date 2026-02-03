@@ -13,27 +13,27 @@
 #include "./cub3d.h"
 
 
-void clear_screen(t_data *data)
+void	clear_screen(t_data *data)
 {
-    uint32_t 		*p;
-    unsigned int	x;
-    unsigned int	y;
+	uint32_t		*p;
+	unsigned int	x;
+	unsigned int	y;
 
-    p = (uint32_t *)data->img->pixels;
-    y = 0;
-    while (y < data->img->height)
-    {
-        x = 0;
-        while (x < data->img->width)
-        {
-            if (y < data->img->height / 2)
-                p[y * data->img->width + x] = 0xFF000000 | (data->ceiling & 0x00FFFFFF); /* add alpha */
-            else
-                p[y * data->img->width + x] = 0xFF000000 | (data->floor & 0x00FFFFFF);   /* add alpha */
-            x++;
-        }
-        y++;
-    }
+	p = (uint32_t *)data->img->pixels;
+	y = 0;
+	while (y < data->img->height)
+	{
+		x = 0;
+		while (x < data->img->width)
+		{
+			if (y < data->img->height / 2)
+				p[y * data->img->width + x] = 0xFF000000 | (data->ceiling & 0x00FFFFFF);
+			else
+				p[y * data->img->width + x] = 0xFF000000 | (data->floor & 0x00FFFFFF);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	game_loop(void *param)
@@ -51,6 +51,7 @@ void	game_loop(void *param)
 	raycast_and_draw(data, data->player);
 	draw_minimap(data);
 }
+
 void	find_player(t_data *data, s_player *player)
 {
 	int	x;

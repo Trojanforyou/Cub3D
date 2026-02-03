@@ -85,7 +85,7 @@ void	raycast_and_draw(t_data *data, s_player *player)
 	{
 		init_ray(&ray, player, x, MAP_WIDTH);
 		calculate_step_and_side_dist(&ray, player);
-		DDA_loop(&ray, data);
+		dda_loop(&ray, data);
 		if (ray.hit >= 0 && ray.hit <= 4 && player->data->wall_img[ray.hit])
 		{
 			calculate_perp_wall_dist(&ray, player);
