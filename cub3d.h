@@ -91,7 +91,7 @@ typedef struct s_stripe
     int	drawStart;
     int	drawEnd;
     int	lineHeight;
-    int	texX;
+    int	texx;
     int	x;
 } s_stripe;
 
@@ -172,6 +172,7 @@ void	move_player(t_data *data);
 void	mouse_look(t_data *data);
 void	arrow_look(t_data *data);
 void	door(t_data *data, s_player *player);
+void	rotate_camera(s_player *p, double rot);
 /* ===================== RAYCASTING ===================== */
 
 void	raycast_and_draw(t_data *data, s_player *player);
@@ -181,7 +182,7 @@ void	init_ray(s_Ray *ray, s_player *player, int x, int width);
 void	calculate_step_and_side_dist(s_Ray *ray, s_player *player);
 
 /* ray calc */
-void	DDA_loop(s_Ray *ray, t_data *data);
+void	dda_loop(s_Ray *ray, t_data *data);
 void	calculate_perp_wall_dist(s_Ray *ray, s_player *player);
 
 #endif

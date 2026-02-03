@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/02 17:55:49 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:18:06 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ bool	additional_check(char *line, t_data *data)
 	{
 		if (*line == 'F')
 			if (parse_floor_ceiling(line, data, data->tmp_floor) == false)
-				return(false);
+				return(printf("here1\n"), false);
 		if (*line == 'C')
 			if (parse_floor_ceiling(line, data, data->tmp_ceiling) == false)
-				return(false);
+				return(printf("here\n"), false);
 		return(true);
 	}
 	return(true);

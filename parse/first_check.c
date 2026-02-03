@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 13:25:32 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:19:04 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ char	dublicate_check(t_data *data)
 	return (0);
 }
 
-static bool	value_check(char **line)
-{
-	if (ft_strlen(line[0]) == 0 || ft_strlen(line[1]) == 0
-		|| ft_strlen(line[2]) == 0)
-		return (printf("RGB args is not valid\n"), false);
-	return (true);
-}
+// static bool	value_check(char **line)
+// {
+// 	if (ft_strlen(line[0]) == 0 || ft_strlen(line[1]) == 0
+// 		|| ft_strlen(line[2]) == 0)
+// 		return (printf("RGB args is not valid\n"), false);
+// 	return (true);
+// }
 
 bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 {
@@ -90,7 +90,7 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	tmp = path + 2;
 	line = ft_split(tmp, ',');
 	line = trim_floor(line);
-	if (floor_ceiling_check(line) == false || value_check(line))
+	if (floor_ceiling_check(line) == false)
 		return (false);
 	r = ft_atoi(line[0]);
 	g = ft_atoi(line[1]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:32:09 by otanovic          #+#    #+#             */
-/*   Updated: 2026/01/07 13:36:27 by otanovic         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:45:31 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	calculate_perp_wall_dist(s_Ray *ray, s_player *player)
 {
 	if (ray->side == 0)
-		ray->perpWallDist = \
-			(ray->map.x - player->pos.x + \
+		ray->perpWallDist =
+			(ray->map.x - player->pos.x +
 				(1 - ray->step.x) / 2) / ray->rayDir.x;
 	else
-		ray->perpWallDist = \
-			(ray->map.y - player->pos.y + \
+		ray->perpWallDist =
+			(ray->map.y - player->pos.y +
 				(1 - ray->step.y) / 2) / ray->rayDir.y;
 }
 

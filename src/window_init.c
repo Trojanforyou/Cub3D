@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   window_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/31 22:07:19 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:44:36 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 bool	game_init(t_data *data, s_player *player)
-	{
+{
 	data->height = get_map_height(data->map);
 	data->width = get_map_width(data->map);
 	data->mlx = mlx_init(MAP_WIDTH, MAP_HEIGHT, "cub3D", false);

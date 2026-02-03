@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/02 19:39:21 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:43:33 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	clear_screen(t_data *data)
 		while (x < data->img->width)
 		{
 			if (y < data->img->height / 2)
-				p[y * data->img->width + x] = 0xFF000000 | (data->ceiling & 0x00FFFFFF);
+				p[y * data->img->width + x] = 0xFF000000
+					| (data->ceiling & 0x00FFFFFF);
 			else
-				p[y * data->img->width + x] = 0xFF000000 | (data->floor & 0x00FFFFFF);
+				p[y * data->img->width + x] = 0xFF000000
+					| (data->floor & 0x00FFFFFF);
 			x++;
 		}
 		y++;

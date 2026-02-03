@@ -6,13 +6,14 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:47:46 by otanovic          #+#    #+#             */
-/*   Updated: 2026/01/28 15:56:07 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:43:50 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int face_from_ray(s_Ray *ray)
+// Bro change Ternaries to smth else
+static int	face_from_ray(s_Ray *ray)
 {
 	if (ray->side == 0)
 	{

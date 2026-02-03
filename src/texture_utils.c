@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:38:07 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/21 22:50:59 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:44:24 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static bool	set_ea_wall(t_data *data, char *ptr)
 	else
 		return (printf("Wrong path [ARG]\n"), false);
 	if (data->ea[ft_strlen(data->ea) - 1] == '\n')
-		data->ea[ft_strlen(data->ea) - 1] = '\0';   
+		data->ea[ft_strlen(data->ea) - 1] = '\0';
 	return (true);
 }
 
@@ -104,7 +104,7 @@ static bool	set_so_walls(t_data *data, char *ptr)
 	else
 		return (printf("Wrong path [ARG]\n"), false);
 	if (data->so[ft_strlen(data->so) - 1] == '\n')
-		data->so[ft_strlen(data->so) - 1] = '\0'; 
+		data->so[ft_strlen(data->so) - 1] = '\0';
 	return (true);
 }
 

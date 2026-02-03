@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:36:31 by otanovic          #+#    #+#             */
-/*   Updated: 2026/01/07 17:07:20 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:44:59 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ void	arrow_look(t_data *data)
 
 void	collision_and_update(t_data *data, double *move)
 {
-	if (is_free_tile(data, (int)(data->player->pos.x + move[0]), (int)data->player->pos.y))
+	if (is_free_tile(data, (int)(data->player->pos.x
+			+ move[0]), (int)data->player->pos.y))
 		data->player->pos.x += move[0];
-	if (is_free_tile(data, (int)data->player->pos.x, (int)(data->player->pos.y + move[1])))
+	if (is_free_tile(data, (int)data->player->pos.x,
+			(int)(data->player->pos.y + move[1])))
 		data->player->pos.y += move[1];
 }
 
@@ -76,19 +78,4 @@ void	move_player(t_data *data)
 		move[1] -= data->player->dir.x * data->player->speed;
 	}
 	collision_and_update(data, move);
-}
-
-void	mouse_look(t_data *data)
-{
-	int		x;
-	int		y;
-	int		cx;
-	double	dx;
-
-	cx = data->width / 2;
-	mlx_get_mouse_pos(data->mlx, &x, &y);
-	dx = x - cx;
-	if (dx > 1 || dx < -1)
-		rotate_camera(data->player, dx * 0.002);
-	mlx_set_mouse_pos(data->mlx, cx, (data->height / 2));
 }

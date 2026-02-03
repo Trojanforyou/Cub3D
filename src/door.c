@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:12:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/01/31 22:13:40 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:43:14 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static void	open_the_door(t_data *data, s_player *player)
 	x = data->door_x;
 	px = (int)player->pos.x;
 	py = (int)player->pos.y;
-	if (((py - 1 == y && px == x) || (py + 1 == y && px == x) || 
-	(px - 1 == x && py == y) || (px + 1 == x && py == y)))
+	if (((py - 1 == y && px == x) || (py + 1 == y && px == x)
+			|| (px - 1 == x && py == y) || (px + 1 == x && py == y)))
 	{
 		data->door_flag = 1;
-		data->map[y][x]= '0';
+		data->map[y][x] = '0';
 		return ;
 	}
 }
@@ -69,8 +69,8 @@ static void	close_the_door(t_data *data, s_player *player)
 	x = data->door_x;
 	px = (int)player->pos.x;
 	py = (int)player->pos.y;
-	if (((py - 1 == y && px == x) || (py + 1 == y && px == x) ||
-	(px - 1 == x && py == y) || (px + 1 == x && py == y)))
+	if (((py - 1 == y && px == x) || (py + 1 == y && px == x)
+			|| (px - 1 == x && py == y) || (px + 1 == x && py == y)))
 	{
 		data->door_flag = 0;
 		data->map[y][x] = 'D';
@@ -90,6 +90,5 @@ void	door(t_data *data, s_player *player)
 		else if (data->door_flag == 1)
 			close_the_door(data, player);
 	}
-
 	data->key_e_was_pressed = key_is_pressed;
 }

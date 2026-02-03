@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:49:17 by otanovic          #+#    #+#             */
-/*   Updated: 2026/01/28 15:56:16 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:26:23 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,35 @@
 // from the map past a valid place
 // DDA loop: marches ray through the map until a wall is hit
 
-void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, s_stripe stripe)
+void	draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, s_stripe strip)
 {
 	int			y;
 	int			texy;
 	uint8_t		*pixel;
 	uint32_t	color;
 
-	y = stripe.drawStart;
-	while (y < stripe.drawEnd)
+	y = strip.drawStart;
+	while (y < strip.drawEnd)
 	{
-		texy = ((y - stripe.drawStart) * (int)tex->height) / stripe.lineHeight;
+		texy = ((y - strip.drawStart) * (int)tex->height) / strip.lineHeight;
 		if (texy < 0)
 			texy = 0;
 		if (texy >= (int)tex->height)
 			texy = (int)tex->height - 1;
-		pixel = &tex->pixels[4 * (texy * (int)tex->width + stripe.texX)];
-		color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
-		mlx_put_pixel(img, stripe.x, y++, color); // slow should replace with direct change
+		pixel = &tex->pixels[4 * (texy * (int)tex->width + strip.texx)];
+		color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8)
+			| pixel[3];
+		mlx_put_pixel(img, strip.x, y++, color);
 	}
 }
 
-void	draw_textured_wall(s_player *player, mlx_image_t *img, s_Ray *ray, int x)
+void	draw_textured_wall(s_player *pl, mlx_image_t *img, s_Ray *ray, int x)
 {
 	s_stripe	stripe;
-	double		wallX;
+	double		wallx;
 
-	stripe.x = x; // current screen column
-	// wall height
+	stripe.x = x;
 	stripe.lineHeight = (int)(MAP_HEIGHT / ray->perpWallDist);
-	// top & bottom on screen
 	stripe.drawStart = -stripe.lineHeight / 2 + MAP_HEIGHT / 2;
 	stripe.drawEnd = stripe.lineHeight / 2 + MAP_HEIGHT / 2;
 	if (stripe.drawStart < 0)
@@ -62,15 +61,15 @@ void	draw_textured_wall(s_player *player, mlx_image_t *img, s_Ray *ray, int x)
 	if (stripe.drawEnd >= MAP_HEIGHT)
 		stripe.drawEnd = MAP_HEIGHT - 1;
 	if (ray->side == 0)
-		wallX = player->pos.y + ray->perpWallDist * ray->rayDir.y;
+		wallx = pl->pos.y + ray->perpWallDist * ray->rayDir.y;
 	else
-		wallX = player->pos.x + ray->perpWallDist * ray->rayDir.x;
-	wallX -= floor(wallX);
-	// texture
-	stripe.texX = (int)(wallX * player->data->wall_img[ray->hit]->width);
-	if ((ray->side == 0 && ray->rayDir.x > 0) || (ray->side == 1 && ray->rayDir.y < 0))
-		stripe.texX = player->data->wall_img[ray->hit]->width - stripe.texX - 1;
-	draw_vertical_stripe(img, player->data->wall_img[ray->hit], stripe);
+		wallx = pl->pos.x + ray->perpWallDist * ray->rayDir.x;
+	wallx -= floor(wallx);
+	stripe.texx = (int)(wallx * pl->data->wall_img[ray->hit]->width);
+	if ((ray->side == 0 && ray->rayDir.x > 0)
+		|| (ray->side == 1 && ray->rayDir.y < 0))
+		stripe.texx = pl->data->wall_img[ray->hit]->width - stripe.texx - 1;
+	draw_vertical_stripe(img, pl->data->wall_img[ray->hit], stripe);
 }
 
 void	raycast_and_draw(t_data *data, s_player *player)
