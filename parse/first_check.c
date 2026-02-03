@@ -6,13 +6,13 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/02 20:11:02 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:25:32 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void main_dublicate_check(t_data *data, int *y, int *x, int *flag)
+static void	main_dublicate_check(t_data *data, int *y, int *x, int *flag)
 {
 	if (data->map[*y][*x] == 'N' || data->map[*y][*x] == 'W'
 		|| data->map[*y][*x] == 'S' || data->map[*y][*x] == 'E')
@@ -22,15 +22,6 @@ static void main_dublicate_check(t_data *data, int *y, int *x, int *flag)
 	}
 	else if (data->map[*y][*x] == 'D')
 		data->door_count++;
-}
-
-char	prefix_check(char *filename)
-{
-	if (ft_strlen(filename) < 4)
-		return (-1);
-	if (ft_strncmp(filename + ft_strlen(filename) - 4, ".cub", 4) != 0)
-		return (printf("Maps prefix has to be [.cub]\n"), -1);
-	return (0);
 }
 
 char	**map_reader(char *filename, t_data *data)
@@ -78,6 +69,14 @@ char	dublicate_check(t_data *data)
 	return (0);
 }
 
+static bool	value_check(char **line)
+{
+	if (ft_strlen(line[0]) == 0 || ft_strlen(line[1]) == 0
+		|| ft_strlen(line[2]) == 0)
+		return (printf("RGB args is not valid\n"), false);
+	return (true);
+}
+
 bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 {
 	int		r;
@@ -91,14 +90,11 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	tmp = path + 2;
 	line = ft_split(tmp, ',');
 	line = trim_floor(line);
-	if (floor_ceiling_check(line) == false)
+	if (floor_ceiling_check(line) == false || value_check(line))
 		return (false);
-	if (ft_strlen(line[0]) == 0 || ft_strlen(line[1]) == 0 || ft_strlen(line[2]) == 0)
-		return(printf("RGB args is not valid\n"), false);
 	r = ft_atoi(line[0]);
 	g = ft_atoi(line[1]);
 	b = ft_atoi(line[2]);
-	printf("%ld\n", ft_strlen(line[2]));
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (printf("RGB is out from range [0-256]"), false);
 	if (path[0] == 'F')
@@ -108,4 +104,3 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	clean_floor(line);
 	return (true);
 }
-
