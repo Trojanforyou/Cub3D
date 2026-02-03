@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 14:19:04 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:29:07 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,17 @@ static void	main_dublicate_check(t_data *data, int *y, int *x, int *flag)
 char	**map_reader(char *filename, t_data *data)
 {
 	int		fd;
-	char	*line;
 	char	**temp;
 	int		i;
 
 	i = 0;
-	line = NULL;
 	temp = ft_calloc(MAX_MAP_LINES + 1, sizeof(char *));
 	if (!temp)
 		return (NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (printf("File does not exist\n"), NULL);
-	if (set_map(line, fd, data, temp, &i) == NULL)
+	if (set_map(fd, data, temp, &i) == NULL)
 		return (NULL);
 	data->map = temp;
 	close(fd);

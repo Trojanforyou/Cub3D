@@ -109,7 +109,7 @@ char	map_witdh_check(t_data *data);
 
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);
-char	**set_map(char *line, int fd, t_data *data, char **temp, int *i);
+char	**set_map(int fd, t_data *data, char **temp, int *i);
 
 bool	load_map(t_data *data);
 bool	map_init(t_data *data);

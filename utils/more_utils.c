@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 14:21:25 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:14:25 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	prefix_check(char *filename)
 		return (printf("Maps prefix has to be [.cub]\n"), -1);
 	return (0);
 }
-void mouse_look(t_data *data)
+
+void	mouse_look(t_data *data)
 {
 	int		x;
 	int		y;
