@@ -73,7 +73,7 @@ static void	close_the_door(t_data *data, s_player *player)
 	(px - 1 == x && py == y) || (px + 1 == x && py == y)))
 	{
 		data->door_flag = 0;
-		data->map[y][x]= 'D';
+		data->map[y][x] = 'D';
 		return ;
 	}
 }

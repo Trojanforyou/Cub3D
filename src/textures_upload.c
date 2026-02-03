@@ -55,9 +55,9 @@ bool	load_map(t_data *data)
 	y = -1;
 	while (data->map[++y])
 	{
-	    x = -1;
-	    while (data->map[y][++x])
-	    {
+		x = -1;
+		while (data->map[y][++x])
+		{
 			if (data->map[y][x] == '1')
 			{
 				if (data->wall_img[1])

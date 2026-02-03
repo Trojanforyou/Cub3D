@@ -12,7 +12,6 @@
 
 #include "./cub3d.h"
 
-
 void	clear_screen(t_data *data)
 {
 	uint32_t		*p;
