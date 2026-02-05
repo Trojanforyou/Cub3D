@@ -12,22 +12,26 @@
 
 #include "../cub3d.h"
 
-bool     map_up_check(t_data *data, size_t x, size_t y)
+bool	map_up_check(t_data *data, size_t x, size_t y)
 {
-    if (data->map[0][x] == ' ')
-        x++;
-    if (data->map[y + 1] && y <= ft_strlen(data->map[y]) && data->map[y + 1][x] == ' ')
-    {
-        while (y > 0 && data->map[y][x] == ' ')
-            y--;
-        if (data->map[y][x] == '1')
-            return(true);
-        if ((data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == 'D'))
-            return (printf("Map is not covered by the walls\n"), false);
-        else
-            return(true);
-    }
-    return(true);
+	if (data->map[0][x] == ' ')
+		x++;
+	if (data->map[y + 1]
+		&& y <= ft_strlen(data->map[y])
+		&& data->map[y + 1][x] == ' ')
+	{
+		while (y > 0 && data->map[y][x] == ' ')
+			y--;
+		if (data->map[y][x] == '1')
+			return (true);
+		if (data->map[y][x] == '0'
+			|| data->map[y][x] == 'P'
+			|| data->map[y][x] == 'D')
+			return (printf("Map is not covered by the walls\n"), false);
+		else
+			return (true);
+	}
+	return (true);
 }
 
 bool    map_down_check(t_data *data, size_t x, size_t y)
@@ -52,6 +56,7 @@ bool    map_down_check(t_data *data, size_t x, size_t y)
     }
     return(true);
 }
+
 bool	map_right_check(t_data *data, size_t x, size_t y)
 {
 	if (data->map[y][0] == ' ')
