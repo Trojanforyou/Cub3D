@@ -15,13 +15,15 @@
 void	calculate_perp_wall_dist(s_Ray *ray, s_player *player)
 {
 	if (ray->side == 0)
-		ray->perpWallDist =
-			(ray->map.x - player->pos.x +
-				(1 - ray->step.x) / 2) / ray->rayDir.x;
+	{
+		ray->perpWallDist = (ray->map.x - player->pos.x
+				+ (1 - ray->step.x) / 2) / ray->rayDir.x;
+	}
 	else
-		ray->perpWallDist =
-			(ray->map.y - player->pos.y +
-				(1 - ray->step.y) / 2) / ray->rayDir.y;
+	{
+		ray->perpWallDist = (ray->map.y - player->pos.y
+				+ (1 - ray->step.y) / 2) / ray->rayDir.y;
+	}
 }
 
 // infinite if the ray is perfect hor / ver
@@ -38,7 +40,7 @@ void	init_ray(s_Ray *ray, s_player *player, int x, int width)
 {
 	double	camera_x;
 
-	ray->hit = 0;
+	ray->hit = -1;
 	ray->side = 0;
 	camera_x = 2.0 * x / (double)width - 1.0;
 	ray->rayDir.x = player->dir.x + player->plane.x * camera_x;

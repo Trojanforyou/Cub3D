@@ -48,15 +48,9 @@ void	dda_loop(s_Ray *ray, t_data *data)
 		if (ray->map.y < 0 || ray->map.y >= data->height
 			|| ray->map.x < 0 || ray->map.x >= data->width
 			|| !data->map || !data->map[ray->map.y])
-		{
-			ray->hit = -1;
 			return ;
-		}
 		if (data->map[ray->map.y][ray->map.x] == 'D')
-		{
 			ray->hit = 4;
-			return ;
-		}
 		if (data->map[ray->map.y][ray->map.x] != '0')
 			ray->hit = face_from_ray(ray);
 	}
