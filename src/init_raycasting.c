@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	calculate_perp_wall_dist(s_Ray *ray, s_player *player)
+void	calculate_perp_wall_dist(t_ray *ray, t_player *player)
 {
 	if (ray->side == 0)
 	{
@@ -36,7 +36,7 @@ static double	delta(double rayDir)
 	return (fabs(1.0 / rayDir));
 }
 
-void	init_ray(s_Ray *ray, s_player *player, int x, int width)
+void	init_ray(t_ray *ray, t_player *player, int x, int width)
 {
 	double	camera_x;
 

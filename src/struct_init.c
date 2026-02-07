@@ -39,7 +39,7 @@ void	data_init(t_data *data)
 	data->minimap_i = NULL;
 }
 
-int	player_init(s_player *player, t_data *data)
+int	player_init(t_player *player, t_data *data)
 {
 	player->dir.x = -1.0;
 	player->dir.y = 0.0;

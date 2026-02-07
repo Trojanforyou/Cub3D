@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-static int	face_from_ray(s_Ray *ray)
+static int	face_from_ray(t_ray *ray)
 {
 	if (ray->side == 0)
 	{
@@ -27,7 +27,7 @@ static int	face_from_ray(s_Ray *ray)
 		return (2);
 }
 
-void	dda_loop(s_Ray *ray, t_data *data)
+void	dda_loop(t_ray *ray, t_data *data)
 {
 	ray->hit = -1;
 	while (ray->hit == -1)
@@ -55,7 +55,7 @@ void	dda_loop(s_Ray *ray, t_data *data)
 	}
 }
 
-void	calculate_step_and_side_dist(s_Ray *ray, s_player *player)
+void	calculate_step_and_side_dist(t_ray *ray, t_player *player)
 {
 	if (ray->rayDir.x < 0)
 	{

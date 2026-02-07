@@ -25,17 +25,17 @@
 // from the map past a valid place
 // DDA loop: marches ray through the map until a wall is hit
 
-void	draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, s_stripe strip)
+void	draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, t_stripe strip)
 {
 	int			y;
 	int			texy;
 	uint8_t		*pixel;
 	uint32_t	color;
 
-	y = strip.drawStart;
-	while (y < strip.drawEnd)
+	y = strip.drawstart;
+	while (y < strip.drawend)
 	{
-		texy = ((y - strip.drawStart) * (int)tex->height) / strip.lineHeight;
+		texy = ((y - strip.drawstart) * (int)tex->height) / strip.lineheight;
 		if (texy < 0)
 			texy = 0;
 		if (texy >= (int)tex->height)
@@ -47,19 +47,19 @@ void	draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, s_stripe strip)
 	}
 }
 
-void	draw_textured_wall(s_player *pl, mlx_image_t *img, s_Ray *ray, int x)
+void	draw_textured_wall(t_player *pl, mlx_image_t *img, t_ray *ray, int x)
 {
-	s_stripe	stripe;
+	t_stripe	stripe;
 	double		wallx;
 
 	stripe.x = x;
-	stripe.lineHeight = (int)(MAP_HEIGHT / ray->perpWallDist);
-	stripe.drawStart = -stripe.lineHeight / 2 + MAP_HEIGHT / 2;
-	stripe.drawEnd = stripe.lineHeight / 2 + MAP_HEIGHT / 2;
-	if (stripe.drawStart < 0)
-		stripe.drawStart = 0;
-	if (stripe.drawEnd >= MAP_HEIGHT)
-		stripe.drawEnd = MAP_HEIGHT - 1;
+	stripe.lineheight = (int)(MAP_HEIGHT / ray->perpWallDist);
+	stripe.drawstart = -stripe.lineheight / 2 + MAP_HEIGHT / 2;
+	stripe.drawend = stripe.lineheight / 2 + MAP_HEIGHT / 2;
+	if (stripe.drawstart < 0)
+		stripe.drawstart = 0;
+	if (stripe.drawend >= MAP_HEIGHT)
+		stripe.drawend = MAP_HEIGHT - 1;
 	if (ray->side == 0)
 		wallx = pl->pos.y + ray->perpWallDist * ray->rayDir.y;
 	else
@@ -72,10 +72,10 @@ void	draw_textured_wall(s_player *pl, mlx_image_t *img, s_Ray *ray, int x)
 	draw_vertical_stripe(img, pl->data->wall_img[ray->hit], stripe);
 }
 
-void	raycast_and_draw(t_data *data, s_player *player)
+void	raycast_and_draw(t_data *data, t_player *player)
 {
 	mlx_image_t	*img;
-	s_Ray		ray;
+	t_ray		ray;
 	int			x;
 
 	img = data->img;

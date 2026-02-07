@@ -21,7 +21,7 @@ static int	is_free_tile(t_data *data, int x, int y)
 	return (data->map[y][x] == '0' || data->map[y][x] == 'P');
 }
 
-void	rotate_camera(s_player *p, double rot)
+void	rotate_camera(t_player *p, double rot)
 {
 	double	old_dir_x;
 	double	old_plane_x;

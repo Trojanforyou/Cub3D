@@ -38,7 +38,7 @@ void	find_door(t_data *data)
 	}
 }
 
-static void	open_the_door(t_data *data, s_player *player)
+static void	open_the_door(t_data *data, t_player *player)
 {
 	int	y;
 	int	x;
@@ -58,7 +58,7 @@ static void	open_the_door(t_data *data, s_player *player)
 	}
 }
 
-static void	close_the_door(t_data *data, s_player *player)
+static void	close_the_door(t_data *data, t_player *player)
 {
 	int	y;
 	int	x;
@@ -78,7 +78,7 @@ static void	close_the_door(t_data *data, s_player *player)
 	}
 }
 
-void	door(t_data *data, s_player *player)
+void	door(t_data *data, t_player *player)
 {
 	int	key_is_pressed;
 

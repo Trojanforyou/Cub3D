@@ -53,7 +53,7 @@ void	game_loop(void *param)
 	draw_minimap(data);
 }
 
-void	find_player(t_data *data, s_player *player)
+void	find_player(t_data *data, t_player *player)
 {
 	int	x;
 	int	y;
@@ -78,7 +78,7 @@ void	find_player(t_data *data, s_player *player)
 int	main(int ac, char **av)
 {
 	t_data		data;
-	s_player	player;
+	t_player	player;
 
 	if (ac < 2)
 		return (printf("Program requires MORE than 2 arguments\n"), 1);

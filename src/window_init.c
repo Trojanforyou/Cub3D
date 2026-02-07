@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-bool	game_init(t_data *data, s_player *player)
+bool	game_init(t_data *data, t_player *player)
 {
 	data->height = get_map_height(data->map);
 	data->width = get_map_width(data->map);
