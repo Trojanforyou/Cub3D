@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
+/*   Updated: 2026/02/07 11:11:55 by orhan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# ifndef CUB3D_H
+#ifndef CUB3D_H
 # define CUB3D_H
 # define RGB(r, g, b) ((uint32_t)((0xFF << 24) | ((b) << 16) | ((g) << 8) | (r)))
 # define MAX_MAP_LINES 1000
@@ -85,7 +96,7 @@ typedef struct Ray
     t_point step;         // Step direction
     int side;             // 0 = vertical wall, 1 = horizontal wall
     int hit;              // 0 = no wall, 1 = wall hit
-} t_ray;
+}	t_ray;
 
 typedef struct t_stripe
 {
