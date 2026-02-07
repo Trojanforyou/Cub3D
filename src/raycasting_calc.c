@@ -12,7 +12,6 @@
 
 #include "../cub3d.h"
 
-// Bro change Ternaries to smth else
 static int	face_from_ray(s_Ray *ray)
 {
 	if (ray->side == 0)
