@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
+/*   render_map.c                                        :+:    :+:           */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:49:17 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/11 10:51:12 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 13:43:55 by otanovic       ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void	draw_textured_wall(t_player *pl, mlx_image_t *img, t_ray *ray, int x)
 	double		wallx;
 
 	stripe.x = x;
-	stripe.lineheight = (int)(MAP_HEIGHT / ray->perpwalldist);
-	stripe.drawstart = -stripe.lineheight / 2 + MAP_HEIGHT / 2;
-	stripe.drawend = stripe.lineheight / 2 + MAP_HEIGHT / 2;
+	stripe.lineheight = (int)(SCREEN_HEIGHT / ray->perpwalldist);
+	stripe.drawstart = -stripe.lineheight / 2 + SCREEN_HEIGHT / 2;
+	stripe.drawend = stripe.lineheight / 2 + SCREEN_HEIGHT / 2;
 	if (stripe.drawstart < 0)
 		stripe.drawstart = 0;
-	if (stripe.drawend >= MAP_HEIGHT)
-		stripe.drawend = MAP_HEIGHT - 1;
+	if (stripe.drawend >= SCREEN_HEIGHT)
+		stripe.drawend = SCREEN_HEIGHT - 1;
 	if (ray->side == 0)
 		wallx = pl->pos.y + ray->perpwalldist * ray->raydir.y;
 	else
@@ -80,9 +80,9 @@ void	raycast_and_draw(t_data *data, t_player *player)
 
 	img = data->img;
 	x = 0;
-	while (x < MAP_WIDTH)
+	while (x < SCREEN_WIDTH)
 	{
-		init_ray(&ray, player, x, MAP_WIDTH);
+		init_ray(&ray, player, x, SCREEN_WIDTH);
 		calculate_step_and_side_dist(&ray, player);
 		dda_loop(&ray, data);
 		if (ray.hit >= 0 && ray.hit <= 4 && player->data->wall_img[ray.hit])

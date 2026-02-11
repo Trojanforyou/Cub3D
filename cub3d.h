@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                             :+:    :+:           */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/11 11:43:01 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 13:39:05 by otanovic       ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define MINIMAP_SIZE 10
 # define OFFSET_X 0
 # define OFFSET_Y 0
-# define MAP_WIDTH 1920
-# define MAP_HEIGHT 1080
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
 # define CEILING_COLOUR 120
 # include <stdio.h>
 # include <unistd.h>
