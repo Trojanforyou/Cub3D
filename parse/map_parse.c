@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:54:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 13:30:24 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 10:37:37 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,8 @@ bool	collums_check(t_data *data)
 				y++;
 				continue ;
 			}
-			if (data->map[y][x] == ' ')
-			{
-				if (data->map[y + 1] && (data->map[y + 1][x] == 'P'
-					|| data->map[y + 1][x] == '0'
-					|| data->map[y + 1][x] == 'D'))
-					return (printf("here"), false);
-			}
-			else if (data->map[y][x] == '\n')
-				if (data->map[y + 1] && (data->map[y + 1][x] == 'P'
-					|| data->map[y + 1][x] == '0'
-					|| data->map[y + 1][x] == 'D'))
-					return (printf("here"), false);
+			if (coullum_check_helper(data, &x, &y) == false)
+				return(false);
 			y++;
 		}
 		x++;
@@ -98,4 +88,16 @@ char	map_validation(t_data *data)
 		}
 	}
 	return (0);
+}
+bool	map_init(t_data *data)
+{
+	if (dublicate_check(data) == -1)
+		return(false);
+	if (map_char_check(data) == -1)
+		return(false);
+	if (collums_check(data) == false)
+		return(false);
+	if (map_validation(data) == -1)
+		return(false);
+	return(true);
 }

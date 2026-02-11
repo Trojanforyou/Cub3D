@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:47:46 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/03 15:43:50 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 10:50:26 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static int	face_from_ray(t_ray *ray)
 {
 	if (ray->side == 0)
 	{
-		if (ray->rayDir.x > 0)
+		if (ray->raydir.x > 0)
 			return (3);
 		else
 			return (1);
 	}
-	if (ray->rayDir.y > 0)
+	if (ray->raydir.y > 0)
 		return (0);
 	else
 		return (2);
@@ -32,15 +32,15 @@ void	dda_loop(t_ray *ray, t_data *data)
 	ray->hit = -1;
 	while (ray->hit == -1)
 	{
-		if (ray->sideDist.x < ray->sideDist.y)
+		if (ray->sidedist.x < ray->sidedist.y)
 		{
-			ray->sideDist.x += ray->deltaDist.x;
+			ray->sidedist.x += ray->deltadist.x;
 			ray->map.x += ray->step.x;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->sideDist.y += ray->deltaDist.y;
+			ray->sidedist.y += ray->deltadist.y;
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
@@ -57,24 +57,24 @@ void	dda_loop(t_ray *ray, t_data *data)
 
 void	calculate_step_and_side_dist(t_ray *ray, t_player *player)
 {
-	if (ray->rayDir.x < 0)
+	if (ray->raydir.x < 0)
 	{
 		ray->step.x = -1;
-		ray->sideDist.x = (player->pos.x - ray->map.x) * ray->deltaDist.x;
+		ray->sidedist.x = (player->pos.x - ray->map.x) * ray->deltadist.x;
 	}
 	else
 	{
 		ray->step.x = 1;
-		ray->sideDist.x = (ray->map.x + 1.0 - player->pos.x) * ray->deltaDist.x;
+		ray->sidedist.x = (ray->map.x + 1.0 - player->pos.x) * ray->deltadist.x;
 	}
-	if (ray->rayDir.y < 0)
+	if (ray->raydir.y < 0)
 	{
 		ray->step.y = -1;
-		ray->sideDist.y = (player->pos.y - ray->map.y) * ray->deltaDist.y;
+		ray->sidedist.y = (player->pos.y - ray->map.y) * ray->deltadist.y;
 	}
 	else
 	{
 		ray->step.y = 1;
-		ray->sideDist.y = (ray->map.y + 1.0 - player->pos.y) * ray->deltaDist.y;
+		ray->sidedist.y = (ray->map.y + 1.0 - player->pos.y) * ray->deltadist.y;
 	}
 }

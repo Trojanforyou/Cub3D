@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:32:09 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/03 15:45:31 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 10:52:34 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@ void	calculate_perp_wall_dist(t_ray *ray, t_player *player)
 {
 	if (ray->side == 0)
 	{
-		ray->perpWallDist = (ray->map.x - player->pos.x
-				+ (1 - ray->step.x) / 2) / ray->rayDir.x;
+		ray->perpwalldist = (ray->map.x - player->pos.x
+				+ (1 - ray->step.x) / 2) / ray->raydir.x;
 	}
 	else
 	{
-		ray->perpWallDist = (ray->map.y - player->pos.y
-				+ (1 - ray->step.y) / 2) / ray->rayDir.y;
+		ray->perpwalldist = (ray->map.y - player->pos.y
+				+ (1 - ray->step.y) / 2) / ray->raydir.y;
 	}
 }
 
 // infinite if the ray is perfect hor / ver
 // fabs is just an absolute function
 // 1e30 is to represent infinity
-static double	delta(double rayDir)
+static double	delta(double raydir)
 {
-	if (rayDir == 0)
+	if (raydir == 0)
 		return (1e30);
-	return (fabs(1.0 / rayDir));
+	return (fabs(1.0 / raydir));
 }
 
 void	init_ray(t_ray *ray, t_player *player, int x, int width)
@@ -43,12 +43,12 @@ void	init_ray(t_ray *ray, t_player *player, int x, int width)
 	ray->hit = -1;
 	ray->side = 0;
 	camera_x = 2.0 * x / (double)width - 1.0;
-	ray->rayDir.x = player->dir.x + player->plane.x * camera_x;
-	ray->rayDir.y = player->dir.y + player->plane.y * camera_x;
+	ray->raydir.x = player->dir.x + player->plane.x * camera_x;
+	ray->raydir.y = player->dir.y + player->plane.y * camera_x;
 	ray->map.x = (int)player->pos.x;
 	ray->map.y = (int)player->pos.y;
-	ray->deltaDist.x = delta(ray->rayDir.x);
-	ray->deltaDist.y = delta(ray->rayDir.y);
-	ray->sideDist.x = 0.0;
-	ray->sideDist.y = 0.0;
+	ray->deltadist.x = delta(ray->raydir.x);
+	ray->deltadist.y = delta(ray->raydir.y);
+	ray->sidedist.x = 0.0;
+	ray->sidedist.y = 0.0;
 }

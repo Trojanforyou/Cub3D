@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/07 11:11:55 by orhan            ###   ########.fr       */
+/*   Updated: 2026/02/11 10:45:17 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define RGB(r, g, b) ((uint32_t)((0xFF << 24) | ((b) << 16) | ((g) << 8) | (r)))
 # define MAX_MAP_LINES 1000
 # define TITLE_SIZE 64
 # define MINIMAP_SIZE 10
@@ -46,10 +45,10 @@ typedef struct t_ipoint
 
 typedef struct t_player
 {
-	t_point	pos;   // Player's position in the map
-	double	speed; // Player's speed
-	t_point	dir;   // Player's direction vector
-	t_point	plane; // Camera plane (perpendicular to direction)
+	t_point	pos;
+	double	speed;
+	t_point	dir;
+	t_point	plane;
 	t_data	*data;
 }	t_player;
 
@@ -86,16 +85,16 @@ typedef struct t_data
 	t_player		*player;
 }	t_data;
 
-typedef struct Ray
+typedef struct t_ray
 {
-    t_point rayDir;       // component of ray direction
-    t_point sideDist;     // Distance to next side
-    t_point deltaDist;    // Distance between sides
-    double perpWallDist;  // Perpendicular distance to wall
-    t_ipoint map;         // Current map square
-    t_point step;         // Step direction
-    int side;             // 0 = vertical wall, 1 = horizontal wall
-    int hit;              // 0 = no wall, 1 = wall hit
+	t_point		raydir;
+	t_point		sidedist;
+	t_point		deltadist;
+	double		perpwalldist;
+	t_ipoint	map;
+	t_point		step;
+	int			side;
+	int			hit;
 }	t_ray;
 
 typedef struct t_stripe
@@ -109,21 +108,22 @@ typedef struct t_stripe
 
 /* ===================== PARSING / MAP ===================== */
 
-char	color_set(char *filename, t_data *data);
+// char	color_set(char *filename, t_data *data);
 char	**map_reader(char *filename, t_data *data);
 char	**cordinates_check(char *filename, t_data *data);
 char	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
-char	wall_height_check(t_data *data);
-char	map_witdh_check(t_data *data);
+// char	wall_height_check(t_data *data);
+// char	map_witdh_check(t_data *data);
+bool	coullum_check_helper(t_data *data, int *x, int *y);
 
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);
 char	**set_map(int fd, t_data *data, char **temp, int *i);
 
-bool	load_map(t_data *data);
+// bool	load_map(t_data *data);
 bool	map_init(t_data *data);
 bool	additional_check(char *line, t_data *data);
 bool	collums_check(t_data *data);
@@ -133,7 +133,6 @@ bool	map_up_check(t_data *data, size_t x, size_t y);
 bool	map_down_check(t_data *data, size_t x, size_t y);
 bool	map_left_check(t_data *data, size_t x, size_t y);
 bool	map_right_check(t_data *data, size_t x, size_t y);
-// bool	check_bottom_row(t_data *data);
 
 int		get_map_height(char **map);
 int		get_map_width(char **str);
@@ -146,10 +145,10 @@ bool	set_walls_texture(t_data *data, char *ptr);
 bool	parse_floor_ceiling(char *path, t_data *data, char **line);
 bool	floor_ceiling_check(char **path);
 bool	set_collor(t_data *data, int y, int x);
+int		rgb(int r, int g, int b);
 
 bool	texture_load(t_data *texture);
 bool	load_image(t_data *texture);
-
 
 /* ===================== INIT / CLEAN ===================== */
 
@@ -161,13 +160,12 @@ void	change_perspective(t_data *data);
 bool	game_init(t_data *data, t_player *player);
 void	game_loop(void *param);
 
-
 /* ===================== WINDOW / RENDER ===================== */
 
-bool	window_witdh(t_data *data);
+// bool	window_witdh(t_data *data);
 bool	window_hight(t_data *data);
 
-void	render_map(t_data *data);
+// void	render_map(t_data *data);
 bool	put_pixel(t_data *data, int x, int y, int color);
 
 /* ===================== MINIMAP ===================== */

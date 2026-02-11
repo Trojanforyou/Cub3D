@@ -96,9 +96,9 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (printf("RGB is out from range [0-256]"), false);
 	if (path[0] == 'F')
-		data->floor = RGB(r, g, b);
+		data->floor = rgb(r, g, b);
 	if (path[0] == 'C')
-		data->ceiling = RGB(r, g, b);
+		data->ceiling = rgb(r, g, b);
 	clean_floor(line);
 	return (true);
 }

@@ -105,3 +105,8 @@ void	change_perspective(t_data *data)
 		y++;
 	}
 }
+
+int	rgb(int r, int g, int b)
+{
+	return ((0xFF << 24) | ((b & 0xFF) << 16) | ((g & 0xFF) << 8) | (r & 0xFF));
+}

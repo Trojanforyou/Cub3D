@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:49:17 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/03 14:26:23 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 10:51:12 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_textured_wall(t_player *pl, mlx_image_t *img, t_ray *ray, int x)
 	double		wallx;
 
 	stripe.x = x;
-	stripe.lineheight = (int)(MAP_HEIGHT / ray->perpWallDist);
+	stripe.lineheight = (int)(MAP_HEIGHT / ray->perpwalldist);
 	stripe.drawstart = -stripe.lineheight / 2 + MAP_HEIGHT / 2;
 	stripe.drawend = stripe.lineheight / 2 + MAP_HEIGHT / 2;
 	if (stripe.drawstart < 0)
@@ -61,13 +61,13 @@ void	draw_textured_wall(t_player *pl, mlx_image_t *img, t_ray *ray, int x)
 	if (stripe.drawend >= MAP_HEIGHT)
 		stripe.drawend = MAP_HEIGHT - 1;
 	if (ray->side == 0)
-		wallx = pl->pos.y + ray->perpWallDist * ray->rayDir.y;
+		wallx = pl->pos.y + ray->perpwalldist * ray->raydir.y;
 	else
-		wallx = pl->pos.x + ray->perpWallDist * ray->rayDir.x;
+		wallx = pl->pos.x + ray->perpwalldist * ray->raydir.x;
 	wallx -= floor(wallx);
 	stripe.texx = (int)(wallx * pl->data->wall_img[ray->hit]->width);
-	if ((ray->side == 0 && ray->rayDir.x > 0)
-		|| (ray->side == 1 && ray->rayDir.y < 0))
+	if ((ray->side == 0 && ray->raydir.x > 0)
+		|| (ray->side == 1 && ray->raydir.y < 0))
 		stripe.texx = pl->data->wall_img[ray->hit]->width - stripe.texx - 1;
 	draw_vertical_stripe(img, pl->data->wall_img[ray->hit], stripe);
 }

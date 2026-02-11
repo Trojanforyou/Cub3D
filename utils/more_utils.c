@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 16:14:25 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 10:42:41 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,21 @@ void	mouse_look(t_data *data)
 	if (dx > 1 || dx < -1)
 		rotate_camera(data->player, dx * 0.002);
 	mlx_set_mouse_pos(data->mlx, cx, (data->height / 2));
+}
+
+bool	coullum_check_helper(t_data *data, int *x, int *y)
+{
+	if (data->map[*y][*x] == ' ')
+	{
+		if (data->map[*y + 1] && (data->map[*y + 1][*x] == 'P'
+			|| data->map[*y + 1][*x] == '0'
+			|| data->map[*y + 1][*x] == 'D'))
+			return (printf("Map is not covered by the walls"), false);
+	}
+	else if (data->map[*y][*x] == '\n')
+		if (data->map[*y + 1] && (data->map[*y + 1][*x] == 'P'
+			|| data->map[*y + 1][*x] == '0'
+			|| data->map[*y + 1][*x] == 'D'))
+			return (printf("Map is not covered by the walls"), false);
+	return (true);
 }
