@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 15:24:07 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 11:45:20 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	data_init(t_data *data)
 	data->door_flag = -1;
 	data->key_e_was_pressed = 0;
 	data->door_y = 0;
+	data->ceiling_flag = 0;
+	data->floor_flag = 0;
 	data->door_x = 0;
 	data->minimap_i = NULL;
 }

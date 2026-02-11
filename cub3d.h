@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/11 10:45:17 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 11:43:01 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef struct t_data
 	int				key_e_was_pressed;
 	int				door_y;
 	int				door_x;
+	int				ceiling_flag;
+	int				floor_flag;
 	t_player		*player;
 }	t_data;
 

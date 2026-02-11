@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 16:26:27 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/11 11:44:45 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,19 @@ bool	additional_check(char *line, t_data *data)
 	if (*line == 'F' || *line == 'C')
 	{
 		if (*line == 'F')
+		{
 			if (parse_floor_ceiling(line, data, data->tmp_floor) == false)
 				return (printf("here1\n"), false);
+			data->floor_flag++;
+		}
 		if (*line == 'C')
+		{
 			if (parse_floor_ceiling(line, data, data->tmp_ceiling) == false)
 				return (printf("here\n"), false);
+			data->ceiling_flag++;
+		}
+		if (data->ceiling_flag > 1 || data->floor_flag > 1)
+			return(printf("To much [C] or [F]\n"), false);
 		return (true);
 	}
 	return (true);
