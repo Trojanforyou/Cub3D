@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/12 15:11:17 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:00:07 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ bool	find_last(t_data *data)
 						while (data->map[y + 1] && data->map[y][0] == ' ')
 							y++;
 						if (data->map[y - 1][0] == '1')
-							return(printf("here"), false);
+							return(printf("Input has NOT valid\n"), false);
 					}
 				}
 				else if (!data->map[y - 1])
@@ -160,6 +160,32 @@ bool	find_last(t_data *data)
 		}
 		y++;
 	}
-
 	return(true);
 }
+bool	find_prev(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == ' ')
+			{
+				while (data->map[y][x] == ' ')
+					x++;
+				if ((data->map[y + 1][x] || data->map[y - 1][x]) && data->map[y][x] == '1')
+					return(printf("Input has NOT valid\n"), false);
+				else
+					return(true);
+			}
+			x++;
+		}
+		y++;
+	}
+	return(true);
+}
+

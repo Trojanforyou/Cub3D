@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/12 15:08:46 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/12 15:31:05 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int	main(int ac, char **av)
 	find_door(&data);
 	if (!player_init(&player, &data))
 		return (clean_data(&data), -1);
+	if (find_prev(&data) == false)
+		return(false);
 	if (find_last(&data) == false)
 		return(false);
 	if (!game_init(&data, &player))

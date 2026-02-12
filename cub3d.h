@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/12 15:06:23 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/12 15:29:45 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line);
 bool	floor_ceiling_check(char **path);
 bool	set_collor(t_data *data, int y, int x);
 int		rgb(int r, int g, int b);
+bool	find_prev(t_data *data);
 
 bool	texture_load(t_data *texture);
 bool	load_image(t_data *texture);
