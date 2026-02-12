@@ -6,7 +6,7 @@
 /*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:36:31 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/12 13:20:26 by orhan            ###   ########.fr       */
+/*   Updated: 2026/02/12 13:52:04 by orhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,26 @@ void	arrow_look(t_data *data)
 
 void	collision_and_update(t_data *data, double *move)
 {
-	double new_x;
-	double new_y;
+	double	new_x;
+	double	new_y;
+	double	offset_x;
+	double	offset_y;
 
 	new_x = data->player->pos.x + move[0];
 	new_y = data->player->pos.y + move[1];
-	if (is_free_tile(data, new_x + ((move[0] > 0) ? PLAYER_COLLISION_BUFFER : -PLAYER_COLLISION_BUFFER),
-			data->player->pos.y))
+	if (move[0] > 0)
+		offset_x = PLAYER_COLLISION_BUFFER;
+	else
+		offset_x = -PLAYER_COLLISION_BUFFER;
+	if (is_free_tile(data, new_x + offset_x, data->player->pos.y))
 		data->player->pos.x = new_x;
-	if (is_free_tile(data, data->player->pos.x,
-			new_y + ((move[1] > 0) ? PLAYER_COLLISION_BUFFER : -PLAYER_COLLISION_BUFFER)))
+	if (move[1] > 0)
+		offset_y = PLAYER_COLLISION_BUFFER;
+	else
+		offset_y = -PLAYER_COLLISION_BUFFER;
+	if (is_free_tile(data, data->player->pos.x, new_y + offset_y))
 		data->player->pos.y = new_y;
 }
-
 
 void	move_player(t_data *data)
 {

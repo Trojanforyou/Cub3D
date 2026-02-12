@@ -6,7 +6,7 @@
 /*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/12 13:20:19 by orhan            ###   ########.fr       */
+/*   Updated: 2026/02/12 13:53:36 by orhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ int	main(int ac, char **av)
 		return (clean_data(&data), -1);
 	if (!game_init(&data, &player))
 		return (printf("Game init failed\n"), -1);
-
 	return (clean_data(&data), 0);
 }

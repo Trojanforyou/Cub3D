@@ -6,35 +6,37 @@
 /*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:49:17 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/12 13:48:03 by orhan            ###   ########.fr       */
+/*   Updated: 2026/02/12 13:53:55 by orhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, t_stripe strip)
+void	draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, t_stripe strip)
 {
-    int y;
-    int texy;
-    uint8_t *pixel;
-    float step;
-    float tex_pos;
+	int		y;
+	int		texy;
+	uint8_t	*pixel;
+	float	step;
+	float	tex_pos;
 
 	step = (float)tex->height / strip.lineheight;
-	tex_pos = (strip.drawstart - SCREEN_HEIGHT / 2 + strip.lineheight / 2) * step;
-    y = strip.drawstart;
-    while (y < strip.drawend)
-    {
-        texy = (int)tex_pos;
-        if (texy < 0)
-            texy = 0;
-        if (texy >= (int)tex->height)
-            texy = (int)tex->height - 1;
-        pixel = &tex->pixels[4 * (texy * (int)tex->width + strip.texx)];
-        mlx_put_pixel(img, strip.x, y, ((pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3]));
-        tex_pos += step;
-        y++;
-    }
+	tex_pos = (strip.drawstart - SCREEN_HEIGHT / 2
+			+ strip.lineheight / 2) * step;
+	y = strip.drawstart;
+	while (y < strip.drawend)
+	{
+		texy = (int)tex_pos;
+		if (texy < 0)
+			texy = 0;
+		if (texy >= (int)tex->height)
+			texy = (int)tex->height - 1;
+		pixel = &tex->pixels[4 * (texy * (int)tex->width + strip.texx)];
+		mlx_put_pixel(img, strip.x, y,
+			((pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3]));
+		tex_pos += step;
+		y++;
+	}
 }
 
 void	draw_textured_wall(t_player *pl, mlx_image_t *img, t_ray *ray, int x)
