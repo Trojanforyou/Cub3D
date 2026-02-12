@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                             :+:    :+:           */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/11 13:39:05 by otanovic       ########   odam.nl        */
+/*   Updated: 2026/02/12 13:18:14 by orhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define MAX_MAP_LINES 1000
+# define MAX_MAP_LINES 2000
 # define TITLE_SIZE 64
 # define MINIMAP_SIZE 10
 # define OFFSET_X 0
 # define OFFSET_Y 0
-# define SCREEN_WIDTH 1920
+# define SCREEN_WIDTH 1080
 # define SCREEN_HEIGHT 1080
 # define CEILING_COLOUR 120
+# define PLAYER_COLLISION_BUFFER 0.2
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>

@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                        :+:    :+:           */
+/*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:49:17 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/11 13:43:55 by otanovic       ########   odam.nl        */
+/*   Updated: 2026/02/12 13:12:35 by orhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-//raycast_and_draw
-//│
-//├─ init_ray                // math setup
-//├── calculate_step_and_side // grid stepping setup
-//├── DDA_loop                // map collision
-//├── calculate_perp_dist     // camera correction
-//└── draw_textured_wall      // rendering only
-
-// seg faultin here for
-// whenever I go past the last walls so its due to reading
-// from the map past a valid place
-// DDA loop: marches ray through the map until a wall is hit
 
 void	draw_vertical_stripe(mlx_image_t *img, mlx_image_t *tex, t_stripe strip)
 {

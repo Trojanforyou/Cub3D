@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                            :+:    :+:           */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:36:31 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/11 13:32:27 by otanovic       ########   odam.nl        */
+/*   Updated: 2026/02/12 13:20:26 by orhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	is_free_tile(t_data *data, int x, int y)
+static int	is_free_tile(t_data *data, double x, double y)
 {
-	if (y < 0 || !data->map[y])
+	int	tx;
+	int	ty;
+
+	tx = (int)x;
+	ty = (int)y;
+	if (ty < 0 || !data->map[ty])
 		return (0);
-	if (x < 0 || !data->map[y][x] || data->map[y][x] == '\n')
+	if (tx < 0 || !data->map[ty][tx] || data->map[ty][tx] == '\n')
 		return (0);
-	return (data->map[y][x] == '0' || data->map[y][x] == 'P');
+	return (data->map[ty][tx] == '0' || data->map[ty][tx] == 'P');
 }
 
 void	rotate_camera(t_player *p, double rot)
@@ -44,13 +49,19 @@ void	arrow_look(t_data *data)
 
 void	collision_and_update(t_data *data, double *move)
 {
-	if (is_free_tile(data, (int)(data->player->pos.x
-			+ move[0]), (int)data->player->pos.y))
-		data->player->pos.x += move[0];
-	if (is_free_tile(data, (int)data->player->pos.x,
-			(int)(data->player->pos.y + move[1])))
-		data->player->pos.y += move[1];
+	double new_x;
+	double new_y;
+
+	new_x = data->player->pos.x + move[0];
+	new_y = data->player->pos.y + move[1];
+	if (is_free_tile(data, new_x + ((move[0] > 0) ? PLAYER_COLLISION_BUFFER : -PLAYER_COLLISION_BUFFER),
+			data->player->pos.y))
+		data->player->pos.x = new_x;
+	if (is_free_tile(data, data->player->pos.x,
+			new_y + ((move[1] > 0) ? PLAYER_COLLISION_BUFFER : -PLAYER_COLLISION_BUFFER)))
+		data->player->pos.y = new_y;
 }
+
 
 void	move_player(t_data *data)
 {
