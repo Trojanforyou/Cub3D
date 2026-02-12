@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/12 15:29:45 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:01:02 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ char	map_char_check(t_data *data);
 // char	wall_height_check(t_data *data);
 // char	map_witdh_check(t_data *data);
 bool	coullum_check_helper(t_data *data, int *x, int *y);
-bool	find_last(t_data *data);
+bool	map_y_check(t_data *data);
+bool	map_x_check(t_data *data);
 
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);
@@ -150,7 +151,6 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line);
 bool	floor_ceiling_check(char **path);
 bool	set_collor(t_data *data, int y, int x);
 int		rgb(int r, int g, int b);
-bool	find_prev(t_data *data);
 
 bool	texture_load(t_data *texture);
 bool	load_image(t_data *texture);

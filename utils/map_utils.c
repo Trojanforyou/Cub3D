@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/12 16:00:07 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:03:42 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,71 +121,5 @@ bool	island_check(t_data *data, size_t y, size_t x)
 	}
 	return (true);
 }
-bool	find_last(t_data *data)
-{
-	int	y;
-	int	x;
-	int	flag;
 
-	flag = 0;
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y] && data->map[y][x])
-		{
-			if (data->map[y][x] == '1')
-				flag++;
-			if (data->map[y][x] == '0' || data->map[y][x] == 'P')
-				flag = 0;
-			if ((size_t)flag == ft_strlen(data->map[y]))
-			{
-				y++;
-				if (data->map[y] && data->map[y][0] == '\0')
-				{
-					if (data->map[y + 1])
-					{
-						while (data->map[y + 1] && data->map[y][0] == ' ')
-							y++;
-						if (data->map[y - 1][0] == '1')
-							return(printf("Input has NOT valid\n"), false);
-					}
-				}
-				else if (!data->map[y - 1])
-					return(true);
-
-			}
-			x++;
-
-		}
-		y++;
-	}
-	return(true);
-}
-bool	find_prev(t_data *data)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == ' ')
-			{
-				while (data->map[y][x] == ' ')
-					x++;
-				if ((data->map[y + 1][x] || data->map[y - 1][x]) && data->map[y][x] == '1')
-					return(printf("Input has NOT valid\n"), false);
-				else
-					return(true);
-			}
-			x++;
-		}
-		y++;
-	}
-	return(true);
-}
 
