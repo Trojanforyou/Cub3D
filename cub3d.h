@@ -6,7 +6,7 @@
 /*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/12 13:18:14 by orhan            ###   ########.fr       */
+/*   Updated: 2026/02/12 13:33:40 by orhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define SCREEN_WIDTH 1080
 # define SCREEN_HEIGHT 1080
 # define CEILING_COLOUR 120
-# define PLAYER_COLLISION_BUFFER 0.2
+# define PLAYER_COLLISION_BUFFER 0.3
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
