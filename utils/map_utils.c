@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/11 10:42:18 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/12 15:11:17 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,46 @@ bool	island_check(t_data *data, size_t y, size_t x)
 			return (printf("Map is not covered by the walls\n"), false);
 	}
 	return (true);
+}
+bool	find_last(t_data *data)
+{
+	int	y;
+	int	x;
+	int	flag;
+
+	flag = 0;
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y] && data->map[y][x])
+		{
+			if (data->map[y][x] == '1')
+				flag++;
+			if (data->map[y][x] == '0' || data->map[y][x] == 'P')
+				flag = 0;
+			if ((size_t)flag == ft_strlen(data->map[y]))
+			{
+				y++;
+				if (data->map[y] && data->map[y][0] == '\0')
+				{
+					if (data->map[y + 1])
+					{
+						while (data->map[y + 1] && data->map[y][0] == ' ')
+							y++;
+						if (data->map[y - 1][0] == '1')
+							return(printf("here"), false);
+					}
+				}
+				else if (!data->map[y - 1])
+					return(true);
+
+			}
+			x++;
+
+		}
+		y++;
+	}
+
+	return(true);
 }

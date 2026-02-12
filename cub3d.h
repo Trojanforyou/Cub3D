@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orhan <orhan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/12 13:33:40 by orhan            ###   ########.fr       */
+/*   Updated: 2026/02/12 15:06:23 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ char	map_char_check(t_data *data);
 // char	wall_height_check(t_data *data);
 // char	map_witdh_check(t_data *data);
 bool	coullum_check_helper(t_data *data, int *x, int *y);
+bool	find_last(t_data *data);
 
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);
