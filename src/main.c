@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/12 16:02:33 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/13 13:46:36 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 		return (clean_data(&data), -1);
 	if (!map_init(&data))
 		return (clean_data(&data), -1);
-	if (map_x_check(&data) == false || map_y_check(&data) == false)
+	if (map_y_check(&data) == false || map_x_check(&data) == false)
 		return (clean_data(&data), false);
 	find_player(&data, &player);
 	find_door(&data);

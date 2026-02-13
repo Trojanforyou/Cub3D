@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/12 16:01:02 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/13 13:46:32 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ char	map_char_check(t_data *data);
 // char	wall_height_check(t_data *data);
 // char	map_witdh_check(t_data *data);
 bool	coullum_check_helper(t_data *data, int *x, int *y);
-bool	map_y_check(t_data *data);
 bool	map_x_check(t_data *data);
+bool	map_y_check(t_data *data);
 
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);
