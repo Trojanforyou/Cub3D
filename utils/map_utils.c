@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/12 16:03:42 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:13:00 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,3 @@ bool	island_check(t_data *data, size_t y, size_t x)
 	}
 	return (true);
 }
-
-

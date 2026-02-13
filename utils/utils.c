@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/13 13:54:52 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:14:03 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ bool	additional_check(char *line, t_data *data)
 			data->ceiling_flag++;
 		}
 		if (data->ceiling_flag > 1 || data->floor_flag > 1)
-			return(printf("To much [C] or [F]\n"), false);
+			return (printf("To much [C] or [F]\n"), false);
 		return (true);
 	}
 	return (true);
@@ -112,9 +112,4 @@ void	change_perspective(t_data *data)
 		}
 		y++;
 	}
-}
-
-int	rgb(int r, int g, int b)
-{
-	return ((0xFF << 24) | ((b & 0xFF) << 16) | ((g & 0xFF) << 8) | (r & 0xFF));
 }

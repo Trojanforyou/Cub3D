@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/13 14:04:22 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:55:55 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	find_player(t_data *data, t_player *player)
 		{
 			if (data->map[y][x] == 'P')
 			{
-				player->pos.x = x;
-				player->pos.y = y;
+				player->pos.x = x + 0.1;
+				player->pos.y = y + 0.1;
 			}
 			x++;
 		}
