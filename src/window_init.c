@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 15:44:36 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:04:16 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,22 @@ int	get_map_width(char **str)
 {
 	int	y;
 	int	x;
+	int	max_width;
+	int	len;
 
 	y = 0;
+	max_width = 0;
 	while (str[y])
 	{
 		x = 0;
 		while (str[y][x])
 			x++;
+		len = x;
+		if (str[y][len - 1] == '\n')
+			len--;
+		if (len > max_width)
+			max_width = len;
 		y++;
 	}
-	return (x);
+	return (max_width);
 }
