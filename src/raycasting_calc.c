@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_calc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:47:46 by otanovic          #+#    #+#             */
-/*   Updated: 2026/02/11 10:50:26 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/13 12:54:38 by otanovic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	dda_loop(t_ray *ray, t_data *data)
 			return ;
 		if (data->map[ray->map.y][ray->map.x] == 'D')
 			ray->hit = 4;
-		if (data->map[ray->map.y][ray->map.x] != '0')
+		else if (data->map[ray->map.y][ray->map.x] != '0')
 			ray->hit = face_from_ray(ray);
 	}
 }
