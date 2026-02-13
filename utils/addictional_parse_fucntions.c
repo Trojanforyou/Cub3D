@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:03:44 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/13 13:50:00 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:44:14 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static	bool check_for_valid(t_data *data, int *y, int *flag)
 		{
 			if (data->map[*y + 1])
 			{
-				while (data->map[*y + 1] && data->map[*y][0] == ' ')
-					y++;
-				if (ft_isprint(data->map[*y - 1][0]))
+				while ((data->map[*y + 1] && data->map[*y][0] == '\0') || data->map[*y][0] == ' ')
+					(*y)++;
+				if (ft_isprint(data->map[*y][0]) == '1')
 					return (printf("Input is NOT valid\n"), false);
 			}
 		}
@@ -49,7 +49,8 @@ bool	map_y_check(t_data *data)
 				flag++;
 			if (data->map[y][x] == '0' || data->map[y][x] == 'P')
 				flag = 0;
-			check_for_valid(data, &y, &flag);
+			if (check_for_valid(data, &y, &flag) == false)
+				return(false);
 			x++;
 
 		}
@@ -72,7 +73,7 @@ bool	map_x_check(t_data *data)
 			{
 				while (data->map[y][x] == ' ')
 					x++;
-				if ((!data->map[y + 1] || !data->map[y - 1]) && ft_isprint(data->map[y][x]))
+				if ((data->map[y + 1] || data->map[y - 1]) && ft_isprint(data->map[y][x]))
 					return( printf("Input is NOT valid\n"), false);
 				else
 					return (true);
