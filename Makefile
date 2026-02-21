@@ -2,7 +2,7 @@ OBJDIR = obj
 NAME = cub3D
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -I.
+CFLAGS = -Wall -Wextra  -Werror -Wuninitialized -Wunused -g3 -I.
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a

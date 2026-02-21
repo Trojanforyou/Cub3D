@@ -66,8 +66,13 @@ void	find_player(t_data *data, t_player *player)
 		{
 			if (data->map[y][x] == 'P')
 			{
+<<<<<<< HEAD
 				player->pos.x = x + 0.1;
 				player->pos.y = y + 0.1;
+=======
+				player->pos.x = x + 0.5;
+				player->pos.y = y + 0.5;
+>>>>>>> be3fd06 (fixed player seeing through wall when spawned bug)
 			}
 			x++;
 		}
