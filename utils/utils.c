@@ -22,24 +22,6 @@ int	get_map_height(char **map)
 	return (y);
 }
 
-char	get_max_witdh(t_data *data)
-{
-	int	y;
-	int	max;
-	int	len;
-
-	max = 0;
-	y = 0;
-	while (data->map[y])
-	{
-		len = ft_strlen(data->map[y]);
-		if (len > max)
-			max = len;
-		y++;
-	}
-	return (max);
-}
-
 bool	ceiling_error_check(char **ceiling)
 {
 	int	i;

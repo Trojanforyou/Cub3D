@@ -81,7 +81,9 @@ int	main(int ac, char **av)
 	t_player	player;
 
 	if (ac < 2)
-		return (printf("Program requires MORE than 2 arguments\n"), 1);
+		return (printf("Program requires MORE than 1 argument\n"), 1);
+	if (ac > 2)
+		return (printf("Program requires ONLY 1 argument\n"), 1);
 	if (prefix_check(av[1]))
 		return (-1);
 	data_init(&data);

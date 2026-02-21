@@ -120,7 +120,8 @@ char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
 // char	wall_height_check(t_data *data);
 // char	map_witdh_check(t_data *data);
-bool	coullum_check_helper(t_data *data, int *x, int *y);
+bool    column_check_helper(t_data *data, int x, int y);
+int     get_map_width(char **map);
 bool	map_x_check(t_data *data);
 bool	map_y_check(t_data *data);
 

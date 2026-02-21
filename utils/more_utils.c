@@ -36,19 +36,24 @@ void	mouse_look(t_data *data)
 	mlx_set_mouse_pos(data->mlx, cx, (data->height / 2));
 }
 
-bool	coullum_check_helper(t_data *data, int *x, int *y)
+bool column_check_helper(t_data *data, int x, int y)
 {
-	if (data->map[*y][*x] == ' ')
-	{
-		if (data->map[*y + 1] && (data->map[*y + 1][*x] == 'P'
-			|| data->map[*y + 1][*x] == '0'
-			|| data->map[*y + 1][*x] == 'D'))
-			return (printf("Map is not covered by the walls"), false);
-	}
-	else if (data->map[*y][*x] == '\n')
-		if (data->map[*y + 1] && (data->map[*y + 1][*x] == 'P'
-			|| data->map[*y + 1][*x] == '0'
-			|| data->map[*y + 1][*x] == 'D'))
-			return (printf("Map is not covered by the walls"), false);
-	return (true);
+    size_t len;
+
+    if (!data || !data->map || !data->map[y])
+        return (false);
+    if (data->map[y][x] == ' ' || data->map[y][x] == '\n')
+    {
+        if (data->map[y + 1])
+        {
+            len = ft_strlen(data->map[y + 1]);
+            if ((size_t)x < len)            /* bounds check! */
+            {
+                char c = data->map[y + 1][x];
+                if (c == 'P' || c == '0' || c == 'D')
+                    return (printf("Map is not covered by the walls\n"), false);
+            }
+        }
+    }
+    return (true);
 }

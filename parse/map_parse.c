@@ -35,31 +35,30 @@ char	map_char_check(t_data *data)
 	return (0);
 }
 
-bool	collums_check(t_data *data)
+bool collums_check(t_data *data)
 {
-	int	x;
-	int	y;
+    int y;
+    int x;
 
-	data->width = get_map_width(data->map);
-	x = 0;
-	while (x < data->width)
-	{
-		y = 0;
-		while (data->map[y])
-		{
-			if (x >= (int)ft_strlen(data->map[y]))
-			{
-				y++;
-				continue ;
-			}
-			if (coullum_check_helper(data, &x, &y) == false)
-				return (false);
-			y++;
-		}
-		x++;
-	}
-	return (true);
+    if (!data || !data->map)
+        return (false);
+    y = 0;
+    while (data->map[y])
+    {
+        x = 0;
+        /* stop at '\0' or '\n' */
+        while (data->map[y][x] && data->map[y][x] != '\n')
+        {
+            if (!column_check_helper(data, x, y))
+                return (false);
+            ++x;
+        }
+        ++y;
+    }
+    return (true);
 }
+
+/* …the rest of the file remains unchanged… */
 
 char	map_validation(t_data *data)
 {

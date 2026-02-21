@@ -37,26 +37,24 @@ bool	game_init(t_data *data, t_player *player)
 	return (true);
 }
 
-int	get_map_width(char **str)
+int get_map_width(char **map)
 {
-	int	y;
-	int	x;
-	int	max_width;
-	int	len;
+    int y;
+    int x;
+    int max;
 
-	y = 0;
-	max_width = 0;
-	while (str[y])
-	{
-		x = 0;
-		while (str[y][x])
-			x++;
-		len = x;
-		if (str[y][len - 1] == '\n')
-			len--;
-		if (len > max_width)
-			max_width = len;
-		y++;
-	}
-	return (max_width);
+    if (!map)
+        return (0);
+    max = 0;
+    y = 0;
+    while (map[y])
+    {
+        x = 0;
+        while (map[y][x] && map[y][x] != '\n')
+            ++x;
+        if (x > max)
+            max = x;
+        ++y;
+    }
+    return (max);
 }
