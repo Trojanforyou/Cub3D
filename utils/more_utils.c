@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/06 15:20:09 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 15:48:35 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ bool	last_arg_check(char **path)
 		while (path[2][k] == ' ')
 			k++;
 		if (!path[2][k] + 1 && path[2][k] == '\0')
-			return(printf("Here\n"), false);
+			return(printf("Invalid or missing floor or ceiling color\n"), false);
 
 	}
 	return(true);
