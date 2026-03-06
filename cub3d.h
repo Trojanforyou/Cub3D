@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/03/06 14:35:57 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 16:14:36 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct t_data
 	int				door_x;
 	int				ceiling_flag;
 	int				floor_flag;
+	int				y_flag;
 	t_player		*player;
 }	t_data;
 
@@ -119,8 +120,8 @@ char	dublicate_check(t_data *data);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
 
-bool    column_check_helper(t_data *data, int x, int y);
-int     get_map_width(char **map);
+bool	column_check_helper(t_data *data, int x, int y);
+int		get_map_width(char **map);
 bool	map_x_check(t_data *data);
 bool	map_y_check(t_data *data);
 bool	last_arg_check(char **path);
@@ -146,7 +147,6 @@ void	find_door(t_data *data);
 
 bool	set_walls_texture(t_data *data, char *ptr);
 
-
 bool	parse_floor_ceiling(char *path, t_data *data, char **line);
 bool	floor_ceiling_check(char **path);
 bool	set_collor(t_data *data, int y, int x);
@@ -166,7 +166,6 @@ bool	game_init(t_data *data, t_player *player);
 void	game_loop(void *param);
 
 /* ===================== WINDOW / RENDER ===================== */
-
 
 bool	window_hight(t_data *data);
 

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:54:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/13 15:14:59 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 15:52:27 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,27 @@ char	map_char_check(t_data *data)
 	return (0);
 }
 
-bool collums_check(t_data *data)
+bool	collums_check(t_data *data)
 {
-    int y;
-    int x;
+	int	y;
+	int	x;
 
-    if (!data || !data->map)
-        return (false);
-    y = 0;
-    while (data->map[y])
-    {
-        x = 0;
-        /* stop at '\0' or '\n' */
-        while (data->map[y][x] && data->map[y][x] != '\n')
-        {
-            if (!column_check_helper(data, x, y))
-                return (false);
-            ++x;
-        }
-        ++y;
-    }
-    return (true);
+	if (!data || !data->map)
+		return (false);
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x] && data->map[y][x] != '\n')
+		{
+			if (!column_check_helper(data, x, y))
+				return (false);
+			++x;
+		}
+		++y;
+	}
+	return (true);
 }
-
-/* …the rest of the file remains unchanged… */
 
 char	map_validation(t_data *data)
 {

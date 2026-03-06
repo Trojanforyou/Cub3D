@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/06 15:49:12 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 15:52:50 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,16 @@ char	**map_reader(char *filename, t_data *data)
 		return (NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
+	{
+		free(temp);
 		return (printf("File does not exist\n"), NULL);
+	}
 	if (set_map(fd, data, temp, &i) == NULL)
 	{
 		free(temp);
-		return(NULL);
+		close(fd);
+		get_next_line(-1);
+		return (NULL);
 	}
 	data->map = temp;
 	close(fd);

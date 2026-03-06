@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/06 15:48:35 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 16:02:35 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ void	mouse_look(t_data *data)
 	mlx_set_mouse_pos(data->mlx, cx, (data->height / 2));
 }
 
-bool column_check_helper(t_data *data, int x, int y)
+bool	column_check_helper(t_data *data, int x, int y)
 {
-	size_t len;
+	size_t	len;
+	char	c;
 
+	c = 0;
 	if (!data || !data->map || !data->map[y])
 		return (false);
 	if (data->map[y][x] == ' ' || data->map[y][x] == '\n')
@@ -49,7 +51,7 @@ bool column_check_helper(t_data *data, int x, int y)
 			len = ft_strlen(data->map[y + 1]);
 			if ((size_t)x < len)
 			{
-				char c = data->map[y + 1][x];
+				c = data->map[y + 1][x];
 				if (c == 'P' || c == '0' || c == 'D')
 					return (printf("Map is not covered by the walls\n"), false);
 			}
@@ -57,9 +59,10 @@ bool column_check_helper(t_data *data, int x, int y)
 	}
 	return (true);
 }
+
 bool	last_arg_check(char **path)
 {
-	int k;
+	int	k;
 
 	k = 0;
 	if (path[2] && path[2][0] && path[2][0] == ' ')
@@ -67,8 +70,8 @@ bool	last_arg_check(char **path)
 		while (path[2][k] == ' ')
 			k++;
 		if (!path[2][k] + 1 && path[2][k] == '\0')
-			return(printf("Invalid or missing floor or ceiling color\n"), false);
-
+			return (printf
+				("Invalid or missing floor or ceiling color\n"), false);
 	}
-	return(true);
+	return (true);
 }
