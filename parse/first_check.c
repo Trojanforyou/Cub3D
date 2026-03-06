@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/06 16:39:18 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 16:41:27 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	line = ft_split(tmp, ',');
 	line = trim_floor(line);
 	if (floor_ceiling_check(line) == false)
-		return ( false);
+		return (false);
 	r = ft_atoi(line[0]);
 	g = ft_atoi(line[1]);
 	b = ft_atoi(line[2]);
