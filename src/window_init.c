@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otanovic <otanovic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/13 14:04:16 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 15:32:13 by otanovic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,24 @@ bool	game_init(t_data *data, t_player *player)
 	return (true);
 }
 
-int get_map_width(char **map)
+int	get_map_width(char **map)
 {
-    int y;
-    int x;
-    int max;
+	int	y;
+	int	x;
+	int	max;	
 
-    if (!map)
-        return (0);
-    max = 0;
-    y = 0;
-    while (map[y])
-    {
-        x = 0;
-        while (map[y][x] && map[y][x] != '\n')
-            ++x;
-        if (x > max)
-            max = x;
-        ++y;
-    }
-    return (max);
+	if (!map)
+		return (0);
+	max = 0;
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x] && map[y][x] != '\n')
+			++x;
+		if (x > max)
+			max = x;
+		++y;
+	}
+	return (max);
 }
