@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   more_utils.c                                        :+:    :+:           */
+/*   more_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/11 13:52:04 by otanovic       ########   odam.nl        */
+/*   Updated: 2026/03/06 15:20:09 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,37 @@ void	mouse_look(t_data *data)
 
 bool column_check_helper(t_data *data, int x, int y)
 {
-    size_t len;
+	size_t len;
 
-    if (!data || !data->map || !data->map[y])
-        return (false);
-    if (data->map[y][x] == ' ' || data->map[y][x] == '\n')
-    {
-        if (data->map[y + 1])
-        {
-            len = ft_strlen(data->map[y + 1]);
-            if ((size_t)x < len)            /* bounds check! */
-            {
-                char c = data->map[y + 1][x];
-                if (c == 'P' || c == '0' || c == 'D')
-                    return (printf("Map is not covered by the walls\n"), false);
-            }
-        }
-    }
-    return (true);
+	if (!data || !data->map || !data->map[y])
+		return (false);
+	if (data->map[y][x] == ' ' || data->map[y][x] == '\n')
+	{
+		if (data->map[y + 1])
+		{
+			len = ft_strlen(data->map[y + 1]);
+			if ((size_t)x < len)
+			{
+				char c = data->map[y + 1][x];
+				if (c == 'P' || c == '0' || c == 'D')
+					return (printf("Map is not covered by the walls\n"), false);
+			}
+		}
+	}
+	return (true);
+}
+bool	last_arg_check(char **path)
+{
+	int k;
+
+	k = 0;
+	if (path[2] && path[2][0] && path[2][0] == ' ')
+	{
+		while (path[2][k] == ' ')
+			k++;
+		if (!path[2][k] + 1 && path[2][k] == '\0')
+			return(printf("Here\n"), false);
+
+	}
+	return(true);
 }

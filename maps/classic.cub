@@ -2,8 +2,9 @@ NO ./textures/northwall.png
 SO ./textures/southwall.png
 WE ./textures/westwall.png
 EA ./textures/eastwall.png
-F 139,69,11
-C 128,128,128
+
+F 139,69,     
+C 128,128,13
 
 111111111111111111111111
 111111111111111111111111

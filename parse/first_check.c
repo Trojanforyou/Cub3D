@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 16:29:07 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 15:24:43 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ char	**map_reader(char *filename, t_data *data)
 	if (fd < 0)
 		return (printf("File does not exist\n"), NULL);
 	if (set_map(fd, data, temp, &i) == NULL)
-		return (NULL);
+	{
+		free(temp);
+		return(NULL);
+	}
 	data->map = temp;
 	close(fd);
 	return (data->map);
@@ -66,14 +69,6 @@ char	dublicate_check(t_data *data)
 		return (printf("Wrong [CORDINATE] usage\n"), -1);
 	return (0);
 }
-
-// static bool	value_check(char **line)
-// {
-// 	if (ft_strlen(line[0]) == 0 || ft_strlen(line[1]) == 0
-// 		|| ft_strlen(line[2]) == 0)
-// 		return (printf("RGB args is not valid\n"), false);
-// 	return (true);
-// }
 
 bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 {
