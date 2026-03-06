@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/06 15:27:08 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/06 15:42:50 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	**set_map(int fd, t_data *data, char **temp, int *i)
 		line = get_next_line(fd);
 		if (line)
 			free(line);
+			
 	}
 	return (temp);
 }
