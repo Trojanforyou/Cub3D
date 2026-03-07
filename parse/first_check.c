@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 16:48:20 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 18:25:03 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,17 @@ char	**map_reader(char *filename, t_data *data)
 		return (NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
+	{
+		free(temp);
 		return (printf("File does not exist\n"), NULL);
+	}
 	if (set_map(fd, data, temp, &i) == NULL)
+	{
+		clean_parser(temp, &i);
+		close(fd);
+		get_next_line(-1);
 		return (NULL);
+	}
 	data->map = temp;
 	close(fd);
 	return (data->map);
@@ -67,14 +75,6 @@ char	dublicate_check(t_data *data)
 	return (0);
 }
 
-// static bool	value_check(char **line)
-// {
-// 	if (ft_strlen(line[0]) == 0 || ft_strlen(line[1]) == 0
-// 		|| ft_strlen(line[2]) == 0)
-// 		return (printf("RGB args is not valid\n"), false);
-// 	return (true);
-// }
-
 bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 {
 	int		r;
@@ -89,12 +89,12 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	line = ft_split(tmp, ',');
 	line = trim_floor(line);
 	if (floor_ceiling_check(line) == false)
-		return (false);
+		return (clean_floor(line), false);
 	r = ft_atoi(line[0]);
 	g = ft_atoi(line[1]);
 	b = ft_atoi(line[2]);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (printf("RGB is out from range [0-256]"), false);
+		return (clean_floor(line), printf("RGB is out from range [0-256]\n"), false);
 	if (path[0] == 'F')
 		data->floor = rgb(r, g, b);
 	if (path[0] == 'C')

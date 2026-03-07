@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:51:28 by msokolov          #+#    #+#             */
-/*   Updated: 2025/12/05 21:28:38 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 18:23:13 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,12 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0)
-		return (NULL);
+	{
+		if (storage)
+			free(storage);
+		storage = 0;
+		return(NULL);
+	}
 	if ((storage && !ft_strchr1(storage, '\n')) || !storage)
 		storage = read_buffer (fd, storage);
 	if (!storage)

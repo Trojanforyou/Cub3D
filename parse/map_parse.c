@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:54:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 15:39:12 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 17:42:33 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,22 @@ char	map_char_check(t_data *data)
 
 bool	collums_check(t_data *data)
 {
-	int	x;
 	int	y;
+	int	x;
 
-	data->width = get_map_width(data->map);
-	x = 0;
-	while (x < data->width)
+	if (!data || !data->map)
+		return (false);
+	y = 0;
+	while (data->map[y])
 	{
-		y = 0;
-		while (data->map[y])
+		x = 0;
+		while (data->map[y][x] && data->map[y][x] != '\n')
 		{
-			if (x >= (int)ft_strlen(data->map[y]))
-			{
-				y++;
-				continue ;
-			}
-			if (coullum_check_helper(data, &x, &y) == false)
+			if (!column_check_helper(data, x, y))
 				return (false);
-			y++;
+			++x;
 		}
-		x++;
+		++y;
 	}
 	return (true);
 }

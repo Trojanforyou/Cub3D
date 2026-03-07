@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 17:09:19 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 18:09:18 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,43 @@ void	mouse_look(t_data *data)
 	mlx_set_mouse_pos(data->mlx, cx, (data->height / 2));
 }
 
-bool	coullum_check_helper(t_data *data, int *x, int *y)
+bool	column_check_helper(t_data *data, int x, int y)
 {
-	if (data->map[*y][*x] == ' ')
+	size_t	len;
+	char	c;
+
+	c = 0;
+	if (!data || !data->map || !data->map[y])
+		return (false);
+	if (data->map[y][x] == ' ' || data->map[y][x] == '\n')
 	{
-		if (data->map[*y + 1] && (data->map[*y + 1][*x] == 'P'
-			|| data->map[*y + 1][*x] == '0'
-			|| data->map[*y + 1][*x] == 'D'))
-			return (printf("Map is not covered by the walls"), false);
+		if (data->map[y + 1])
+		{
+			len = ft_strlen(data->map[y + 1]);
+			if ((size_t)x < len)
+			{
+				c = data->map[y + 1][x];
+				if (c == 'P' || c == '0' || c == 'D')
+					return (printf("Map is not covered by the walls\n"), false);
+			}
+		}
 	}
-	else if (data->map[*y][*x] == '\n')
-		if (data->map[*y + 1] && (data->map[*y + 1][*x] == 'P'
-			|| data->map[*y + 1][*x] == '0'
-			|| data->map[*y + 1][*x] == 'D'))
-			return (printf("Map is not covered by the walls"), false);
+	return (true);
+}
+
+bool	last_arg_check(char **path)
+{
+	int	k;
+
+	k = 0;
+	if (path[2] && path[2][0] && path[2][0] == ' ')
+	{
+		while (path[2][k] == ' ')
+			k++;
+		if (!path[2][k] + 1 && path[2][k] == '\0')
+			return (printf
+				("Invalid or missing floor or ceiling color\n"), false);
+	}
 	return (true);
 }
 void	set_map_helper(char *line, char **temp, int *i, int *map_started)

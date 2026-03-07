@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 17:36:31 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 18:23:28 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ char	**set_map(int fd, t_data *data, char **temp, int *i)
 	while (line)
 	{
 		if (additional_check(line, data) == false)
-			return (NULL);
+		{
+			free(line);
+			return (get_next_line(-1), NULL);
+		}
 		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
 			|| ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0
 			|| ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
@@ -70,6 +73,7 @@ char	**set_map(int fd, t_data *data, char **temp, int *i)
 		set_map_helper(line, temp, i, &map_started);
 		line = get_next_line(fd);
 	}
+	get_next_line(-1);
 	return (temp);
 }
 

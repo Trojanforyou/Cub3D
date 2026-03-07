@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/03/07 17:36:08 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 18:08:53 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct t_data
 	int				door_x;
 	int				ceiling_flag;
 	int				floor_flag;
+	int				y_flag;
 	t_player		*player;
 }	t_data;
 
@@ -118,18 +119,18 @@ char	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
-// char	wall_height_check(t_data *data);
-// char	map_witdh_check(t_data *data);
-bool	coullum_check_helper(t_data *data, int *x, int *y);
+
+bool	column_check_helper(t_data *data, int x, int y);
+int		get_map_width(char **map);
 bool	map_x_check(t_data *data);
 bool	map_y_check(t_data *data);
+bool	last_arg_check(char **path);
 
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);
 char	**set_map(int fd, t_data *data, char **temp, int *i);
 int	find_end_map(t_data *data);
 
-// bool	load_map(t_data *data);
 bool	map_init(t_data *data);
 bool	additional_check(char *line, t_data *data);
 bool	collums_check(t_data *data);
@@ -146,7 +147,6 @@ void	find_door(t_data *data);
 /* ===================== TEXTURES / COLORS ===================== */
 
 bool	set_walls_texture(t_data *data, char *ptr);
-// bool	walls_set(char *filename, t_data *data);
 
 bool	parse_floor_ceiling(char *path, t_data *data, char **line);
 bool	floor_ceiling_check(char **path);
@@ -170,10 +170,8 @@ void	clean_parser(char **path, int *i);
 
 /* ===================== WINDOW / RENDER ===================== */
 
-// bool	window_witdh(t_data *data);
 bool	window_hight(t_data *data);
 
-// void	render_map(t_data *data);
 bool	put_pixel(t_data *data, int x, int y, int color);
 
 /* ===================== MINIMAP ===================== */
