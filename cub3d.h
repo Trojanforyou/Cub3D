@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/02/13 14:04:19 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 17:36:08 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct t_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_texture_t	*wall[5]; // 0 = north, 1 = south, 2 = west, 3 = east
+	mlx_texture_t	*wall[5];
 	mlx_image_t		*wall_img[5];
 	mlx_image_t		*minimap_i;
 	char			**map;
@@ -127,6 +127,7 @@ bool	map_y_check(t_data *data);
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);
 char	**set_map(int fd, t_data *data, char **temp, int *i);
+int	find_end_map(t_data *data);
 
 // bool	load_map(t_data *data);
 bool	map_init(t_data *data);
@@ -154,6 +155,7 @@ int		rgb(int r, int g, int b);
 
 bool	texture_load(t_data *texture);
 bool	load_image(t_data *texture);
+void	set_map_helper(char *line, char **temp, int *i, int *map_started);
 
 /* ===================== INIT / CLEAN ===================== */
 
@@ -164,6 +166,7 @@ void	clean_floor(char **data);
 void	change_perspective(t_data *data);
 bool	game_init(t_data *data, t_player *player);
 void	game_loop(void *param);
+void	clean_parser(char **path, int *i);
 
 /* ===================== WINDOW / RENDER ===================== */
 

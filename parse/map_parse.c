@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:54:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/13 15:14:59 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 15:39:12 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	map_validation(t_data *data)
 		x = -1;
 		while (data->map[y][++x])
 		{
+			printf("%c", data->map[y][x]);
 			if ((data->map[y][x] == ' '))
 			{
 				if (map_right_check(data, x, y) == false)

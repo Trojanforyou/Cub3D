@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/13 15:01:33 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/07 17:36:31 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,28 @@ static int	get_tile_color(t_data *data, int x, int y)
 	return (-1);
 }
 
+// bool is_map_line(char *line)
+// {
+//     int i;
+
+//     i = 0;
+//     while (line[i])
+//     {
+//         if (line[i] != ' ' && line[i] != '0' && line[i] != '1' 
+//             && line[i] != 'N' && line[i] != 'S' && line[i] != 'W' 
+//             && line[i] != 'E' && line[i] != 'D' && line[i] != '\n')
+//             return (false);
+//         i++;
+//     }
+//     return (true);
+// }
+
 char	**set_map(int fd, t_data *data, char **temp, int *i)
 {
 	char	*line;
-
+	int		map_started;
+	
+	map_started = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -37,20 +55,24 @@ char	**set_map(int fd, t_data *data, char **temp, int *i)
 			return (NULL);
 		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
 			|| ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0
-			|| line[0] == 'F' || line[0] == 'C')
+			|| ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
 		{
-			free(line);
-			line = get_next_line(fd);
-			continue ;
+		if (map_started == 1)
+		{
+			clean_parser(temp, i);
+			return(free(line), 
+				printf("Map Has non valid ending\n"), NULL);
 		}
-		if (line[0] == '\n')
-			line[0] = '\0';
-		temp[*i] = line;
-		(*i)++;
+		free(line);
+		line = get_next_line(fd);
+		continue ;
+		}
+		set_map_helper(line, temp, i, &map_started);
 		line = get_next_line(fd);
 	}
 	return (temp);
 }
+
 
 bool	set_collor(t_data *data, int y, int x)
 {

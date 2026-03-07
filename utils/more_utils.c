@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   more_utils.c                                        :+:    :+:           */
+/*   more_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/11 13:52:04 by otanovic       ########   odam.nl        */
+/*   Updated: 2026/03/07 17:09:19 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,19 @@ bool	coullum_check_helper(t_data *data, int *x, int *y)
 			|| data->map[*y + 1][*x] == 'D'))
 			return (printf("Map is not covered by the walls"), false);
 	return (true);
+}
+void	set_map_helper(char *line, char **temp, int *i, int *map_started)
+{
+	if (line[0] == '\n')
+	{
+		line[0] = '\0';
+		temp[*i] = line;
+		(*i)++;
+	}
+	else
+	{
+		temp[*i] = line;
+		*map_started = 1;
+		(*i)++;
+	}
 }
