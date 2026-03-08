@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:03:44 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 12:35:19 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 18:56:08 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ bool	map_y_check(t_data *data)
 
 	while (data->map[y])
 		y++;
-	if (data->map[y - 1][x] == '\n')
-		return(printf("here\n"), false);
+	if (data->map[y - 2] && data->map[y - 2][x] == '\0')
+		return(printf("New line at the end of the map\n"), false);
 	return(true);
 }
 
