@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/13 15:13:00 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 13:40:43 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 bool	map_up_check(t_data *data, size_t x, size_t y)
 {
-	if (data->map[0][x] == ' ')
+	if (x < ft_strlen(data->map[0]) && data->map[0][x] == ' ')
 		x++;
 	if (data->map[y + 1]
-		&& y <= ft_strlen(data->map[y])
+		&& y <= ft_strlen(data->map[y]) 
+		&& x < ft_strlen(data->map[y + 1])
 		&& data->map[y + 1][x] == ' ')
 	{
 		while (y > 0 && data->map[y][x] == ' ')
@@ -36,7 +37,7 @@ bool	map_up_check(t_data *data, size_t x, size_t y)
 
 bool	map_down_check(t_data *data, size_t x, size_t y)
 {
-	if (data->map[0][x] == ' ')
+	if (x < ft_strlen(data->map[0]) && data->map[0][x] == ' ')
 	{
 		while (y <= ft_strlen(data->map[y]) && data->map[y][x] == ' ')
 			y++;
@@ -48,7 +49,8 @@ bool	map_down_check(t_data *data, size_t x, size_t y)
 		&& (data->map[y - 1][x] == '0'
 		|| data->map[y - 1][x] == 'P' || data->map[y - 1][x] == 'D'))
 		return (printf("Map is not covered by the walls\n"), false);
-	else if (data->map[y][x] == ' ' && (data->map[y - 1][x] == '1'
+	else if (x < ft_strlen(data->map[y - 1]) 
+		&&  data->map[y][x] == ' ' && (data->map[y - 1][x] == '1'
 		|| data->map[y - 1][x] == '\n'))
 	{
 		while (y > 0 && data->map[y] && data->map[y][x] == ' ')

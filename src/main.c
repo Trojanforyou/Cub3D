@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 17:42:26 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:06:58 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,8 @@ int	main(int ac, char **av)
 	t_data		data;
 	t_player	player;
 
-	if (ac < 2)
-		return (printf("Program requires MORE than 1 argument\n"), 1);
-	if (ac > 2)
-		return (printf("Program requires ONLY 1 argument\n"), 1);
+	if (ac != 2)
+		return (printf("Program requires 2 arguments\n"), 1);
 	if (prefix_check(av[1]))
 		return (-1);
 	data_init(&data);
@@ -91,8 +89,8 @@ int	main(int ac, char **av)
 		return (clean_data(&data), -1);
 	if (!map_init(&data))
 		return (clean_data(&data), -1);
-	// if (map_y_check(&data) == false)
-	// 	return (clean_data(&data), false);
+	if (data.ceiling_flag != 1 || data.floor_flag != 1)
+		return (printf("Invalid [C] or [F]\n"), false);
 	find_player(&data, &player);
 	find_door(&data);
 	if (!player_init(&player, &data))

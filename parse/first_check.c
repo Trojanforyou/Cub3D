@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 18:25:03 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 13:14:07 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**map_reader(char *filename, t_data *data)
 	}
 	if (set_map(fd, data, temp, &i) == NULL)
 	{
-		clean_parser(temp, &i);
+		clean_floor(temp);
 		close(fd);
 		get_next_line(-1);
 		return (NULL);

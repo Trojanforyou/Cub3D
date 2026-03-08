@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/06 16:04:14 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 12:43:48 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int	player_init(t_player *player, t_data *data)
 	player->plane.y = 0.5;
 	player->data = data;
 	player->speed = 0.1;
-	data->y_flag = 0;
+	
 	return (1);
 }

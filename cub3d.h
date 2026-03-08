@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/03/07 18:08:53 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 12:29:37 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,8 @@ typedef struct t_stripe
 
 /* ===================== PARSING / MAP ===================== */
 
-// char	color_set(char *filename, t_data *data);
 char	**map_reader(char *filename, t_data *data);
-char	**cordinates_check(char *filename, t_data *data);
+// char	**cordinates_check(char *filename, t_data *data);
 char	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
 char	map_validation(t_data *data);
@@ -129,7 +128,6 @@ bool	last_arg_check(char **path);
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);
 char	**set_map(int fd, t_data *data, char **temp, int *i);
-int	find_end_map(t_data *data);
 
 bool	map_init(t_data *data);
 bool	additional_check(char *line, t_data *data);

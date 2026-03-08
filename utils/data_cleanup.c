@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 19:35:45 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 18:08:15 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 13:10:54 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,16 @@ void	clean_floor(char **data)
 	int	i;
 
 	i = 0;
-	while (data[i])
+	if (data)
 	{
-		free(data[i]);
-		i++;
+		while (data[i])
+		{
+			free(data[i]);
+			i++;
+		}
+		free (data);
 	}
-	free (data);
+
 }
 
 void	clean_ceiling(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:03:44 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 18:07:32 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 12:35:19 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,17 @@
 // 	return (true);
 // }
 
-// bool	map_y_check(t_data *data)
-// {
-//     int	y;
-//     int	x;
-// 	int	flag = 0;
-// 	int	started = 0;
-// 	y = 0;
-// 	x = 0;
-// 	while (data->map[y])
-// 	{
-// 		if (data->map[y][x] == '\0')
-// 			y++;f
-// 	return(true);
-// }
+bool	map_y_check(t_data *data)
+{
+	int	y = 0;
+	int	x = 0;
+
+	while (data->map[y])
+		y++;
+	if (data->map[y - 1][x] == '\n')
+		return(printf("here\n"), false);
+	return(true);
+}
 
 bool	map_x_check(t_data *data)
 {

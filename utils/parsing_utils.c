@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/07 18:23:28 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:14:20 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,14 @@ char	**set_map(int fd, t_data *data, char **temp, int *i)
 	while (line)
 	{
 		if (additional_check(line, data) == false)
-		{
-			free(line);
-			return (get_next_line(-1), NULL);
-		}
+			return (free(line), get_next_line(-1), NULL);
 		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
 			|| ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0
 			|| ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
 		{
 		if (map_started == 1)
-		{
-			clean_parser(temp, i);
 			return(free(line), 
 				printf("Map Has non valid ending\n"), NULL);
-		}
 		free(line);
 		line = get_next_line(fd);
 		continue ;
