@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:17:09 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 14:25:05 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/09 21:20:22 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int ac, char **av)
 	if (!map_init(&data))
 		return (clean_data(&data), -1);
 	if (map_y_check(&data) == false)
-		return(false);
+		return(clean_data(&data), false);
 	if (data.ceiling_flag != 1 || data.floor_flag != 1)
 		return (printf("Invalid [C] or [F]\n"), false);
 	find_player(&data, &player);
