@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 13:14:07 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:58:12 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static void	set_rgb(int *r, int *b, int *g, char **line)
+{
+	*r = ft_atoi(line[0]);
+	*g = ft_atoi(line[1]);
+	*b = ft_atoi(line[2]);
+}
 
 static void	main_dublicate_check(t_data *data, int *y, int *x, int *flag)
 {
@@ -91,11 +98,12 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	line = trim_floor(line);
 	if (floor_ceiling_check(line) == false)
 		return (clean_floor(line), false);
-	r = ft_atoi(line[0]);
-	g = ft_atoi(line[1]);
-	b = ft_atoi(line[2]);
+	set_rgb(&r, &b, &g, line);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (clean_floor(line), printf("RGB is out from range [0-256]\n"), false);
+		return (clean_floor(line),
+			printf("RGB is out from range [0-256]\n"), false);
+	if ((path[0] == 'F' || path[0] == 'C') && path[1] != ' ')
+		return (printf("Not valid [C] or [F]\n"), false);
 	if (path[0] == 'F')
 		data->floor = rgb(r, g, b);
 	if (path[0] == 'C')

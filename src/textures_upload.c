@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 20:43:38 by msokolov          #+#    #+#             */
-/*   Updated: 2026/02/03 15:44:17 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 14:22:21 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,19 @@ bool	texture_load(t_data *data)
 	data->wall[4] = mlx_load_png("textures/exito.png");
 	if (!data->wall[0] || !data->wall[1] || !data->wall[2]
 		|| !data->wall[3] || !data->wall[4])
+	{
+		if (data->wall[0])
+			mlx_delete_texture(data->wall[0]);
+		if (data->wall[1])
+			mlx_delete_texture(data->wall[1]);
+		if (data->wall[2])
+			mlx_delete_texture(data->wall[2]);
+		if (data->wall[3])
+			mlx_delete_texture(data->wall[3]);
+		if (data->wall[4])
+			mlx_delete_texture(data->wall[4]);
 		return (printf("Texture load error\n"), false);
+	}
 	return (true);
 }
 
