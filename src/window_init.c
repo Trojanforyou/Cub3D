@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 14:15:17 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 14:29:47 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	game_init(t_data *data, t_player *player)
 	if (!data->mlx)
 		return (printf("MLX init failed\n"), false);
 	if (texture_load(data) == false || load_image(data) == false)
-		return (clean_data(data), printf("Texture loading failed\n"), false);
+		return (mlx_terminate(data->mlx),clean_data(data), printf("Texture loading failed\n"), false);
 	if (set_minimap_img(data) == false)
 		return (false);
 	data->player = player;
