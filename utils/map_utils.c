@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 14:16:42 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 19:57:33 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ bool	map_down_check(t_data *data, size_t x, size_t y)
 			y++;
 		if (data->map[y][x] == '0' || data->map[y][x] == 'P'
 			|| data->map[y][x] == 'D')
-			return (printf("Map is not covered by the walls\n"), false);
+			return (printf("Map is not covered by the walls1\n"), false);
 	}
 	if (y > 0 && x < ft_strlen(data->map[y - 1])
 		&& (data->map[y - 1][x] == '0'
 		|| data->map[y - 1][x] == 'P' || data->map[y - 1][x] == 'D'))
-		return (printf("Map is not covered by the walls\n"), false);
+		return (printf("Map is not covered by the walls2\n"), false);
 	else if (x < ft_strlen(data->map[y - 1]) 
 		&&  data->map[y][x] == ' ' && (data->map[y - 1][x] == '1'
 		|| data->map[y - 1][x] == '\n'))
@@ -114,6 +114,8 @@ bool	island_check(t_data *data, size_t y, size_t x)
 	{
 		if (y != 0 && (data->map[y - 1][x] == '\n'
 			|| data->map[y - 1][x] == '\0'))
+			return (printf("Map is not covered by the walls\n"), false);
+		if (!data->map[y + 1])
 			return (printf("Map is not covered by the walls\n"), false);
 		if (data->map[y + 1] && y < ft_strlen(data->map[y])
 			&& (data->map[y + 1][x] == '\n' || data->map[y + 1][x] == '\0'))

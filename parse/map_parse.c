@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:54:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 12:37:19 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 19:41:09 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ bool	collums_check(t_data *data)
 	while (data->map[y])
 	{
 		x = 0;
-		while (data->map[y][x] && data->map[y][x] != '\n')
+		while (x < (int)ft_strlen(data->map[x]) && data->map[y][x] && data->map[y][x] != '\0')
 		{
-			if (!column_check_helper(data, x, y))
+			if (column_check_helper(data, x, y) == false)
 				return (false);
 			++x;
 		}

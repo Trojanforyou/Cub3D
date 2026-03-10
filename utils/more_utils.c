@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   more_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 16:26:09 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 19:34:35 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	column_check_helper(t_data *data, int x, int y)
 	c = 0;
 	if (!data || !data->map || !data->map[y])
 		return (false);
-	if (data->map[y][x] == ' ' || data->map[y][x] == '\n')
+	if (data->map[y][x] == ' ' || data->map[y][x] == '\0')
 	{
 		if (data->map[y + 1])
 		{
