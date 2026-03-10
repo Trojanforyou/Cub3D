@@ -90,7 +90,7 @@ int	main(int ac, char **av)
 	if (!map_init(&data))
 		return (clean_data(&data), -1);
 	if (map_y_check(&data) == false)
-		return(clean_data(&data), false);
+		return (clean_data(&data), false);
 	if (data.ceiling_flag != 1 || data.floor_flag != 1)
 		return (printf("Invalid [C] or [F]\n"), false);
 	find_player(&data, &player);

@@ -41,14 +41,45 @@ void	data_init(t_data *data)
 	data->minimap_i = NULL;
 }
 
+static void	player_direction(t_player *player, t_data *data)
+{
+	if (data->player_dir == 'S')
+	{
+		player->dir.x = 0.0;
+		player->dir.y = 1.0;
+		player->plane.x = -0.5;
+		player->plane.y = 0.0;
+	}
+	else if (data->player_dir == 'E')
+	{
+		player->dir.x = 1.0;
+		player->dir.y = 0.0;
+		player->plane.x = 0.0;
+		player->plane.y = -0.5;
+	}
+	else if (data->player_dir == 'W')
+	{
+		player->dir.x = -1.0;
+		player->dir.y = 0.0;
+		player->plane.x = 0.0;
+		player->plane.y = 0.5;
+	}
+}
+
 int	player_init(t_player *player, t_data *data)
 {
-	player->dir.x = -1.0;
-	player->dir.y = 0.0;
-	player->plane.x = 0.0;
-	player->plane.y = 0.5;
+	if (data && data->player_dir)
+	{
+		if (data->player_dir == 'N')
+		{
+			player->dir.x = 0.0;
+			player->dir.y = -1.0;
+			player->plane.x = 0.5;
+			player->plane.y = 0.0;
+		}
+		player_direction(player, data);
+	}
 	player->data = data;
 	player->speed = 0.1;
-	
 	return (1);
 }

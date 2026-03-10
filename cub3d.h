@@ -86,6 +86,8 @@ typedef struct t_data
 	int				ceiling_flag;
 	int				floor_flag;
 	int				y_flag;
+/* orientation stored from starting tile */
+	char			player_dir;
 	t_player		*player;
 }	t_data;
 
