@@ -25,6 +25,7 @@ static void	main_dublicate_check(t_data *data, int *y, int *x, int *flag)
 		|| data->map[*y][*x] == 'S' || data->map[*y][*x] == 'E')
 	{
 		(*flag)++;
+		data->player_dir = data->map[*y][*x];
 		data->map[*y][*x] = 'P';
 	}
 	else if (data->map[*y][*x] == 'D')
