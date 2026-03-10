@@ -42,9 +42,9 @@ void	rotate_camera(t_player *p, double rot)
 void	arrow_look(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		rotate_camera(data->player, 0.1);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_camera(data->player, -0.1);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		rotate_camera(data->player, 0.1);
 }
 
 void	collision_and_update(t_data *data, double *move)
