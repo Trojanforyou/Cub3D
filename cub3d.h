@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/03/08 12:29:37 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:25:08 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int		rgb(int r, int g, int b);
 
 bool	texture_load(t_data *texture);
 bool	load_image(t_data *texture);
-void	set_map_helper(char *line, char **temp, int *i, int *map_started);
+bool	set_map_helper(char *line, char **temp, int *i, int *map_started);
 
 /* ===================== INIT / CLEAN ===================== */
 

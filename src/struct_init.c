@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:42:06 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 12:43:48 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:22:33 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ static void	player_direction(t_player *player, t_data *data)
 		player->dir.x = 1.0;
 		player->dir.y = 0.0;
 		player->plane.x = 0.0;
-		player->plane.y = -0.5;
+		player->plane.y = 0.5;
 	}
 	else if (data->player_dir == 'W')
 	{
 		player->dir.x = -1.0;
 		player->dir.y = 0.0;
 		player->plane.x = 0.0;
-		player->plane.y = 0.5;
+		player->plane.y = -0.5;
 	}
 }
 

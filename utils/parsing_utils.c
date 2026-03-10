@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 14:14:20 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:55:01 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ char	**set_map(int fd, t_data *data, char **temp, int *i)
 		line = get_next_line(fd);
 		continue ;
 		}
-		set_map_helper(line, temp, i, &map_started);
+		if (set_map_helper(line, temp, i, &map_started) == false)
+			return(free(line), printf("Map have a New Line\n"), NULL);
 		line = get_next_line(fd);
 	}
 	get_next_line(-1);

@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:54:03 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 14:44:48 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:22:33 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ bool	game_init(t_data *data, t_player *player)
 		return (printf("Failed to add image to window\n"), 1);
 	change_perspective(data);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_DISABLED);
+	mlx_set_mouse_pos(data->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	mlx_loop_hook(data->mlx, game_loop, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
