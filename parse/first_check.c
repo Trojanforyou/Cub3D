@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:27:59 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 13:14:07 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:51:29 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	b = ft_atoi(line[2]);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (clean_floor(line), printf("RGB is out from range [0-256]\n"), false);
+	if (path[0] == 'F' || path[0] == 'C' && path[1] != ' ')
+		return(printf("here\n"), false);
 	if (path[0] == 'F')
 		data->floor = rgb(r, g, b);
 	if (path[0] == 'C')
@@ -102,3 +104,4 @@ bool	parse_floor_ceiling(char *path, t_data *data, char **line)
 	clean_floor(line);
 	return (true);
 }
+static void	set_path()

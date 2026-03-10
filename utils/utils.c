@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:57:55 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 14:15:19 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:46:33 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ bool	additional_check(char *line, t_data *data)
 		|| ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0)
 		if (set_walls_texture(data, line) == false)
 			return (false);
-	if (*line == 'F' || *line == 'C')
+	if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
 	{
-		if (*line == 'F')
+		if (ft_strncmp(line, "F", 1) == 0)
 		{
 			if (parse_floor_ceiling(line, data, data->tmp_floor) == false)
 				return (false);
 			data->floor_flag++;
 		}
-		if (*line == 'C')
+		if (ft_strncmp(line, "C", 1) == 0)
 		{
 			if (parse_floor_ceiling(line, data, data->tmp_ceiling) == false)
 				return (false);
