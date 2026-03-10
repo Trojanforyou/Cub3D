@@ -1,0 +1,11 @@
+SO ./textures/exito.png
+NO ./textures/southwall.png
+WE ./textures/minimap_floor.pngtouc
+EA ./textures/minimap_wall.png
+
+F 139,69,11
+C 128,128,11
+
+111                     
+1N01                                        0
+111                     

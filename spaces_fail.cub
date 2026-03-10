@@ -1,0 +1,10 @@
+SO ./textures/southwall.png
+NO ./textures/southwall.png
+WE ./textures/southwall.png
+EA ./textures/southwall.png
+
+F 139,69,11
+C 128,128,11
+                                                                    111
+111111111111111111111111111111111111111111111111111111111111111111111N1
+11                                     11                           11

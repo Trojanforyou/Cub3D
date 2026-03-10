@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 13:40:43 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:27:08 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ bool	map_up_check(t_data *data, size_t x, size_t y)
 		&& x < ft_strlen(data->map[y + 1])
 		&& data->map[y + 1][x] == ' ')
 	{
-		while (y > 0 && data->map[y][x] == ' ')
+		while (y > 0 && x < ft_strlen(data->map[y]) && data->map[y][x] == ' ')
 			y--;
-		if (data->map[y][x] == '1')
+		if (x < ft_strlen(data->map[y]) && data->map[y][x] == '1')
 			return (true);
-		if (data->map[y][x] == '0'
-			|| data->map[y][x] == 'P'
-			|| data->map[y][x] == 'D')
+		if (x < ft_strlen(data->map[y]) && data->map[y][x] && (data->map[y][x] == '0' || data->map[y][x] == 'P' || data->map[y][x] == 'D'))
 			return (printf("Map is not covered by the walls\n"), false);
 		else
 			return (true);
@@ -53,9 +51,10 @@ bool	map_down_check(t_data *data, size_t x, size_t y)
 		&&  data->map[y][x] == ' ' && (data->map[y - 1][x] == '1'
 		|| data->map[y - 1][x] == '\n'))
 	{
-		while (y > 0 && data->map[y] && data->map[y][x] == ' ')
+		while (x < ft_strlen(data->map[y]) && y > 0
+			&& data->map[y] && data->map[y][x] == ' ')
 			y++;
-		if (data->map[y] && data->map[y][x] == '1')
+		if (x < ft_strlen(data->map[y]) && data->map[y] && data->map[y][x] == '1')
 			return (true);
 	}
 	return (true);
@@ -94,7 +93,7 @@ bool	map_left_check(t_data *data, size_t x, size_t y)
 		return (printf("Map is not covered by the walls\n"), false);
 	if (x + 1 < ft_strlen(data->map[y]) && data->map[y][x + 1] == '1')
 	{
-		while (data->map[y][x] == ' ')
+		while (x > 0 && data->map[y][x] == ' ')
 			x--;
 		if (data->map[y][x] == '1')
 			return (true);
