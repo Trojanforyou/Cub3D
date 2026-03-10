@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:38:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 13:38:46 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 14:16:42 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,12 @@ bool	map_left_check(t_data *data, size_t x, size_t y)
 		return (printf("Map is not covered by the walls\n"), false);
 	if (x + 1 < ft_strlen(data->map[y]) && data->map[y][x + 1] == '1')
 	{
-		while (data->map[y][x] == ' ')
+		while (x > 0 && data->map[y][x] == ' ')
 			x--;
 		if (data->map[y][x] == '1')
 			return (true);
-		if (data->map[y][x] == 'P' || data->map[y][x] == '0'
-			|| data->map[y][x] == 'D')
+		if (x < ft_strlen(data->map[y]) && (data->map[y][x] == 'P' || data->map[y][x] == '0'
+			|| data->map[y][x] == 'D'))
 			return (printf("Map is not covered by the walls\n"), false);
 	}
 	return (true);
