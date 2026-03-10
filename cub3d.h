@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/03/10 16:25:08 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 20:22:19 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ bool	column_check_helper(t_data *data, int x, int y);
 int		get_map_width(char **map);
 bool	map_x_check(t_data *data);
 bool	map_y_check(t_data *data);
-bool	last_arg_check(char **path);
+bool	arg_check(char **path);
 
 char	**trim_floor(char **floor);
 char	**trim_celing(char **ceiling);

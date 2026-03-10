@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 19:34:35 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/10 20:22:54 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ bool	column_check_helper(t_data *data, int x, int y)
 	return (true);
 }
 
-bool	last_arg_check(char **path)
+bool	arg_check(char **path)
 {
 	int	k;
+	int	j;
 
 	k = 0;
 	if (path[2] && path[2][0] && path[2][0] == ' ')
@@ -73,6 +74,19 @@ bool	last_arg_check(char **path)
 			return (printf
 				("Invalid or missing floor or ceiling color\n"), false);
 	}
+	k = 0;
+	while (path[k])
+	{
+		j = 0;
+		while (path[k][j])
+		{
+			if (path[k][j] == ' ' && ft_isdigit(path[k][j + 1]))
+				return(printf("Invalid or missing floor or ceiling color\n"), false);
+			j++;
+		}
+		k++;
+	}
+	
 	return (true);
 }
 bool	set_map_helper(char *line, char **temp, int *i, int *map_started)
