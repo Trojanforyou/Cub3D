@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   more_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 20:22:54 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:17:28 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ bool	arg_check(char **path)
 	int	j;
 
 	k = 0;
-	if (path[2] && path[2][0] && path[2][0] == ' ')
+	if (!path || !path[0] || !path[1] || !path[2])
+		return (printf
+			("Invalid or missing floor or ceiling color\n"), false);
+	if ((path[1][0] && path[1][0] == ' ') || (path[2][0] && path[2][0] == ' '))
 	{
 		while (path[2][k] == ' ')
 			k++;
@@ -75,12 +78,12 @@ bool	arg_check(char **path)
 				("Invalid or missing floor or ceiling color\n"), false);
 	}
 	k = 0;
-	while (path[k])
+	while (k < 3 && path[k])
 	{
 		j = 0;
 		while (path[k][j])
 		{
-			if (path[k][j] == ' ' && ft_isdigit(path[k][j + 1]))
+			if (path[k][j] == ' ' && path[k][j + 1] && ft_isdigit(path[k][j + 1]))
 				return(printf("Invalid or missing floor or ceiling color\n"), false);
 			j++;
 		}
