@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:21:40 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/11 12:58:23 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:09:24 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,17 @@ bool	arg_check(char **path)
 			return (printf
 				("Invalid or missing floor or ceiling color\n"), false);
 	}
-	arg_space_check(path);
+	if (arg_space_check(path) == false)
+		return(false);
 	return (true);
 }
+
 bool	set_map_helper(char *line, char **temp, int *i, int *map_started)
 {
 	if (line[0] == '\n')
 	{
 		if (*map_started == 1)
-			return(false);
+			return (false);
 		line[0] = '\0';
 		temp[*i] = line;
 		(*i)++;
@@ -95,5 +97,5 @@ bool	set_map_helper(char *line, char **temp, int *i, int *map_started)
 		*map_started = 1;
 		(*i)++;
 	}
-	return(true);
+	return (true);
 }

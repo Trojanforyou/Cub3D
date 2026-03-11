@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:03:44 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/11 12:56:06 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:07:25 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ bool	wall_path_check(char *line)
 		return (false);
 	return (true);
 }
+
 bool	arg_space_check(char **path)
 {
 	int	k;
@@ -78,11 +79,13 @@ bool	arg_space_check(char **path)
 		j = 0;
 		while (path[k][j])
 		{
-			if (path[k][j] == ' ' && path[k][j + 1] && ft_isdigit(path[k][j + 1]))
-				return (printf("Invalid or missing floor or ceiling color\n"), false);
+			if (path[k][j] == ' ' && path[k][j + 1]
+					&& ft_isdigit(path[k][j + 1]))
+				return (printf
+					("Invalid or missing floor or ceiling color\n"), false);
 			j++;
 		}
 		k++;
 	}
-	return(true);
+	return (true);
 }
