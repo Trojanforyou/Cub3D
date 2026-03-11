@@ -3,49 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   addictional_parse_fucntions.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:03:44 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 18:56:08 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:56:06 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-// static	bool	check_for_valid(t_data *data, int *y, int *flag)
-// {
-// 	if ((size_t)(*flag) == ft_strlen(data->map[*y]))
-// 	{
-// 		(*y)++;
-// 		if (data->map[*y] && data->map[*y][0] == '\0')
-// 		{
-// 			if (data->map[*y + 1])
-// 			{
-// 				while ((data->map[*y + 1]
-// 						&& data->map[*y + 1][0] == '\0') || data->map[*y + 1][0] == ' ')
-// 					(*y)++;
-// 				if ((data->map[*y][0])
-// 				&& (data->map[*y + 1][0] == ' '
-// 					&& data->map[*y + 2][0] == '1' && data->map[*y][0] == '1'))
-// 					return (printf("Input is NOT valid\n"), false);
-// 			}
-// 		}
-// 		else if (!data->map[*y - 1])
-// 			return (true);
-// 	}
-// 	return (true);
-// }
-
 bool	map_y_check(t_data *data)
 {
-	int	y = 0;
-	int	x = 0;
+	int	y;
+	int	x;
 
+	y = 0;
+	x = 0;
 	while (data->map[y])
 		y++;
 	if (data->map[y - 2] && data->map[y - 2][x] == '\0')
-		return(printf("New line at the end of the map\n"), false);
-	return(true);
+		return (printf("New line at the end of the map\n"), false);
+	return (true);
 }
 
 bool	map_x_check(t_data *data)
@@ -79,4 +57,32 @@ bool	map_x_check(t_data *data)
 int	rgb(int r, int g, int b)
 {
 	return ((0xFF << 24) | ((b & 0xFF) << 16) | ((g & 0xFF) << 8) | (r & 0xFF));
+}
+
+bool	wall_path_check(char *line)
+{
+	if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
+		|| ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0
+		|| ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
+		return (false);
+	return (true);
+}
+bool	arg_space_check(char **path)
+{
+	int	k;
+	int	j;
+
+	k = 0;
+	while (k < 3 && path[k])
+	{
+		j = 0;
+		while (path[k][j])
+		{
+			if (path[k][j] == ' ' && path[k][j + 1] && ft_isdigit(path[k][j + 1]))
+				return (printf("Invalid or missing floor or ceiling color\n"), false);
+			j++;
+		}
+		k++;
+	}
+	return(true);
 }

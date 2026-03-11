@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:10:06 by orhan             #+#    #+#             */
-/*   Updated: 2026/03/10 20:22:19 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:58:00 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,11 @@ typedef struct t_stripe
 /* ===================== PARSING / MAP ===================== */
 
 char	**map_reader(char *filename, t_data *data);
-// char	**cordinates_check(char *filename, t_data *data);
 char	prefix_check(char *filename);
 char	dublicate_check(t_data *data);
 char	map_validation(t_data *data);
 char	map_char_check(t_data *data);
+bool	wall_path_check(char *line);
 
 bool	column_check_helper(t_data *data, int x, int y);
 int		get_map_width(char **map);
@@ -140,6 +140,7 @@ bool	map_up_check(t_data *data, size_t x, size_t y);
 bool	map_down_check(t_data *data, size_t x, size_t y);
 bool	map_left_check(t_data *data, size_t x, size_t y);
 bool	map_right_check(t_data *data, size_t x, size_t y);
+bool	arg_space_check(char **path);
 
 int		get_map_height(char **map);
 int		get_map_width(char **str);

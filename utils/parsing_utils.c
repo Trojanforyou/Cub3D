@@ -6,7 +6,7 @@
 /*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 14:38:22 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 16:55:01 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:48:20 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,52 +26,33 @@ static int	get_tile_color(t_data *data, int x, int y)
 	return (-1);
 }
 
-// bool is_map_line(char *line)
-// {
-//     int i;
-
-//     i = 0;
-//     while (line[i])
-//     {
-//         if (line[i] != ' ' && line[i] != '0' && line[i] != '1' 
-//             && line[i] != 'N' && line[i] != 'S' && line[i] != 'W' 
-//             && line[i] != 'E' && line[i] != 'D' && line[i] != '\n')
-//             return (false);
-//         i++;
-//     }
-//     return (true);
-// }
-
 char	**set_map(int fd, t_data *data, char **temp, int *i)
 {
 	char	*line;
 	int		map_started;
-	
+
 	map_started = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (additional_check(line, data) == false)
 			return (free(line), get_next_line(-1), NULL);
-		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
-			|| ft_strncmp(line, "EA", 2) == 0 || ft_strncmp(line, "WE", 2) == 0
-			|| ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
+		if (wall_path_check(line) == false)
 		{
-		if (map_started == 1)
-			return(free(line), 
-				printf("Map Has non valid ending\n"), NULL);
-		free(line);
-		line = get_next_line(fd);
-		continue ;
+			if (map_started == 1)
+				return (free(line),
+					printf("Map Has non valid ending\n"), NULL);
+			free(line);
+			line = get_next_line(fd);
+			continue ;
 		}
 		if (set_map_helper(line, temp, i, &map_started) == false)
-			return(free(line), printf("Map have a New Line\n"), NULL);
+			return (free(line), printf("Map have a New Line\n"), NULL);
 		line = get_next_line(fd);
 	}
 	get_next_line(-1);
 	return (temp);
 }
-
 
 bool	set_collor(t_data *data, int y, int x)
 {

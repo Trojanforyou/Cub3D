@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:54:26 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 19:41:09 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:28:29 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ bool	collums_check(t_data *data)
 	while (data->map[y])
 	{
 		x = 0;
-		while (x < (int)ft_strlen(data->map[x]) && data->map[y][x] && data->map[y][x] != '\0')
+		while (x < (int)ft_strlen(data->map[x])
+			&& data->map[y][x] && data->map[y][x] != '\0')
 		{
 			if (column_check_helper(data, x, y) == false)
 				return (false);

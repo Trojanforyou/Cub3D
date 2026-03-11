@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_cleanup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 19:35:45 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/08 13:10:54 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:31:01 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	clean_floor(char **data)
 		}
 		free (data);
 	}
-
 }
 
 void	clean_ceiling(t_data *data)
@@ -71,9 +70,10 @@ void	clean_ceiling(t_data *data)
 		}
 	}
 }
+
 void	clean_parser(char **path, int *i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (j < *i)

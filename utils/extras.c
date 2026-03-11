@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msokolov <msokolov@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: msokolov <msokolov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:11:41 by msokolov          #+#    #+#             */
-/*   Updated: 2026/03/10 20:22:07 by msokolov         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:29:29 by msokolov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool	floor_ceiling_check(char **path)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (path[i])
 	{
